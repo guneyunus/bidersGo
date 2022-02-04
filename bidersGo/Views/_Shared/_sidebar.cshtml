@@ -1,0 +1,254 @@
+﻿<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+
+    <div data-simplebar class="h-100">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title">Menu</li>
+
+                <li>
+                    <a href=@Url.Action("Index", "Dashboard") class="waves-effect">
+                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("Index", "Calendar") class=" waves-effect">
+                        <i class="ri-calendar-2-line"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("Index", "AppsChat") class=" waves-effect">
+                        <i class="ri-chat-1-line"></i>
+                        <span>Chat</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-store-2-line"></i>
+                        <span>Ecommerce</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "EcommerceProducts")>Products</a></li>
+                        <li><a href=@Url.Action("Index", "EcommerceProductDetail")>Product Detail</a></li>
+                        <li><a href=@Url.Action("Index", "EcommerceOrders")>Orders</a></li>
+                        <li><a href=@Url.Action("Index", "EcommerceCustomers")>Customers</a></li>
+                        <li><a href=@Url.Action("Index", "EcommerceCart")>Cart</a></li>
+                        <li><a href=@Url.Action("Index", "EcommerceCheckout")>Checkout</a></li>
+                        <li><a href=@Url.Action("Index", "EcommerceShops")>Shops</a></li>
+                        <li><a href=@Url.Action("Index", "EcommerceAddProduct")>Add Product</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Email</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "EmailInbox")>Inbox</a></li>
+                        <li><a href=@Url.Action("Index", "EmailRead")>Read Email</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href=@Url.Action("Index", "AppsKanbanBoard") class="waves-effect">
+                        <i class="ri-artboard-2-line"></i>
+                        <span>Kanban Board</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-layout-3-line"></i>
+                        <span>Layouts</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">Vertical</a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href=@Url.Action("Index", "LayoutsLightSidebar")>Light Sidebar</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsCompactSidebar")>Compact Sidebar</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsIconSidebar")>Icon Sidebar</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsBoxed")>Boxed Layout</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsPreloader")>Preloader</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsColoredSidebar")>Colored Sidebar</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">Horizontal</a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href=@Url.Action("Index", "LayoutsHorizontal")>Horizontal</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsHoriTopbarLight")>Topbar light</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsHoriBoxedWidth")>Boxed width</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsHoriPreloader")>Preloader</a></li>
+                                <li><a href=@Url.Action("Index", "LayoutsHoriColoredHeader")>Colored Header</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-title">Pages</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Authentication</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "AuthLogin")>Login</a></li>
+                        <li><a href=@Url.Action("Index", "AuthRegister")>Register</a></li>
+                        <li><a href=@Url.Action("Index", "AuthRecoverpw")>Recover Password</a></li>
+                        <li><a href=@Url.Action("Index", "AuthLockScreen")>Lock Screen</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Utility</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "PagesStarter")>Starter Page</a></li>
+                        <li><a href=@Url.Action("Index", "PagesMaintenance")>Maintenance</a></li>
+                        <li><a href=@Url.Action("Index", "PagesComingsoon")>Coming Soon</a></li>
+                        <li><a href=@Url.Action("Index", "PagesTimeline")>Timeline</a></li>
+                        <li><a href=@Url.Action("Index", "PagesFaqs")>FAQs</a></li>
+                        <li><a href=@Url.Action("Index", "PagesPricing")>Pricing</a></li>
+                        <li><a href=@Url.Action("Index", "Pages404")>Error 404</a></li>
+                        <li><a href=@Url.Action("Index", "Pages500")>Error 500</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-title">Components</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-pencil-ruler-2-line"></i>
+                        <span>UI Elements</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "UiAlerts")>Alerts</a></li>
+                        <li><a href=@Url.Action("Index", "UiButtons")>Buttons</a></li>
+                        <li><a href=@Url.Action("Index", "UiCards")>Cards</a></li>
+                        <li><a href=@Url.Action("Index", "UiCarousel")>Carousel</a></li>
+                        <li><a href=@Url.Action("Index", "UiDropdowns")>Dropdowns</a></li>
+                        <li><a href=@Url.Action("Index", "UiGrid")>Grid</a></li>
+                        <li><a href=@Url.Action("Index", "UiImages")>Images</a></li>
+                        <li><a href=@Url.Action("Index", "UiLightbox")>Lightbox</a></li>
+                        <li><a href=@Url.Action("Index", "UiModals")>Modals</a></li>
+                        <li><a href=@Url.Action("Index", "UiOffcanvas")>Offcavas</a></li>
+                        <li><a href=@Url.Action("Index", "UiRangeslider")>Range Slider</a></li>
+                        <li><a href=@Url.Action("Index", "UiRoundslider")>Round Slider</a></li>
+                        <li><a href=@Url.Action("Index", "UiSessionTimeout")>Session Timeout</a></li>
+                        <li><a href=@Url.Action("Index", "UiProgressbars")>Progress Bars</a></li>
+                        <li><a href=@Url.Action("Index", "UiSweetAlert")>Sweetalert 2</a></li>
+                        <li><a href=@Url.Action("Index", "UiTabsAccordions")>Tabs & Accordions</a></li>
+                        <li><a href=@Url.Action("Index", "UiTypography")>Typography</a></li>
+                        <li><a href=@Url.Action("Index", "UiVideo")>Video</a></li>
+                        <li><a href=@Url.Action("Index", "UiGeneral")>General</a></li>
+                        <li><a href=@Url.Action("Index", "UiRating")>Rating</a></li>
+                        <li><a href=@Url.Action("Index", "UiNotifications")>Notifications</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect">
+                        <i class="ri-eraser-fill"></i>
+                        <span class="badge rounded-pill bg-danger float-end">6</span>
+                        <span>Forms</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "FormElements")>Form Elements</a></li>
+                        <li><a href=@Url.Action("Index", "FormValidation")>Form Validation</a></li>
+                        <li><a href=@Url.Action("Index", "FormAdvanced")>Form Advanced Plugins</a></li>
+                        <li><a href=@Url.Action("Index", "FormEditors")>Form Editors</a></li>
+                        <li><a href=@Url.Action("Index", "FormUploads")>Form File Upload</a></li>
+                        <li><a href=@Url.Action("Index", "FormXeditable")>Form X-editable</a></li>
+                        <li><a href=@Url.Action("Index", "FormWizard")>Form Wizard</a></li>
+                        <li><a href=@Url.Action("Index", "FormMask")>Form Mask</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-table-2"></i>
+                        <span>Tables</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "TablesBasic")>Basic Tables</a></li>
+                        <li><a href=@Url.Action("Index", "TablesDatatable")>Data Tables</a></li>
+                        <li><a href=@Url.Action("Index", "TablesResponsive")>Responsive Table</a></li>
+                        <li><a href=@Url.Action("Index", "TablesEditable")>Editable Table</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-bar-chart-line"></i>
+                        <span>Charts</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "ChartsApex")>Apex Charts</a></li>
+                        <li><a href=@Url.Action("Index", "ChartsChartjs")>Chartjs Charts</a></li>
+                        <li><a href=@Url.Action("Index", "ChartsFlot")>Flot Charts</a></li>
+                        <li><a href=@Url.Action("Index", "ChartsKnob")>Jquery Knob Charts</a></li>
+                        <li><a href=@Url.Action("Index", "ChartsSparkline")>Sparkline Charts</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-brush-line"></i>
+                        <span>Icons</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "IconsRemix")>Remix Icons</a></li>
+                        <li><a href=@Url.Action("Index", "IconsMaterialdesign")>Material Design</a></li>
+                        <li><a href=@Url.Action("Index", "IconsDripicons")>Dripicons</a></li>
+                        <li><a href=@Url.Action("Index", "IconsFontawesome")>Font awesome 5</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-map-pin-line"></i>
+                        <span>Maps</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "MapsGoogle")>Google Maps</a></li>
+                        <li><a href=@Url.Action("Index", "MapsVector")>Vector Maps</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-share-line"></i>
+                        <span>Multi Level</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="javascript: void(0);">Level 1.1</a></li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">Level 1.2</a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="javascript: void(0);">Level 2.1</a></li>
+                                <li><a href="javascript: void(0);">Level 2.2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->

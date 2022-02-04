@@ -4,4 +4,98 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="wwwroot\assets\libs\datatables.net-autofill\node_modules\datatables.net\License.txt" />
+    <Content Include="wwwroot\assets\libs\datatables.net-bs4\node_modules\datatables.net\License.txt" />
+    <Content Include="wwwroot\assets\libs\datatables.net-buttons\node_modules\datatables.net\License.txt" />
+    <Content Include="wwwroot\assets\libs\datatables.net-keytable\node_modules\datatables.net\License.txt" />
+    <Content Include="wwwroot\assets\libs\datatables.net-responsive\node_modules\datatables.net\License.txt" />
+    <Content Include="wwwroot\assets\libs\datatables.net-select\node_modules\datatables.net\License.txt" />
+    <Content Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery\MIT-LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\libs\bootstrap-filestyle2\src\" />
+    <Folder Include="wwwroot\assets\libs\bootstrap-filestyle2\test\" />
+    <Folder Include="wwwroot\assets\libs\flot-charts\examples\" />
+    <Folder Include="wwwroot\assets\libs\flot.curvedlines\examples\" />
+    <Folder Include="wwwroot\assets\libs\flot.curvedlines\tests\" />
+    <Folder Include="wwwroot\assets\libs\gmaps\docs\" />
+    <Folder Include="wwwroot\assets\libs\gmaps\examples\" />
+    <Folder Include="wwwroot\assets\libs\gmaps\test\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\chalk\types\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\docs\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\docs\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\node_modules\" />
+    <Folder Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\test\" />
+    <Folder Include="wwwroot\assets\libs\ion-rangeslider\less\skins\" />
+    <Folder Include="wwwroot\assets\libs\jquery-sparkline\src\" />
+    <Folder Include="wwwroot\assets\libs\jquery-steps\demo\" />
+    <Folder Include="wwwroot\assets\libs\jquery-steps\src\" />
+    <Folder Include="wwwroot\assets\libs\jquery-steps\test\" />
+    <Folder Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery-easing-original\example\" />
+    <Folder Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery\dist\" />
+    <Folder Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery\src\" />
+    <Folder Include="wwwroot\assets\libs\jquery.easing\example\" />
+    <Folder Include="wwwroot\assets\libs\jquery.flot.tooltip\examples\" />
+    <Folder Include="wwwroot\assets\libs\jquery.repeater\src\" />
+    <Folder Include="wwwroot\assets\libs\jquery.repeater\test\" />
+    <Folder Include="wwwroot\assets\libs\moment\src\" />
+    <Folder Include="wwwroot\assets\libs\pdfmake\src\" />
+    <Folder Include="wwwroot\assets\libs\table-edits\src\" />
+    <Folder Include="wwwroot\assets\libs\toastr\tests\" />
+    <Folder Include="wwwroot\assets\libs\twitter-bootstrap-wizard\examples\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\libs\datatables.net-autofill\node_modules\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\assets\libs\datatables.net-bs4\node_modules\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\assets\libs\datatables.net-buttons\node_modules\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\assets\libs\datatables.net-keytable\node_modules\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\assets\libs\datatables.net-responsive\node_modules\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\assets\libs\datatables.net-select\node_modules\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\chalk\index.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\chalk\index.js.flow" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\chalk\license" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\chalk\templates.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\at-rule.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\comment.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\container.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\css-syntax-error.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\declaration.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\input.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\lazy-result.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\list.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\map-generator.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\node.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\parse.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\parser.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\postcss.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\previous-map.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\processor.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\result.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\root.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\rule.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\stringifier.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\stringify.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\terminal-highlight.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\tokenize.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\vendor.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\warn-once.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\postcss\lib\warning.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\bin\rtlcss.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\lib\config-loader.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\lib\config.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\lib\directive-parser.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\lib\plugin.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\lib\rtlcss.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\lib\state.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\rtlcss\lib\util.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\strip-json-comments\index.js" />
+    <None Include="wwwroot\assets\libs\gulp-rtlcss\node_modules\strip-json-comments\license" />
+    <None Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery-easing-original\jquery.easing.compatibility.js" />
+    <None Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery-easing-original\jquery.easing.min.js" />
+    <None Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery\jquery.min.js" />
+  </ItemGroup>
+
 </Project>
