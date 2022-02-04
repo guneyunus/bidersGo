@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DataAcces\Configuration\" />
     <Folder Include="wwwroot\assets\libs\bootstrap-filestyle2\src\" />
     <Folder Include="wwwroot\assets\libs\bootstrap-filestyle2\test\" />
     <Folder Include="wwwroot\assets\libs\flot-charts\examples\" />
@@ -96,6 +97,16 @@
     <None Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery-easing-original\jquery.easing.compatibility.js" />
     <None Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery-easing-original\jquery.easing.min.js" />
     <None Include="wwwroot\assets\libs\jquery.easing\bower_components\jquery\jquery.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
