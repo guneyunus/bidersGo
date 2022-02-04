@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bidersGo.Entities
 {
-    public class Teacher:BaseEntity
+    public class Admin : BaseEntity
     {
         
 
@@ -18,15 +18,9 @@ namespace bidersGo.Entities
 
         public string Surname { get; set; }
 
-        public string Branch { get; set; }
-
-        public int TcKimlik { get; set; }
-
         public string NickName { get; set; }
+        public string Mail { get; set; }
 
-        public string Email { get; set; }
         public string Password { get; set; }
-
-
     }
 }

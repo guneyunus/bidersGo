@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace bidersGo.Entities
 {
-    public class Teacher:BaseEntity
+    public class Student:BaseEntity
     {
         
 
         [Required, StringLength(40)]
+
 
         public string Name { get; set; }
 
@@ -18,7 +19,7 @@ namespace bidersGo.Entities
 
         public string Surname { get; set; }
 
-        public string Branch { get; set; }
+
 
         public int TcKimlik { get; set; }
 
@@ -26,7 +27,5 @@ namespace bidersGo.Entities
 
         public string Email { get; set; }
         public string Password { get; set; }
-
-
     }
 }
