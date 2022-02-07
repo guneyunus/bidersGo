@@ -15,9 +15,9 @@ namespace bidersGo.Entities
 
         public string State { get; set; }
 
-        public string Street { get; set; }
+        public string BuildName { get; set; }
 
-        public string DoorNo { get; set; }
+        public string BuildNo { get; set; }
 
         public AddressTypes AddressType { get; set; }
 
