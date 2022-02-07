@@ -2,30 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 
 namespace bidersGo.Entities
 {
     public class Student:BaseEntity
     {
-        
-
-        [Required, StringLength(40)]
-
-
         public string Name { get; set; }
-
-        [Required, StringLength(40)]
-
         public string Surname { get; set; }
-
-
-
         public int TcKimlik { get; set; }
-
         public string NickName { get; set; }
-
         public string Email { get; set; }
         public string Password { get; set; }
+        
+        public bool IsSearchLesson { get; set; }
+
+        public Address Address { get; set; }
+
+        public Subscription? Subscription { get; set; }
     }
 }

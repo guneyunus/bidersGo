@@ -15,5 +15,12 @@ namespace bidersGo.Entities
         public Teacher Teacher { get; set; }
         public Guid TeacherId { get; set; }
 
+        public Lesson Lesson { get; set; }
+        public DateTime LessonTime { get; set; }
+
+        public Address Address { get; set; }
+
+        public decimal Price { get; set; }
+
     }
 }
