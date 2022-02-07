@@ -8,6 +8,6 @@ namespace bidersGo.DataAcces.Abstract
 {
     public interface IAddressRepository : IRepository<Address>
     {
-
+        Address GetByCityWithStudent();
     }
 }
