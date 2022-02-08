@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using bidersGo.DataAcces.Configuration;
 using bidersGo.Entities;
+using bidersGo.Models.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace bidersGo.DataAcces.Conctare
 {
-    public class BidersGoContext :DbContext
+    public class BidersGoContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public BidersGoContext(DbContextOptions options):base(options)
         {

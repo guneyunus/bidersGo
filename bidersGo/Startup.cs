@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using bidersGo.DataAcces.Abstract;
 using bidersGo.DataAcces.Conctare;
 using Microsoft.EntityFrameworkCore;
+using bidersGo.Models.Identity;
 
 namespace bidersGo
 {
@@ -30,6 +31,26 @@ namespace bidersGo
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
             });
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 5;
+
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.AllowedForNewUsers = false;
+
+                options.User.RequireUniqueEmail = true;
+                options.User.AllowedUserNameCharacters =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+
+
+            });  //identity ekledim ve istediðim özellikleri belirttim ayrýca buraya token ekleyebilirim..
+
             services.AddControllersWithViews();
             services.AddScoped<IAddressRepository, AddressRepository>();
         }
@@ -52,6 +73,7 @@ namespace bidersGo
 
             app.UseRouting();
 
+            app.UseAuthentication(); // Authentication iþlemleri için ekledim
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
