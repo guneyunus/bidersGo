@@ -15,7 +15,7 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
-        public Address GetByCityWithStudent()
+        public Address GetByCityWithStudent(string CityName)
         {
             return null;
         }

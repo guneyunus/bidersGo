@@ -7,7 +7,7 @@ namespace bidersGo.DataAcces.Abstract
 {
     public interface IRepository<T>
     {
-        Task<T> GetById(int id);
+        Task<T> GetById(Guid id);
         Task<List<T>> GetAll();
         void Create(T entity);
         Task CreateAsync(T entity);
