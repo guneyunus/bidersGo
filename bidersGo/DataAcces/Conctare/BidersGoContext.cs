@@ -23,7 +23,13 @@ namespace bidersGo.DataAcces.Conctare
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Admin> Admins { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<LessonDetail>()
+                .HasOne<Lesson>(x => x.Lesson)
+                .WithMany(x => x.LessonDetails)
+                .HasForeignKey(x => x.LessonId);
+        }
 
 
 
