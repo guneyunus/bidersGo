@@ -20,6 +20,8 @@ namespace bidersGo.Entities
 
         public Address Address { get; set; }
 
-        public Subscription? Subscription { get; set; }
+        public Guid SubscriptionId { get; set; }
+        public Subscription Subscription { get; set; }
+        public List<Meet> Meets { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace bidersGo.Entities
         public bool IsOnline { get; set; }
         public List<LessonDetail> LessonDetails { get; set; }
 
+        public List<Meet> Meets { get; set; }
         
 
     }

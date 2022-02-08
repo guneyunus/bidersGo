@@ -8,12 +8,12 @@ namespace bidersGo.Entities
 {
     public class Subscription:BaseEntity
     {
-        public Student Student { get; set; }
+        public List<Student>Student { get; set; }
         public decimal Amount { get; set; }
         public decimal PaidAmunt { get; set; }
         public DateTime EndTime { get; set; }
         public DateTime StartTime { get; set; }
         public bool IsActive { get; set; }
-        public SubscriptionType SubscriptionTypes { get; set; }
+        public List<SubscriptionType>SubscriptionTypes { get; set; }
     }
 }

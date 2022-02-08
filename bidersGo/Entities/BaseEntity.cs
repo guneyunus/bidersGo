@@ -8,7 +8,7 @@ namespace bidersGo.Entities
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 

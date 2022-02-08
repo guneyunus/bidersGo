@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace bidersGo.Entities
 {
-    public class LessonDetail
+    public class LessonDetail:BaseEntity
     {
         public Lesson Lesson { get; set; }
         public Guid LessonId { get; set; }

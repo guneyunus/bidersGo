@@ -17,8 +17,10 @@ namespace bidersGo.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public Address Address { get; set; }
-        public List<DateTime>WorkingHoursOfWeek { get; set; }
+        public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; }
         public bool IsWorking { get; set; }
+
+        public List<Meet> Meets { get; set; }
 
 
     }

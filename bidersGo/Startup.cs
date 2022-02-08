@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using bidersGo.DataAcces.Abstract;
 using bidersGo.DataAcces.Conctare;
+using Microsoft.EntityFrameworkCore;
 
 namespace bidersGo
 {
@@ -25,6 +26,10 @@ namespace bidersGo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BidersGoContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
+            });
             services.AddControllersWithViews();
             services.AddScoped<IAddressRepository, AddressRepository>();
         }
