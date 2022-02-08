@@ -8,7 +8,7 @@ namespace bidersGo.Entities
     public class LessonDetail
     {
         public Lesson Lesson { get; set; }
-        public int LessonId { get; set; }
+        public Guid LessonId { get; set; }
         public int  SoruSayisi { get; set; }
 
     }

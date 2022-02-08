@@ -17,10 +17,7 @@ namespace bidersGo.DataAcces.Configuration
             builder.Property(x=>x.LessonName)
                 .IsRequired()
                 .HasMaxLength(256);
-
-            //builder.HasOne<Lesson>(x=>x.Id)
-            //    .WithMany(x=>x.LessonDetails)
-                
+   
         }
     }
 }
