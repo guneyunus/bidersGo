@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Register";
+﻿@using bidersGo.ViewModels
+@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Kayıt Ekranı";
     Layout = "~/Views/_Shared/_BlankLayout.cshtml";
 }
 
@@ -25,24 +28,24 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form class="" action=@Url.Action("Index", "Dashboard")>
+                                        <form  method="post" asp-controller="Account" asp-action="Register" >
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label for="useremail">Email</label>
-                                                <input type="email" class="form-control" id="useremail" placeholder="Enter email">
+                                                <label asp-for="Email" >E-Posta Adresi</label>
+                                                <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
                                             </div>
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
-                                                <label for="username">Username</label>
-                                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                                <label asp-for="UserName">Kullanıcı Adı</label>
+                                                <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
-                                                <label for="userpassword">Password</label>
-                                                <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                                <label asp-for="Password">Şifre</label>
+                                                <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
                                             </div>
 
 
@@ -57,7 +60,7 @@
                                     </div>
 
                                     <div class="mt-5 text-center">
-                                        <p>Already have an account ? <a href=@Url.Action("Index", "AuthLogin") class="fw-medium text-primary"> Login</a> </p>
+                                        <p>Üyeliğiniz var mı? <a asp-controller="Account" asp-action="Login">Giriş için tıklayınız..</a></p>
                                         <p>
                                             ©
                                             <script>document.write(new Date().getFullYear())</script> Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign

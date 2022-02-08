@@ -12,6 +12,7 @@ using bidersGo.DataAcces.Abstract;
 using bidersGo.DataAcces.Conctare;
 using Microsoft.EntityFrameworkCore;
 using bidersGo.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace bidersGo
 {
@@ -49,7 +50,8 @@ namespace bidersGo
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
 
 
-            });  //identity ekledim ve istediðim özellikleri belirttim ayrýca buraya token ekleyebilirim..
+            }).AddEntityFrameworkStores<BidersGoContext>().AddDefaultTokenProviders();
+            //identity ekledim ve istediðim özellikleri belirttim ayrýca buraya token ekleyebilirim..
 
             services.AddControllersWithViews();
             services.AddScoped<IAddressRepository, AddressRepository>();

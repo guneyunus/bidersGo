@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using bidersGo.DataAcces.Configuration;
 using bidersGo.Entities;
 using bidersGo.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -65,6 +66,15 @@ namespace bidersGo.DataAcces.Conctare
                 .HasForeignKey(x => x.TeacherId);
 
             modelBuilder.ApplyConfiguration(new LessonConfiguration());
+
+            modelBuilder.Entity<IdentityUserLogin<string>>()
+                .HasNoKey();
+
+            modelBuilder.Entity<IdentityUserRole<string>>()
+                .HasNoKey();
+
+            modelBuilder.Entity<IdentityUserToken<string>>()
+                .HasNoKey();
 
         }
 
