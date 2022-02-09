@@ -23,17 +23,17 @@ namespace bidersGo.DataAcces.Conctare
 
         public Teacher GetTeacherById(Guid teacherGuid)
         {
-            throw new NotImplementedException();
+            return _context.Teachers.Where(x => x.Id == teacherGuid).FirstOrDefault();
         }
 
         public Teacher GetTeacherByName(string Name)
         {
-            throw new NotImplementedException();
+            return _context.Teachers.Where(x => x.Name == Name).FirstOrDefault();
         }
 
         public List<Teacher> GetTeachersAll()
         {
-            throw new NotImplementedException();
+            return _context.Teachers.ToList();
         }
     }
 }
