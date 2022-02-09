@@ -22,52 +22,54 @@ namespace bidersGo.DataAcces.Conctare
 
         public Meet GetMeetByDate(DateTime meetDateTime)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.LessonTime == meetDateTime).FirstOrDefault();
         }
 
         public Meet GetMeetByStudent(Guid studentGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.Id == studentGuid).FirstOrDefault();
         }
 
         public Meet GetMeetByTeacher(Guid teacherGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.Id == teacherGuid).FirstOrDefault();
+
         }
 
         public Lesson GetMeetLesson(Guid lessonGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.Id == lessonGuid).Select(x=>x.Lesson).FirstOrDefault();
         }
 
         public List<Meet> GetMeetsByDate(DateTime dateStart, DateTime dateFinish)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.LessonTime > dateStart && x.LessonFinishTime < dateFinish).ToList();
         }
 
         public List<Meet> GetMeetsByStudents(Guid studentGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.Id == studentGuid).ToList();
         }
 
         public List<Meet> GetMeetsByTeacher(Guid teacherGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.Id == teacherGuid).ToList();
         }
 
         public Student GetStudentOnMeet(Guid meetGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.Id == meetGuid).Select(x => x.Student).FirstOrDefault();
         }
 
         public List<Student> GetStudentsOnMeetNow(DateTime meetDate)
         {
-            throw new NotImplementedException();
+            return _context.Students.Where(x => x.CreatedDate == meetDate).ToList();
         }
 
         public List<Teacher> GetTeachersOnMeetNow(DateTime meetDate)
         {
-            throw new NotImplementedException();
+            return _context.Teachers.Where(x => x.CreatedDate == meetDate).ToList();
+
         }
     }
 }
