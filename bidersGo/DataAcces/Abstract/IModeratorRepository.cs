@@ -22,7 +22,7 @@ namespace bidersGo.DataAcces.Abstract
         List<Meet> GetMeetNow();
         Meet GetMeetById(Guid MeetGuid);
         DateTime GetMeetDateTime(Meet Meet);
-        void CreateMeet(Student student,Teacher teacher,Meet meet);
+        void CreateMeet(Meet meet);
 
 
 

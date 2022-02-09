@@ -17,6 +17,7 @@ namespace bidersGo.Entities
         public DateTime? LessonFinishTime { get; set; }
         public Address Address { get; set; }
         public decimal Price { get; set; }
+        public bool IsApproved { get; set; } = false;
 
     }
 }
