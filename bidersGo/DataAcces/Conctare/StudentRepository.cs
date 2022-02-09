@@ -36,14 +36,6 @@ namespace bidersGo.DataAcces.Conctare
             throw new NotImplementedException();
         }
 
-        public List<Student> GetStudentsWithAllLessons()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Student> GetStudentsWithAllMeets()
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

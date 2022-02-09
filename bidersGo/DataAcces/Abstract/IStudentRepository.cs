@@ -12,8 +12,7 @@ namespace bidersGo.DataAcces.Abstract
         Student GetStudentById(Guid StudentGuid);
         Student GetStudentByName(string Name);
         Address GetStudentAdress(Student Student);
-        List<Student> GetStudentsWithAllMeets();
-        List<Student> GetStudentsWithAllLessons();
+        
         
 
 
