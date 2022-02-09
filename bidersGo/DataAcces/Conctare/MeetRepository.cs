@@ -15,6 +15,11 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
+        public List<Meet> GetMeetsAll()
+        {
+            return _context.Meets.ToList();
+        }
+
         public Address GetMeetAdress(Guid meetGuid)
         {
             return _context.Meets.Where(x => x.Id == meetGuid).Select(x => x.Address).FirstOrDefault();
@@ -48,12 +53,12 @@ namespace bidersGo.DataAcces.Conctare
 
         public List<Meet> GetMeetsByStudents(Guid studentGuid)
         {
-            return _context.Meets.Where(x => x.Id == studentGuid).ToList();
+            return _context.Meets.Where(x => x.StudentId == studentGuid).ToList();
         }
 
-        public List<Meet> GetMeetsByTeacher(Guid teacherGuid)
+        public List<Meet> GetMeetsByTeachers(Guid teacherGuid)
         {
-            return _context.Meets.Where(x => x.Id == teacherGuid).ToList();
+            return _context.Meets.Where(x => x.TeacherId == teacherGuid).ToList();
         }
 
         public Student GetStudentOnMeet(Guid meetGuid)
@@ -71,5 +76,7 @@ namespace bidersGo.DataAcces.Conctare
             return _context.Teachers.Where(x => x.CreatedDate == meetDate).ToList();
 
         }
+        
+       
     }
 }

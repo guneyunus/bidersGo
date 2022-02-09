@@ -11,6 +11,6 @@ namespace bidersGo.Business.Abstract
         //busines logic for admin
         List<Student> GetAllStudent();
 
-        void CreateMeet(Teacher teacher,Student student,Lesson lesson,Address address,DateTime startTime,DateTime finishTime);
+        public void CreateMeet(Teacher teacher,Student student,Lesson lesson,Address address,DateTime startTime,DateTime finishTime);
     }
 }

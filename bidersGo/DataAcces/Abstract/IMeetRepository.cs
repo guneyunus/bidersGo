@@ -8,9 +8,10 @@ namespace bidersGo.DataAcces.Abstract
 {
     public interface IMeetRepository:IRepository<Meet>
     {
-        List<Meet> GetMeetsByTeacher(Guid teacherGuid);
+        List<Meet> GetMeetsByTeachers(Guid teacherGuid);
         List<Meet> GetMeetsByStudents(Guid studentGuid);
         List<Meet> GetMeetsByDate(DateTime dateStart, DateTime dateFinish);
+        List<Meet> GetMeetsAll();
         Address GetMeetAdress(Guid meetGuid);
         Lesson GetMeetLesson(Guid lessonGuid);
         Meet GetMeetByTeacher(Guid teacherGuid);
