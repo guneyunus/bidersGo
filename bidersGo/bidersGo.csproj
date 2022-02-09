@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Business\" />
     <Folder Include="wwwroot\assets\libs\bootstrap-filestyle2\src\" />
     <Folder Include="wwwroot\assets\libs\bootstrap-filestyle2\test\" />
     <Folder Include="wwwroot\assets\libs\flot-charts\examples\" />

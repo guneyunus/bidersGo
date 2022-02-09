@@ -19,5 +19,10 @@ namespace bidersGo.DataAcces.Conctare
         {
             return null;
         }
+
+        public Address GetSelectedAdress(Address address)
+        {
+            return _context.Addresses.Where(x => x.Id == address.Id).FirstOrDefault();
+        }
     }
 }

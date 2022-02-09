@@ -54,7 +54,8 @@ namespace bidersGo
             //identity ekledim ve istediðim özellikleri belirttim ayrýca buraya token ekleyebilirim..
 
             services.AddControllersWithViews();
-            services.AddScoped<IAddressRepository, AddressRepository>();
+            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
