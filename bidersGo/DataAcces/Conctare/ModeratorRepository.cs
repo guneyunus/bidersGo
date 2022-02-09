@@ -14,9 +14,11 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
-        public void CreateMeet(Student student, Teacher teacher, Meet meet)
+        public void CreateMeet(Meet meet)
         {
-            throw new NotImplementedException();
+            var CreatedMeet = meet;
+            CreatedMeet.IsApproved = true;
+            _context.Meets.Add(CreatedMeet);
         }
 
         public Address GetAddress(Teacher teacher)
@@ -26,62 +28,64 @@ namespace bidersGo.DataAcces.Conctare
 
         public List<Teacher> GetAllTeacher()
         {
-            throw new NotImplementedException();
+            return _context.Teachers.ToList();
         }
 
         public Meet GetMeetById(Guid MeetGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x=>x.Id==MeetGuid).FirstOrDefault();
         }
 
         public DateTime GetMeetDateTime(Meet Meet)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x=>x.Id==Meet.Id).Select(x=>x.LessonTime).FirstOrDefault();
         }
 
         public List<Meet> GetMeetNow()
         {
-            throw new NotImplementedException();
+            //return _context.Meets.Where(x=>x.LessonTime.Hour == DateTime.Now.Hour || x.LessonFinishTime > DateTime.Now).ToList();
+            return _context.Meets.Where(x=>x.LessonFinishTime > DateTime.Now).ToList();
         }
 
         public Address GetStudentAdress(Student Student)
         {
-            throw new NotImplementedException();
+            return _context.Students.Where(x=>x.Id== Student.Id).Select(x=>x.Address).FirstOrDefault();
         }
 
         public Student GetStudentById(Guid StudentGuid)
         {
-            throw new NotImplementedException();
+            return _context.Students.Where(x=>x.Id == StudentGuid).FirstOrDefault();
         }
 
         public Student GetStudentByName(string Name)
         {
-            throw new NotImplementedException();
+            return _context.Students.Where(x=>x.Name==Name).FirstOrDefault();
         }
 
         public List<Meet> GetStudentMeet(Student Student)
         {
-            throw new NotImplementedException();
+          return  _context.Meets.Where(x=>x.Student==Student).ToList();
+
         }
 
         public List<Student> GetStudentsAll()
         {
-            throw new NotImplementedException();
+            return _context.Students.ToList();
         }
 
         public Teacher GetTeacherById(Guid TeacherGuid)
         {
-            throw new NotImplementedException();
+            return _context.Teachers.Where(x=>x.Id==TeacherGuid).FirstOrDefault();
         }
 
         public Teacher GetTeacherByName(string TeacherName)
         {
-            throw new NotImplementedException();
+            return _context.Teachers.Where(x=>x.Name == TeacherName).FirstOrDefault();
         }
 
         public List<Meet> GetTeacherMeet(Teacher teacher)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x=>x.Teacher==teacher).ToList();
         }
     }
 }
