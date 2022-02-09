@@ -6,6 +6,7 @@ using bidersGo.Business.Abstract;
 using bidersGo.DataAcces.Abstract;
 using bidersGo.DataAcces.Conctare;
 using bidersGo.Entities;
+using bidersGo.Models.Identity;
 
 namespace bidersGo.Business.Concrate
 {
@@ -16,7 +17,12 @@ namespace bidersGo.Business.Concrate
         {
             _unitOfWork = unitOfWork;
         }
-        public string ErrorMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string ErrorMessage { get; set ; }
+
+        public void AssigneRole()
+        {
+            throw new NotImplementedException();
+        }
 
         public void CreateMeet(Teacher teacher, Student student, Lesson lesson,Address address,DateTime starTime,DateTime finishTime)
         {
@@ -39,9 +45,50 @@ namespace bidersGo.Business.Concrate
             _unitOfWork.Dispose();
         }
 
+        public void DeleteUser(ApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Lesson> GetAllLesson()
+        {
+          return  _unitOfWork.LessonRepository.GetLessonsAll();
+        }
+
+        public List<Meet> GetAllMeet()
+        {
+            return _unitOfWork.MeetRepository.GetMeetAll();
+
+        }
+
+        public List<Moderator> GetAllModerator()
+        {
+            return _unitOfWork.ModeratorRepository.GetModeratorAll();
+        }
+
         public List<Student> GetAllStudent()
         {
             return _unitOfWork.StudentRepository.GetStudentsAll();
+        }
+
+        public List<Teacher> GetAllTeacher()
+        {
+            return _unitOfWork.TeacherRepository.GetTeachersAll();
+        }
+
+        public List<Meet> GetBetweenSelectedDateMeet(DateTime start,DateTime finish)
+        {
+            return _unitOfWork.MeetRepository.GetMeetsByDate(start,finish);
+        }
+
+        public void UpdateRole()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateUser(ApplicationUser user)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Validation(Admin entity)

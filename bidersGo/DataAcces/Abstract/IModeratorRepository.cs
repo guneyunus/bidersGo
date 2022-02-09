@@ -8,6 +8,7 @@ namespace bidersGo.DataAcces.Abstract
 {
     public interface IModeratorRepository : IRepository<Moderator>
     {
+        List<Moderator> GetModeratorAll();
         Student GetStudentById(Guid StudentGuid);
         Student GetStudentByName(string Name);
         List<Student> GetStudentsAll();

@@ -47,6 +47,11 @@ namespace bidersGo.DataAcces.Conctare
             return _context.Meets.Where(x=>x.LessonFinishTime > DateTime.Now).ToList();
         }
 
+        public List<Moderator> GetModeratorAll()
+        {
+            return _context.Moderators.ToList();
+        }
+
         public Address GetStudentAdress(Student Student)
         {
             return _context.Students.Where(x=>x.Id== Student.Id).Select(x=>x.Address).FirstOrDefault();

@@ -20,6 +20,11 @@ namespace bidersGo.DataAcces.Conctare
             return _context.Meets.Where(x => x.Id == meetGuid).Select(x => x.Address).FirstOrDefault();
         }
 
+        public List<Meet> GetMeetAll()
+        {
+           return _context.Meets.ToList();
+        }
+
         public Meet GetMeetByDate(DateTime meetDateTime)
         {
             return _context.Meets.Where(x => x.LessonTime == meetDateTime).FirstOrDefault();
