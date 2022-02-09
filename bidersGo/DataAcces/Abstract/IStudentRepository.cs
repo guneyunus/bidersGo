@@ -8,5 +8,24 @@ namespace bidersGo.DataAcces.Abstract
 {
     public interface IStudentRepository : IRepository<Student>
     {
+        List<Student> GetStudentsAll();
+        Student GetStudentById(Guid StudentGuid);
+        Student GetStudentByName(string Name);
+        Address GetStudentAdress(Student Student);
+        List<Student> GetStudentsWithAllMeets();
+        List<Student> GetStudentsWithAllLessons();
+        
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
