@@ -8,6 +8,8 @@ namespace bidersGo.DataAcces.Abstract
 {
     public interface IAdminRepository : IRepository<Admin>
     {
+        List<Admin> GetAdminAll();
+
         Student GetStudentByName(string StudentName);
         List<Student> GetStudentAll();
         Teacher GetTeacherByName(string TeacherName);

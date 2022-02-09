@@ -56,5 +56,11 @@ namespace bidersGo.Business.Concrate
         {
             return _unitOfWork.MeetRepository.GetMeetsByStudents(student.Id).ToList();
         }
+
+        public List<Meet> GetBetweenSelectedDateMeet(DateTime start, DateTime finish)
+        {
+            return _unitOfWork.MeetRepository.GetMeetsByDate(start,finish);
+
+        }
     }
 }

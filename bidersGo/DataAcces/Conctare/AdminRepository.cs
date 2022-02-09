@@ -70,5 +70,11 @@ namespace bidersGo.DataAcces.Conctare
         {
             return _context.Moderators.ToList();
         }
+
+        public List<Admin> GetAdminAll()
+        {
+            return _context.Admins.ToList();
+
+        }
     }
 }

@@ -16,9 +16,9 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
-        public Address GetStudentAdress(Student Student)
+        public Address GetStudentAdress(Student student)
         {
-            return _context.Addresses.Where(x => x.Id == Student.Address.Id).FirstOrDefault();
+            return _context.Addresses.Where(x => x.Id == student.Address.Id).FirstOrDefault();
         }
 
         public Student GetStudentById(Guid StudentGuid)

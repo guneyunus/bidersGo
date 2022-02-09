@@ -1,4 +1,4 @@
-﻿using bidersGo.Entities;
+using bidersGo.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace bidersGo.Business.Abstract
 {
-    public interface IModeratorService:IValidator<Moderator>
+    public interface ITeacherService : IValidator<Teacher>
     {
         List<Student> GetAllStudents();
         List<Meet> GetAllMeets();
         List<Meet> GetBetweenSelectedDateMeet(DateTime start, DateTime finish);
-
-
         List<Teacher> GetAllTeachers();
-
-        List<Meet> GetMeetsByTeacher(Teacher teacher);
-
         List<Meet> GetMeetsByStudent(Student student);
-        
+        List<Moderator> GetModeratorAll();
+        List<Admin> GetAdminAll();
+        List<Lesson> GetLessonsAll();
 
-        
+
+
+
 
         public void ApproveMeet(Meet meet);
 
