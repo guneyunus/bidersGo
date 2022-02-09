@@ -54,6 +54,7 @@ namespace bidersGo
             //identity ekledim ve istediðim özellikleri belirttim ayrýca buraya token ekleyebilirim..
 
             services.AddControllersWithViews();
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 

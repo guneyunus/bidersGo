@@ -36,22 +36,22 @@ namespace bidersGo.DataAcces.Conctare
             throw new NotImplementedException();
         }
 
-        public Address GetStudentAdress(Teacher teacher)
+        public Address GetTeacherAdress(Teacher teacher)
         {
             throw new NotImplementedException();
         }
 
-        public Teacher GetStudentById(Guid teacherGuid)
+        public Teacher GetTeacherById(Guid teacherGuid)
         {
             throw new NotImplementedException();
         }
 
-        public Teacher GetStudentByName(string Name)
+        public Teacher GetTeacherByName(string Name)
         {
             throw new NotImplementedException();
         }
 
-        public List<Teacher> GetStudentsAll()
+        public List<Teacher> GetTeachersAll()
         {
             throw new NotImplementedException();
         }

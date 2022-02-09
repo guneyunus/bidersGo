@@ -16,13 +16,13 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
-        private  AdminRepository _adminRepository;
-        private  ModeratorRepository _moderatorRepository;
-        private  TeacherRepository _teacherRepository;
+        private AdminRepository _adminRepository;
+        private ModeratorRepository _moderatorRepository;
+        private TeacherRepository _teacherRepository;
         private StudentRepository _studentRepository;
-        private  LessonRepository _lessonRepository;
-        private  MeetRepository _meetRepository;
-        private  AddressRepository _addressRepository;
+        private LessonRepository _lessonRepository;
+        private MeetRepository _meetRepository;
+        private AddressRepository _addressRepository;
 
         public IAdminRepository AdminRepository =>_adminRepository = _adminRepository ?? new AdminRepository(_context);
 

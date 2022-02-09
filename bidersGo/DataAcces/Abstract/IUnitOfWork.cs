@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace bidersGo.DataAcces.Abstract
 {
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IAdminRepository AdminRepository { get; }
         IModeratorRepository ModeratorRepository { get; }
