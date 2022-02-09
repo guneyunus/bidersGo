@@ -13,7 +13,6 @@ namespace bidersGo.DataAcces.Abstract
         Student GetStudentByName(string Name);
         Address GetStudentAdress(Student Student);
         
-        
 
 
 

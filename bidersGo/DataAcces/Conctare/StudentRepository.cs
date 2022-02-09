@@ -23,19 +23,18 @@ namespace bidersGo.DataAcces.Conctare
 
         public Student GetStudentById(Guid StudentGuid)
         {
-            throw new NotImplementedException();
+            return _context.Students.Where(x => x.Id == StudentGuid).FirstOrDefault();
         }
 
         public Student GetStudentByName(string Name)
         {
-            throw new NotImplementedException();
+            return _context.Students.Where(x => x.Name == Name).FirstOrDefault();
         }
 
         public List<Student> GetStudentsAll()
         {
-            throw new NotImplementedException();
+            return _context.Students.ToList();
         }
 
-      
     }
 }
