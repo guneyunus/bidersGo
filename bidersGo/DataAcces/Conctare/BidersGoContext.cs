@@ -30,6 +30,8 @@ namespace bidersGo.DataAcces.Conctare
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); //asagıdaki methodların calısması için bu satırı yazmaka şart..
+
             modelBuilder.Entity<LessonDetail>()
                 .HasOne(x => x.Lesson)
                 .WithMany(x => x.LessonDetails)
@@ -67,14 +69,7 @@ namespace bidersGo.DataAcces.Conctare
 
             modelBuilder.ApplyConfiguration(new LessonConfiguration());
 
-            modelBuilder.Entity<IdentityUserLogin<string>>()
-                .HasNoKey();
-
-            modelBuilder.Entity<IdentityUserRole<string>>()
-                .HasNoKey();
-
-            modelBuilder.Entity<IdentityUserToken<string>>()
-                .HasNoKey();
+            
 
         }
 
