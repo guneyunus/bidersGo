@@ -17,9 +17,9 @@ namespace bidersGo.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
-        public async Task<IActionResult> RoleAssign(string id)
+        public async Task<IActionResult> RoleAssign(string name)
         {
-            ApplicationUser user = await _userManager.FindByIdAsync(id);
+            ApplicationUser user = await _userManager.FindByNameAsync(name);
             List<ApplicationRole> allRoles = _roleManager.Roles.ToList();
             List<string> userRoles = await _userManager.GetRolesAsync(user) as List<string>;
             List<RoleAssignViewModel> assignRoles = new List<RoleAssignViewModel>();
