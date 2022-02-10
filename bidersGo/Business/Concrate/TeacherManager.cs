@@ -23,20 +23,15 @@ namespace bidersGo.Business.Concrate
 
         public void ApproveMeet(Meet meet)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Admin> GetAdminAll()
-        {
-            return _unitOfWork.AdminRepository.GetAdminAll();
+            meet.IsApproved = true;
+            _unitOfWork.MeetRepository.Create(meet);
+            _unitOfWork.Save();
+            _unitOfWork.Dispose();
 
         }
 
-        public List<Meet> GetAllMeets()
-        {
-            return _unitOfWork.MeetRepository.GetMeetAll();
 
-        }
+
 
         public List<Student> GetAllStudents()
         {
@@ -68,11 +63,6 @@ namespace bidersGo.Business.Concrate
 
         }
 
-        public List<Moderator> GetModeratorAll()
-        {
-            return _unitOfWork.ModeratorRepository.GetModeratorAll();
-
-        }
 
         public bool Validation(Teacher entity)
         {
