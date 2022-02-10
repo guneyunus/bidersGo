@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +17,28 @@ namespace bidersGo.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
+        
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            CheckRoles();
         }
 
+        public void CheckRoles()
+        {
+            foreach (var roleName in RoleNames.Roles)
+            {
+                if (!_roleManager.RoleExistsAsync(roleName).Result)
+                {
+                    var result = _roleManager.CreateAsync(new ApplicationRole()
+                    {
+                        Name = roleName,
+                    }).Result;
+                }
+            }
+        }
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
@@ -61,8 +77,11 @@ namespace bidersGo.Controllers
             {
                 //kullanıcıya rol atama 
                 var count = _userManager.Users.Count();
-
-                result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleNames.Admin : RoleNames.User);
+                //if (count ==1)
+                //{
+                //    result = await _userManager.AddToRoleAsync(user, RoleNames.Admin);
+                //}
+                result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleNames.Admin : RoleNames.Passive);
             }
             return View();
         }
