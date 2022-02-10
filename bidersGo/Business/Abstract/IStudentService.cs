@@ -10,8 +10,8 @@ namespace bidersGo.Business.Abstract
     public interface IStudentService : IValidator<Student>
     {
         List<Teacher> GetTeachersAll();
-        List<Moderator> GetModeratorAll();
-        List<Admin> GetAdminAll();
+    
+       
         List<Lesson> GetLessonsAll();
         List<Meet> GetMeetsByTeacher(Teacher teacher);
 

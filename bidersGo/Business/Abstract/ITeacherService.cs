@@ -9,12 +9,12 @@ namespace bidersGo.Business.Abstract
     public interface ITeacherService : IValidator<Teacher>
     {
         List<Student> GetAllStudents();
-        List<Meet> GetAllMeets();
+        
         List<Meet> GetBetweenSelectedDateMeet(DateTime start, DateTime finish);
         List<Teacher> GetAllTeachers();
         List<Meet> GetMeetsByStudent(Student student);
-        List<Moderator> GetModeratorAll();
-        List<Admin> GetAdminAll();
+        
+        
         List<Lesson> GetLessonsAll();
 
 
