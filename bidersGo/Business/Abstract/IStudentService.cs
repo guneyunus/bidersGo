@@ -27,6 +27,7 @@ namespace bidersGo.Business.Abstract
 
 
 
+
     }
 
 }

@@ -20,11 +20,6 @@ namespace bidersGo.Business.Concrate
 
         public string ErrorMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public List<Admin> GetAdminAll()
-        {
-            return _unitOfWork.AdminRepository.GetAdminAll();
-        }
-
         public List<Lesson> GetLessonsAll()
         {
             return _unitOfWork.LessonRepository.GetLessonsAll();
@@ -37,10 +32,7 @@ namespace bidersGo.Business.Concrate
 
         }
 
-        public List<Moderator> GetModeratorAll()
-        {
-            return _unitOfWork.ModeratorRepository.GetModeratorAll();
-        }
+       
 
         public List<Teacher> GetTeachersAll()
         {
