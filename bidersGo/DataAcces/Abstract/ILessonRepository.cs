@@ -8,5 +8,8 @@ namespace bidersGo.DataAcces.Abstract
 {
     public interface ILessonRepository:IRepository<Lesson>
     {
+        Lesson GetLessonWithDetails(string LessonName);
+        List<Lesson> GetLessonsAll();
+
     }
 }

@@ -9,9 +9,9 @@ namespace bidersGo.DataAcces.Conctare
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext _context;
+        protected readonly BidersGoContext _context;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(BidersGoContext context)
         {
             _context = context;
         }
@@ -40,7 +40,7 @@ namespace bidersGo.DataAcces.Conctare
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetById(Guid id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }

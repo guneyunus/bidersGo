@@ -22,7 +22,7 @@ namespace bidersGo.Entities
         public enum AddressTypes
         {
             Fatura,
-            Teslimat
+            DersYeri
         }
     }
 }

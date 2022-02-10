@@ -15,9 +15,14 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
-        public Address GetByCityWithStudent()
+        public Address GetByCityWithStudent(string CityName)
         {
             return null;
+        }
+
+        public Address GetSelectedAdress(Address address)
+        {
+            return _context.Addresses.Where(x => x.Id == address.Id).FirstOrDefault();
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Login";
+﻿@using bidersGo.ViewModels
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Giriş Ekranı";
     Layout = "~/Views/_Shared/_BlankLayout.cshtml";
 }
 
@@ -25,23 +27,23 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form class="" action=@Url.Action("Index", "Dashboard")>
+                                        <form method="post" asp-controller="Account" asp-action="Login">
 
                                             <div class="mb-3 auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
-                                                <label for="username">Username</label>
-                                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                                <label asp-for="UserName">Kullanıcı Adı</label>
+                                                <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
 
                                             <div class="mb-3 auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
-                                                <label for="userpassword">Password</label>
-                                                <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                                <label asp-for="Password">Password</label>
+                                                <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
                                             </div>
 
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="customControlInline">
-                                                <label class="form-check-label" for="customControlInline">Remember me</label>
+                                                <input asp-for="RememberMe" type="checkbox" class="form-check-input" id="customControlInline">
+                                                <label asp-for="RememberMe" class="form-check-label" for="customControlInline">Beni Hatırla</label>
                                             </div>
 
                                             <div class="mt-4 text-center">
@@ -55,7 +57,7 @@
                                     </div>
 
                                     <div class="mt-5 text-center">
-                                        <p>Don't have an account ? <a href=@Url.Action("Index", "AuthRegister") class="fw-medium text-primary"> Register </a> </p>
+                                        <p>Don't have an account ? <a asp-controller="Account" asp-action="Register" class="fw-medium text-primary">Kayıt olmak için tıklayınız..</a> </p>
                                         <p>
                                             ©
                                             <script>document.write(new Date().getFullYear())</script> Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
