@@ -17,5 +17,7 @@ namespace bidersGo.ViewModels
         [Required(ErrorMessage = "Şifre alanı boş geçilemez..")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public string RoleForRegister { get; set; }
     }
 }

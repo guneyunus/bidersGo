@@ -41,6 +41,14 @@
                                                 <label asp-for="UserName">Kullanıcı Adı</label>
                                                 <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
+                                            
+                                            
+                                            <div id="forModerator" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label >Kullanıcı Adı</label>
+                                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                            </div>
+
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
@@ -48,6 +56,25 @@
                                                 <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
                                             </div>
 
+                                            <div>
+                                                <select id="roles">
+                                                    @foreach (var item in ViewBag.Roles)
+                                                    {
+                                                        
+                                                        if (item == "Passive" || item == "Modarator")
+                                                        {
+                                                            continue;
+                                                        }
+                                                        else
+                                                        {
+                                                        <option value="@item">@item</option>
+                                                        }
+                                                        
+                                                    }
+                                                </select>
+                                                <input type="hidden" asp-for="RoleForRegister" value="" />
+                                            </div>
+                                            
 
                                             <div class="text-center">
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
@@ -81,3 +108,26 @@
         </div>
     </div>
 </div>
+
+
+@section scripts{
+    <script>
+        var SelectBoxRoles = $("#roles");
+        var ForModerator = $("#forModerator");
+
+
+        SelectBoxRoles.on("change",
+            function() {
+                console.log(SelectBoxRoles.val());
+                if (SelectBoxRoles.val() =="Moderator") {
+                    ForModerator.css({ "display": "block", "visibility": "visible" });
+                } else {
+                    ForModerator.css({ "display": "none", "visibility": "hidden" });
+                }
+
+            });
+        
+
+    </script>
+    
+}

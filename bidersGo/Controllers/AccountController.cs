@@ -43,6 +43,13 @@ namespace bidersGo.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            var RoleTable = _roleManager.Roles.ToList();
+            List<string> roleList = new List<string>();
+            foreach (var role in RoleTable)
+            {
+                roleList.Add(role.Name);
+            }
+            ViewBag.Roles =roleList;
             return View();
         }
 
