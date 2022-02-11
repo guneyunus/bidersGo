@@ -1,9 +1,10 @@
-﻿namespace bidersGo.ViewModels
+﻿using System.Collections.Generic;
+
+namespace bidersGo.ViewModels
 {
     public class RoleAssignViewModel
     {
-        public string RoleId { get; set; }
-        public string RoleName { get; set; }
-        public bool HasAssign { get; set; }
+        public RoleUserAssignViewModel RoleUserAssignViewModel { get; set; }
+        public List<RoleListViewModel> UserRoles { get; set; } = new();
     }
 }
