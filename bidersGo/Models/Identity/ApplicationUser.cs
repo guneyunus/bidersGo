@@ -11,6 +11,7 @@ namespace bidersGo.Models.Identity
         public string Name { get; set; }
         [StringLength(50)]
         public string Surname { get; set; }
+        public string? Branch { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

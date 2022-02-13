@@ -60,6 +60,7 @@ namespace bidersGo.Controllers
             if (!ModelState.IsValid)
             {
                 model.Password = string.Empty;
+                model.ConfirmPassword = string.Empty;
                 return View(model);
             }
             var user = await _userManager.FindByNameAsync(model.UserName);
@@ -77,7 +78,11 @@ namespace bidersGo.Controllers
             user = new ApplicationUser()
             {
                 UserName = model.UserName,
+                Name=model.Name,
+                Surname = model.Surname,
+                Branch=model.Branch,
                 Email = model.Email
+               
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
