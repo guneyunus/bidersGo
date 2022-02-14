@@ -12,6 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F407BA76-08D1-4104-AEE8-B672E8C1E9CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6ADADDC4-7BEA-43D2-9A17-879C0538571D}"
+	ProjectSection(SolutionItems) = preProject
+		Plan.txt = Plan.txt
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bidersGo.Application", "bidersGo.Application\bidersGo.Application.csproj", "{F19F15AA-01C1-43DE-9645-A79B7FA2C802}"
 EndProject
