@@ -133,5 +133,75 @@ namespace bidersGo.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Moderator()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Moderator(ModeratorViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult StudentProfile()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> StudentProfile(StudentProfileViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult TeacherProfile()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> TeacherProfile(TeacherProfileViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult MeetingPage()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> MeetingPage(MeetingPageViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult PaymentPage()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> PaymentPage(MeetingPageViewModel model)
+        {
+            return View(model);
+        }
+
     }
 }
