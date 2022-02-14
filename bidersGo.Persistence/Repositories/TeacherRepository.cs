@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using bidersGo.DataAcces.Abstract;
-using bidersGo.Entities;
+using bidersGo.Application.Interfaces.Repositories;
+using bidersGo.Domain.Entities;
+using bidersGo.Persistence.Context;
 
 namespace bidersGo.DataAcces.Conctare
 {
     public class TeacherRepository:GenericRepository<Teacher>,ITeacherRepository
     {
-        private readonly BidersGoContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public TeacherRepository(BidersGoContext context):base(context)
+        public TeacherRepository(ApplicationDbContext context):base(context)
         {
             _context = context;
         }

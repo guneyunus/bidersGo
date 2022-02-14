@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
+using bidersGo.Domain.Common;
 
-namespace bidersGo.Entities
+namespace bidersGo.Domain.Entities
 {
     public class Teacher:BaseEntity
     { 

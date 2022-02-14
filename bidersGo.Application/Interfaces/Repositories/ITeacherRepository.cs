@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using bidersGo.Entities;
+using bidersGo.Domain.Entities;
 
-namespace bidersGo.DataAcces.Abstract
+namespace bidersGo.Application.Interfaces.Repositories
 {
     public interface ITeacherRepository : IRepository<Teacher>
     {
