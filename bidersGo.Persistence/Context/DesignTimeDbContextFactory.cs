@@ -17,7 +17,7 @@ namespace bidersGo.Persistence.Context
         {
             DbContextOptionsBuilder<TContext> builder = new DbContextOptionsBuilder<TContext>();
             IConfiguration configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../bidersGo"))
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../bidersGoUI"))
                 .AddJsonFile("appsettings.json")
                 .Build();
             builder.UseSqlServer(configuration.GetConnectionString("SQLServer"));

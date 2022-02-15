@@ -29,7 +29,7 @@ namespace bidersGo.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); //asagıdaki methodların calısması için bu satırı yazmaka şart..
+            /*base.OnModelCreating(modelBuilder);*/ //asagıdaki methodların calısması için bu satırı yazmaka şart..
 
             modelBuilder.Entity<LessonDetail>()
                 .HasOne(x => x.Lesson)
@@ -46,10 +46,6 @@ namespace bidersGo.Persistence.Context
                 .WithMany(x => x.Meets)
                 .HasForeignKey(x => x.TeacherId);
 
-            modelBuilder.Entity<Meet>()
-                .HasOne(x => x.Lesson)
-                .WithMany(x => x.Meets)
-                .HasForeignKey(x => x.LessonId);
 
             modelBuilder.Entity<SubscriptionType>()
                 .HasOne(x => x.Subscription)
@@ -71,3 +67,4 @@ namespace bidersGo.Persistence.Context
 
         }
     }
+}

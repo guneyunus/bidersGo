@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace bidersGo.Application
 {
-    static public class ServiceRegistration
+    public static  class ServiceRegistration
     {
         public static void AddApplicationServices(this IServiceCollection serviceCollection)
         {

@@ -47,10 +47,10 @@ namespace bidersGo.DataAcces.Conctare
 
         }
 
-        public Lesson GetMeetLesson(Guid lessonGuid)
-        {
-            return _context.Meets.Where(x => x.Id == lessonGuid).Select(x=>x.Lesson).FirstOrDefault();
-        }
+        //public Lesson GetMeetLesson(Guid lessonGuid)
+        //{
+        //    return _context.Meets.Where(x => x.Id == lessonGuid).Select(x=>x.Lesson).FirstOrDefault();
+        //}
 
         public List<Meet> GetMeetsByDate(DateTime dateStart, DateTime dateFinish)
         {

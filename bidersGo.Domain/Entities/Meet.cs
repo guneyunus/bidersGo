@@ -12,8 +12,6 @@ namespace bidersGo.Domain.Entities
         public Guid StudentId { get; set; }
         public Teacher Teacher { get; set; }
         public Guid TeacherId { get; set; }
-        public Lesson Lesson { get; set; }
-        public Guid LessonId { get; set; }
         public DateTime LessonTime { get; set; }
         public DateTime? LessonFinishTime { get; set; }
         public Address Address { get; set; }
