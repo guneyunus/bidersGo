@@ -32,9 +32,6 @@ namespace bidersGo.Business.Concrate
 
       
 
-
-
-
         public List<Student> GetAllStudents()
         {
             return _unitOfWork.StudentRepository.GetStudentsAll();
@@ -66,9 +63,24 @@ namespace bidersGo.Business.Concrate
         }
 
 
+
+        public List<Meet> GetLessonFinishTime(DateTime finish)
+        {
+            return _unitOfWork.MeetRepository.GetLessonFinishTime(finish);
+        }
+
+      
+
+        
+
         public bool Validation(Teacher entity)
         {
             throw new NotImplementedException();
+        }
+
+        public List<WorkingHoursOfWeek> WorkingHoursOfWeeks(Teacher teacher)
+        {
+            return _unitOfWork.TeacherRepository.WorkingHoursOfWeeks(teacher.Id).ToList();
         }
     }
 }

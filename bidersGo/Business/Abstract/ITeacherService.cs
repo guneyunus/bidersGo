@@ -17,15 +17,15 @@ namespace bidersGo.Business.Abstract
         
         List<Lesson> GetLessonsAll();
 
-        List<WorkingHoursOfWeek> WorkingHoursOfWeeks();
+        List<WorkingHoursOfWeek> WorkingHoursOfWeeks(Teacher teacher);
 
-        List<Lesson> Lessons();
+      
 
-        List<Meet> LessonTime();
+      
 
-        List<Meet> LessonFinishTime();
+        List<Meet> GetLessonFinishTime(DateTime finish);
 
-        Teacher GetAllMeets(Teacher teacher);
+        
 
 
 

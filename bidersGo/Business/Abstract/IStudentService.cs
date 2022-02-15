@@ -15,7 +15,12 @@ namespace bidersGo.Business.Abstract
         List<Lesson> GetLessonsAll();
         List<Meet> GetMeetsByTeacher(Teacher teacher);
 
-        //List<Meet> GetMeetsAll(Student student); kendine ait olanlar için.Student id den getirmeyi denedim ama hata aldým ondan yorum satýrý :-)
+        List<Meet> GetBetweenSelectedDateMeet(DateTime start, DateTime finish);
+        List<Meet> GetLessonFinishTime(DateTime finish);
+
+
+
+
 
 
 
