@@ -10,7 +10,7 @@ namespace bidersGo.Application.Interfaces.Repositories
     public interface IAdminRepository : IRepository<Admin>
     {
         List<Admin> GetAdminAll();
-
+        Admin GetAdminById(Guid adminGuid);
         Student GetStudentByName(string StudentName);
         List<Student> GetStudentAll();
         Teacher GetTeacherByName(string TeacherName);
