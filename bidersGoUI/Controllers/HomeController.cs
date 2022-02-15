@@ -40,9 +40,15 @@ namespace bidersGoUI.Controllers
         {
             return await _mediator.Send(request);
         }
+        [HttpGet]
+        public IActionResult CreateAddress()
+        {
+            var model = new AddressCreateCommandRequest();
+            return View(model);
+        }
 
         [HttpPost]
-        public async Task<AddressCreateCommandResponse> CreateAddress([FromBody] AddressCreateCommandRequest request)
+        public async Task<AddressCreateCommandResponse> CreateAddress(AddressCreateCommandRequest request)
         {
             return await _mediator.Send(request);
         }

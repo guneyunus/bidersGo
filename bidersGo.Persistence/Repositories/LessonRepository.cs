@@ -7,7 +7,7 @@ using bidersGo.Domain.Entities;
 using bidersGo.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace bidersGo.DataAcces.Conctare
+namespace bidersGo.Persistence.Repositories
 {
     public class LessonRepository : GenericRepository<Lesson>, ILessonRepository
     {

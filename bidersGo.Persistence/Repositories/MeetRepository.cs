@@ -6,7 +6,7 @@ using bidersGo.Application.Interfaces.Repositories;
 using bidersGo.Domain.Entities;
 using bidersGo.Persistence.Context;
 
-namespace bidersGo.DataAcces.Conctare
+namespace bidersGo.Persistence.Repositories
 {
     public class MeetRepository : GenericRepository<Meet> , IMeetRepository
     {

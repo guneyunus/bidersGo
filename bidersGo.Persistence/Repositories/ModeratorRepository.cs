@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace bidersGo.DataAcces.Conctare
+namespace bidersGo.Persistence.Repositories
 {
     public class ModeratorRepository : GenericRepository<Moderator> ,IModeratorRepository
     {

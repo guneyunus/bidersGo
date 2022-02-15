@@ -7,7 +7,7 @@ using bidersGo.Domain.Entities;
 using bidersGo.Persistence.Context;
 
 
-namespace bidersGo.DataAcces.Conctare
+namespace bidersGo.Persistence.Repositories
 {
     public class AddressRepository : GenericRepository<Address>, IAddressRepository
     {

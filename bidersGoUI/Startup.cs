@@ -30,12 +30,8 @@ namespace bidersGoUI
         {
             services.AddApplicationServices();
             services.AddInfrastructureServices();
-            services.AddPersistenceServices(configuration:Configuration);
-            services.AddControllersWithViews(
-                //options => options.Filters.Add<ValidationFilter>())
-                //.AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<bidersGo.Application.Features.Commands.****.***validator>()
-                //.configure
-            );
+            services.AddPersistenceServices(Configuration);
+            services.AddControllersWithViews();
             
         }
 

@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using bidersGo.Application.Interfaces.Repositories;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGo.Persistence.Context;
+using bidersGo.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace bidersGo.DataAcces.Conctare
+namespace bidersGo.Persistence.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {

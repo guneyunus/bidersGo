@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using bidersGo.Application.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace bidersGo.DataAcces.Conctare
+namespace bidersGo.Persistence.Repositories
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
