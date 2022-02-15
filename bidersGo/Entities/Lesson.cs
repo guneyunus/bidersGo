@@ -8,6 +8,7 @@ namespace bidersGo.Entities
 {
     public class Lesson : BaseEntity
     {
+        
         public string LessonName { get; set; }
         public bool IsOnline { get; set; }
         public List<LessonDetail> LessonDetails { get; set; }

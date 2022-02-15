@@ -16,9 +16,9 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
-        public List<WorkingHoursOfWeek> GetMeetForWeek()
+        public List<Meet> GetAllMeets(Guid teacherGuid)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.Id == teacherGuid).ToList();
         }
 
         public Address GetTeacherAdress(Teacher teacher)
@@ -39,6 +39,11 @@ namespace bidersGo.DataAcces.Conctare
         public List<Teacher> GetTeachersAll()
         {
             return _context.Teachers.ToList();
+        }
+
+        public List<WorkingHoursOfWeek> WorkingHoursOfWeeks(Guid teacherGuid)
+        {
+            return _context.WorkingHoursOfWeeks.Where(x => x.TeacherId == teacherGuid).ToList();
         }
     }
 }

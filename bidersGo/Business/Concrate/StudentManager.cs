@@ -20,6 +20,16 @@ namespace bidersGo.Business.Concrate
 
         public string ErrorMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public List<Meet> GetBetweenSelectedDateMeet(DateTime start, DateTime finish)
+        {
+            return _unitOfWork.MeetRepository.GetMeetsByDate(start, finish);   
+        }
+
+        public List<Meet> GetLessonFinishTime(DateTime finish)
+        {
+            return _unitOfWork.MeetRepository.GetLessonFinishTime(finish);
+        }
+
         public List<Lesson> GetLessonsAll()
         {
             return _unitOfWork.LessonRepository.GetLessonsAll();

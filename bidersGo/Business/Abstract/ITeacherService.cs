@@ -17,11 +17,22 @@ namespace bidersGo.Business.Abstract
         
         List<Lesson> GetLessonsAll();
 
+        List<WorkingHoursOfWeek> WorkingHoursOfWeeks(Teacher teacher);
+
+      
+
+      
+
+        List<Meet> GetLessonFinishTime(DateTime finish);
+
+        
 
 
 
 
         public void ApproveMeet(Meet meet);
+
+       
 
 
 

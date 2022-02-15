@@ -17,6 +17,7 @@ namespace bidersGo.DataAcces.Abstract
         Lesson GetMeetLesson(Guid lessonGuid);
         Meet GetMeetByTeacher(Guid teacherGuid);
         Meet GetMeetByStudent(Guid studentGuid);
+        List<Meet> GetLessonFinishTime(DateTime dateFinish);
         Meet GetMeetByDate(DateTime meetDateTime);
         Student GetStudentOnMeet(Guid meetGuid);
         List<Student> GetStudentsOnMeetNow(DateTime meetDate);
