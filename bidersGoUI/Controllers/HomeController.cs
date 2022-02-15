@@ -50,6 +50,7 @@ namespace bidersGoUI.Controllers
         [HttpPost]
         public async Task<AddressCreateCommandResponse> CreateAddress(AddressCreateCommandRequest request)
         {
+            
             return await _mediator.Send(request);
         }
 
