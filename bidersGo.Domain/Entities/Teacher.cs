@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
+using bidersGo.Domain.Common;
 
-namespace bidersGo.Entities
+namespace bidersGo.Domain.Entities
 {
     public class Teacher:BaseEntity
     { 
@@ -19,10 +20,6 @@ namespace bidersGo.Entities
         public Address Address { get; set; }
         public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; }
         public bool IsWorking { get; set; }
-        public Lesson Lesson { get; set; }
-
-        public Guid LessonId { get; set; }
-
 
         public Lesson Lesson { get; set; }
         public Guid LessonId { get; set; }

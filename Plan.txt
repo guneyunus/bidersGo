@@ -1,0 +1,39 @@
+
+-iki tarihi arasýný kontrol edecek olan KontrolEt();
+
+-Öðrenci 
+
+-ders seç => Lessonrepository'den derslerin tamamý gelecek
+-hoca seç => Teacherrepository'den derse ait hocalarý getir
+-tarih seç =>Teacherrepository'den çalýþtýðý(müsait olduðu) zamanlarý getir
+-Meet talebi oluþtur(adres giriþ ekraný dahil) => MeetRepository'den yeni meeti oluþtur.
+-Ödeme Yap 
+-Meet Ýptal talebi oluþtur =>	StudentRepository'den Meetsleri arasýnda durumu onaylandý halinde olan meetsleri getirecek ve durumunu iptal'e çevirecek ve modaretore bildirecek.
+-Meet Erteleme talebi oluþtur =>StudentRepository'den Meetsleri arasýnda durumu onaylandý halinde olan meetsleri getirecek tarih seçim iþleini yapacak ve durumunu erteleye çevirecek ardýndan modaretore bildirecek.
+-Öðretmen tarafýndan ertelenmþ meetleri gör
+-Meetleri gör(dashboard üzerinde)
+
+-Öðretmen
+-Çalýþtýgý saatleri bildir=>haftada hangi saatler çalýþýyor =>TeacherReository'den direk setlenir.
+-Ders programýný getir =>TeacherRepository'den 	öðretmenin çalýþma programý gelecek(dashboard üzerinde)
+-Bakiye Göster (dashbord Üzerinde)
+-Meet'baþlat =>TeacherRepositor'den meete ulaþýp durumunu MeetBaþladý yapacak meetstartdate o anda oluþturulacak.
+-Meet'sonlandýr=>TeacherRepositor'den meete ulaþýp durumunu MeetSonlandý yapacak meetfinishdate o anda oluþturulacak.
+-Meet Ýptal talebi oluþtur =>	TeacherRepository'den Meetsleri arasýnda durumu onaylandý halinde olan meetsleri getirecek ve durumunu iptal'e çevirecek ve modaretore bildirecek.
+-Meet Erteleme talebi oluþtur =>TeacherRepositoy'den Meetsleri arasýnda durumu onaylandý halinde olan meetsleri getirecek durumunu erteleye çevirecek ardýndan modaretore bildirecek.
+
+
+-modaretor 
+
+-meeti iptal et (öðretmen talebi) //direk iptal para iadesi
+-meeti iptal et (öðrenci talebi) //direk iptal para iadesi
+-meeti ertele (öðretmen talebi)//
+1.öðrenci dersi ertelemeyi kabul edebilir ve tarih güncellemesi yapýýr ve durum ertelendiye çevirilir
+2.öðrenci ders ertelemeyi kabul etmeyebilir direk iptal olur 
+-meeti ertele (öðrenci talebi)
+1.Öðrencinin meeti ertleyebilmesi için öðretmenin boþ vaktinden seçmeli
+
+
+
+
+enum MeetDurum{Ýptal,Onaylandý,Ertelendi,MeetBaþladý,MeetSonlandý}
