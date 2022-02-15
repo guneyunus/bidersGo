@@ -12,7 +12,9 @@ namespace bidersGo.DataAcces.Abstract
         Teacher GetTeacherById(Guid teacherGuid);
         Teacher GetTeacherByName(string Name);
         Address GetTeacherAdress(Teacher teacher);
-        
+        List<WorkingHoursOfWeek> WorkingHoursOfWeeks(Guid teacherGuid);
+
+
 
     }
 }

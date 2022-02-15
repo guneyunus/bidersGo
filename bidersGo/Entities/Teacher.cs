@@ -24,8 +24,7 @@ namespace bidersGo.Entities
         public Guid LessonId { get; set; }
 
 
-        public Lesson Lesson { get; set; }
-        public Guid LessonId { get; set; }
+     
 
         public List<Meet> Meets { get; set; }
 
