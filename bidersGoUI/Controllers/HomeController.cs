@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using bidersGo.Application.Features.Commands.AddressCreate;
+using bidersGo.Application.Features.Queries.AddressGetAll;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using MediatR;
 
@@ -40,24 +41,16 @@ namespace bidersGoUI.Controllers
         {
             return await _mediator.Send(request);
         }
-        [HttpGet]
-        public IActionResult CreateAddress()
-        {
-            var model = new AddressCreateCommandRequest();
-            return View(model);
-        }
 
-        [HttpPost]
-        public async Task<AddressCreateCommandResponse> CreateAddress(AddressCreateCommandRequest request)
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAdress()
         {
             
-            return await _mediator.Send(request);
-        }
+            AddressGetAllQueryResponse response = await _mediator.Send(new AddressGetAllQueryRequest());
 
-        [HttpGet]
-        public IActionResult GetAdress()
-        {
-            return View();
+            return View(response);
         }
 
         public IActionResult Privacy()

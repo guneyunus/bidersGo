@@ -22,6 +22,11 @@ namespace bidersGo.Persistence.Repositories
             return _context.Addresses.Where(x => x.Id == guid).FirstOrDefault();
         }
 
+        public List<Address> getAllAdresAddresses()
+        {
+            return _context.Addresses.ToList();
+        }
+
         public Address GetByCityWithStudent(string CityName)
         {
             return null;

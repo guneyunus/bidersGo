@@ -9,6 +9,7 @@ using bidersGo.Application.Features.Commands.AdminCreate;
 using bidersGo.Application.Features.Commands.ModeratorCreate;
 using bidersGo.Application.Features.Commands.StudentCreate;
 using bidersGo.Application.Features.Commands.TeacherCreate;
+using bidersGo.Application.Features.Queries.AddressGetAll;
 using bidersGo.Application.Features.Queries.AddressGetById;
 using bidersGo.Application.Features.Queries.AdminGetById;
 using bidersGo.Application.Features.Queries.ModeratorGetById;
@@ -23,16 +24,16 @@ namespace bidersGo.Application.Mapping
         public GeneralMapping()
         {
             CreateMap<Moderator, ModeratorGetByIdQueryResponse>().ReverseMap();
-            CreateMap<Address, AddressGetByIdQueryResponse>().ReverseMap();
+            CreateMap<Address, AddressGetByIdQueryResponse>();
             CreateMap<Student, StudentByIdQueryResponse>().ReverseMap();
             CreateMap<Teacher, TeacherGetByIdQueryResponse>().ReverseMap();
             CreateMap<Admin, AdminGetByIdQueryResponse>().ReverseMap();
-            CreateMap<Address, AddressCreateCommandResponse>().ReverseMap();
+            CreateMap<AddressCreateCommandResponse, Address>();
             CreateMap<Student, StudentCreateCommandResponse>().ReverseMap();
             CreateMap<Teacher, TeacherCreateCommandResponse>().ReverseMap();
             CreateMap<Moderator, ModeratorCreateCommandResponse>().ReverseMap();
             CreateMap<Admin, AdminCreateCommandResponse>().ReverseMap();
-
+            CreateMap<AddressGetAllQueryResponse, Address>();
 
 
 
