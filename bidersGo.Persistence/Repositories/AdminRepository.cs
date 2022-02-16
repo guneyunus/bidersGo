@@ -77,5 +77,10 @@ namespace bidersGo.Persistence.Repositories
             return _context.Admins.ToList();
 
         }
+
+        public Admin GetAdminById(Guid adminGuid)
+        {
+            return _context.Admins.Where(x => x.Id == adminGuid).FirstOrDefault();
+        }
     }
 }

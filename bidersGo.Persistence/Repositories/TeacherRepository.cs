@@ -19,7 +19,7 @@ namespace bidersGo.Persistence.Repositories
 
         public List<WorkingHoursOfWeek> GetMeetForWeek()
         {
-            throw new NotImplementedException();
+            return _context.WorkingHoursOfWeeks.ToList();
         }
 
         public Address GetTeacherAdress(Teacher teacher)

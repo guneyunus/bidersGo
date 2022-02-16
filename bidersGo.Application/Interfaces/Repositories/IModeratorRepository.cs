@@ -19,7 +19,7 @@ namespace bidersGo.Application.Interfaces.Repositories
         List<Teacher> GetAllTeacher();
         Address GetAddress(Teacher teacher);
         List<Meet> GetTeacherMeet(Teacher teacher);
-
+        Moderator GetModeratorById(Guid moderatorGuid);
         List<Meet> GetMeetNow();
         Meet GetMeetById(Guid MeetGuid);
         DateTime GetMeetDateTime(Meet Meet);

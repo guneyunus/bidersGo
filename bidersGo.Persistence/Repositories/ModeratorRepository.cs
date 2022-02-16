@@ -53,6 +53,11 @@ namespace bidersGo.Persistence.Repositories
             return _context.Moderators.ToList();
         }
 
+        public Moderator GetModeratorById(Guid moderatorGuid)
+        {
+            return _context.Moderators.Where(x => x.Id == moderatorGuid).FirstOrDefault();
+        }
+
         public Address GetStudentAdress(Student Student)
         {
             return _context.Students.Where(x=>x.Id== Student.Id).Select(x=>x.Address).FirstOrDefault();
