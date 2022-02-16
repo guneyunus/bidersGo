@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using bidersGo.Application.Features.Commands.AddressCreate;
 using bidersGo.Application.Features.Commands.StudentCreate;
+using bidersGo.Application.Features.Queries.GetAddressById;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using bidersGo.Domain.Entities;
 
@@ -18,6 +19,7 @@ namespace bidersGo.Application.Mapping
             CreateMap<Student, StudentByIdQueryResponse>().ReverseMap();
             CreateMap<Address, AddressCreateCommandResponse>().ReverseMap();
             CreateMap<Student, StudentCreateCommandResponse>().ReverseMap();
+            CreateMap<Address, GetAddressByIdQueryResponse>().ReverseMap();
         }
     }
 }

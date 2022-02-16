@@ -54,6 +54,12 @@ namespace bidersGoUI.Controllers
             return await _mediator.Send(request);
         }
 
+        [HttpGet]
+        public IActionResult GetAdress()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
