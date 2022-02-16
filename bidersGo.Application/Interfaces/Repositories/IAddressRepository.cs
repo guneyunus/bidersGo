@@ -8,10 +8,8 @@ namespace bidersGo.Application.Interfaces.Repositories
 {
     public interface IAddressRepository : IRepository<Address>
     {
-        Address GetAddressById(Guid addressGuid);
         Address GetByCityWithStudent(string CityName);
         Address GetSelectedAdress(Address address);
-
         Address GetAddressById(Guid guid);
     }
 }

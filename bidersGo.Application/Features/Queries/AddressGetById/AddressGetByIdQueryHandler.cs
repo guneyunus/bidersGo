@@ -22,7 +22,7 @@ namespace bidersGo.Application.Features.Queries.AddressGetById
 
         public Task<AddressGetByIdQueryResponse> Handle(AddressGetByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var adress = _unitOfWork.AddressRepository.GetAddressById(request.Guid);
+            var adress = _unitOfWork.AddressRepository.GetById(request.Guid);
 
             AddressGetByIdQueryResponse model=_mapper.Map<AddressGetByIdQueryResponse>(adress);
             return Task<AddressGetByIdQueryResponse>.FromResult(model);
