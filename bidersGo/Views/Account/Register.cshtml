@@ -28,12 +28,24 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form  method="post" asp-controller="Account" asp-action="Register" >
+                                        <form method="post" asp-controller="Account" asp-action="Register">
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label asp-for="Email" >E-Posta Adresi</label>
+                                                <label asp-for="Email">E-Posta Adresi</label>
                                                 <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Name">Ad</label>
+                                                <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter username">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Surname">Soyad</label>
+                                                <input asp-for="Surname" type="text" class="form-control" id="surname" placeholder="Enter username">
                                             </div>
 
                                             <div class="auth-form-group-custom mb-4">
@@ -42,10 +54,65 @@
                                                 <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
 
+
+                                            <div id="forModerator" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label>Kullanıcı Moderator Adı</label>
+                                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                            </div>
+
+                                            <div id="forStudent" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+
+                                                <label for="status">Öğrenim Durumu Seçiniz</label>
+                                                <select name="status" id="status">
+                                                    <option value="ortaokul">Orta Okul</option>
+                                                    <option value="lise">Lise</option>
+                                                    <option value="universite">Üniversite</option>
+                                                </select>
+                                            </div>
+
+                                            <div id="forTeacher" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Branch">Branşınızı Yazınız</label>
+                                                <input asp-for="Branch" type="text" class="form-control" id="brans" placeholder="Branşınızı yazınız..">
+                                            </div>
+
+                                            <div id="forAdmin" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label>Kullanıcı Admin Adı</label>
+                                                <input type="text" class="form-control" id="username2" placeholder="Enter username">
+                                            </div>
+
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Password">Şifre</label>
                                                 <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="ConfirmPassword">Şifre</label>
+                                                <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpassword" placeholder="Enter password">
+                                            </div>
+
+                                            <div>
+                                                <select id="roles">
+                                                    @foreach (var item in ViewBag.Roles)
+                                                    {
+
+                                                        if (item == "Passive" || item == "Modarator")
+                                                        {
+                                                            continue;
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
+
+                                                    }
+                                                </select>
+                                                <input type="hidden" asp-for="RoleForRegister" value="" />
                                             </div>
 
 
@@ -81,3 +148,38 @@
         </div>
     </div>
 </div>
+
+
+@section scripts{
+<script>
+    var SelectBoxRoles = $("#roles");
+    var ForModerator = $("#forModerator");
+    var ForStudent = $("#forStudent");
+    var ForTeacher = $("#forTeacher");
+    var ForAdmin = $("#forAdmin");
+
+
+
+    SelectBoxRoles.on("change",
+        function() {
+            console.log(SelectBoxRoles.val());
+            if (SelectBoxRoles.val() =="Moderator") {
+                ForModerator.css({ "display": "block", "visibility": "visible" });
+            } else {
+                ForModerator.css({ "display": "none", "visibility": "hidden" });
+            }
+
+            SelectBoxRoles.val() =="Admin" ? ForAdmin.css({"display": "block", "visibility": "visible"}) :
+            ForAdmin.css({"display": "none", "visibility": "hidden"});
+
+             SelectBoxRoles.val() =="Student" ? ForStudent.css({"display": "block", "visibility": "visible"}) :
+             ForStudent.css({"display": "none", "visibility": "hidden"});
+
+             SelectBoxRoles.val() =="Teacher" ? ForTeacher.css({"display": "block", "visibility": "visible"}) :
+             ForTeacher.css({"display": "none", "visibility": "hidden"});
+        });
+
+
+</script>
+
+}

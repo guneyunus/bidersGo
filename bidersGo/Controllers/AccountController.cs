@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,39 @@ namespace bidersGo.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
+        
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            CheckRoles();
         }
 
+        public void CheckRoles()
+        {
+            foreach (var roleName in RoleNames.Roles)
+            {
+                if (!_roleManager.RoleExistsAsync(roleName).Result)
+                {
+                    var result = _roleManager.CreateAsync(new ApplicationRole()
+                    {
+                        Name = roleName,
+                    }).Result;
+                }
+            }
+        }
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
+            var RoleTable = _roleManager.Roles.ToList();
+            List<string> roleList = new List<string>();
+            foreach (var role in RoleTable)
+            {
+                roleList.Add(role.Name);
+            }
+            ViewBag.Roles =roleList;
             return View();
         }
 
@@ -37,6 +60,7 @@ namespace bidersGo.Controllers
             if (!ModelState.IsValid)
             {
                 model.Password = string.Empty;
+                model.ConfirmPassword = string.Empty;
                 return View(model);
             }
             var user = await _userManager.FindByNameAsync(model.UserName);
@@ -54,15 +78,22 @@ namespace bidersGo.Controllers
             user = new ApplicationUser()
             {
                 UserName = model.UserName,
+                Name=model.Name,
+                Surname = model.Surname,
+                Branch=model.Branch,
                 Email = model.Email
+               
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
                 //kullanıcıya rol atama 
                 var count = _userManager.Users.Count();
-
-                result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleNames.Admin : RoleNames.User);
+                //if (count ==1)
+                //{
+                //    result = await _userManager.AddToRoleAsync(user, RoleNames.Admin);
+                //}
+                result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleNames.Admin : RoleNames.Passive);
             }
             return View();
         }
@@ -102,5 +133,75 @@ namespace bidersGo.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Moderator()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Moderator(ModeratorViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult StudentProfile()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> StudentProfile(StudentProfileViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult TeacherProfile()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> TeacherProfile(TeacherProfileViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult MeetingPage()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> MeetingPage(MeetingPageViewModel model)
+        {
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult PaymentPage()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> PaymentPage(MeetingPageViewModel model)
+        {
+            return View(model);
+        }
+
     }
 }

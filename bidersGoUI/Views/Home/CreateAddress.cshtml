@@ -1,0 +1,25 @@
+﻿@model AddressCreateCommandRequest
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <form asp-action="CreateAddress" asp-controller="Home" method="post">
+        <label>@Model.AddressType</label>
+        <input type="hidden" value="DersYeri" />
+        <label>@Model.BuildName</label>
+        <input type="text" asp-for="BuildName" value="" />
+        <label>@Model.BuildNo</label>
+        <input type="text" asp-for="BuildNo" value="" />
+        <label>@Model.City</label>
+        <input type="text" asp-for="City" value="" />
+        <label>@Model.State</label>
+        <input type="text" asp-for="State" value="" />
+        <label>@Model.Street</label>
+        <input type="text" asp-for="Street" value="" />
+        <label>@Model.ZipCode</label>
+        <input type="text" asp-for="ZipCode" value="" />
+        <button type="submit">Gönder</button>
+    </form>
+</body>
+</html>

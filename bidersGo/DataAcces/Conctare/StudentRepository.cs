@@ -16,6 +16,11 @@ namespace bidersGo.DataAcces.Conctare
             _context = context;
         }
 
+        public List<Meet> GetAllMeets(Guid studentGuid)
+        {
+            return _context.Meets.Where(x => x.StudentId == studentGuid).ToList();
+        }
+
         public Address GetStudentAdress(Student student)
         {
             return _context.Addresses.Where(x => x.Id == student.Address.Id).FirstOrDefault();

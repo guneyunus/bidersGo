@@ -81,7 +81,10 @@ namespace bidersGo.DataAcces.Conctare
             return _context.Teachers.Where(x => x.CreatedDate == meetDate).ToList();
 
         }
-        
-       
+
+        public List<Meet> GetLessonFinishTime(DateTime dateFinish)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

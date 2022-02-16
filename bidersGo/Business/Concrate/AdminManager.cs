@@ -81,6 +81,11 @@ namespace bidersGo.Business.Concrate
             return _unitOfWork.MeetRepository.GetMeetsByDate(start,finish);
         }
 
+        public ApplicationRole GetUserRole(ApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateRole()
         {
             throw new NotImplementedException();

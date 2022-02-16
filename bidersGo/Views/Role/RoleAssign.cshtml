@@ -1,0 +1,51 @@
+﻿@using bidersGo.ViewModels
+@*@model List<bidersGo.ViewModels.RoleAssignViewModel>*@
+@model RoleAssignViewModel
+<h1>Role Assign</h1>
+<form asp-action="RoleAssign" asp-controller="Role" asp-route-id="@Model.RoleUserAssignViewModel.UserId" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th>
+                    Role Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@for (int i = 0; i < Model.Count; i++)
+                {
+                <tr>
+                <td><input type="checkbox" asp-for="@Model[i].HasAssign" /> </td>
+                <td>
+                @Model[i].RoleName
+                <input type="hidden" asp-for="@Model[i].RoleId" />
+                <input type="hidden" asp-for="@Model[i].RoleName" />
+                </td>
+                </tr>
+                }*@
+            <tr>
+                @foreach (var item in Model.UserRoles)
+                {
+                    <input type="hidden" id="UserId" name="UserId" value="@Model.RoleUserAssignViewModel.UserId" />
+
+                    <td>
+                        <input id="@item.RoleId" type="checkbox" name="Model.UserRoles" class="user-role" value="@item.RoleName" checked="@item.Selected" />
+                    </td>
+                    <td>
+                        <label for=@item.RoleId>
+                            @item.RoleName
+                        </label>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Ata" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>

@@ -19,6 +19,7 @@ namespace bidersGo.Business.Abstract
         void UpdateRole();
         void AssigneRole();
         void DeleteUser(ApplicationUser user);
+        ApplicationRole GetUserRole(ApplicationUser user);
         void UpdateUser(ApplicationUser user);
 
 

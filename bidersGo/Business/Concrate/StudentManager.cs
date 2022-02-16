@@ -20,9 +20,14 @@ namespace bidersGo.Business.Concrate
 
         public string ErrorMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public List<Admin> GetAdminAll()
+        public List<Meet> GetBetweenSelectedDateMeet(DateTime start, DateTime finish)
         {
-            return _unitOfWork.AdminRepository.GetAdminAll();
+            return _unitOfWork.MeetRepository.GetMeetsByDate(start, finish);   
+        }
+
+        public List<Meet> GetLessonFinishTime(DateTime finish)
+        {
+            return _unitOfWork.MeetRepository.GetLessonFinishTime(finish);
         }
 
         public List<Lesson> GetLessonsAll()
@@ -37,10 +42,7 @@ namespace bidersGo.Business.Concrate
 
         }
 
-        public List<Moderator> GetModeratorAll()
-        {
-            return _unitOfWork.ModeratorRepository.GetModeratorAll();
-        }
+       
 
         public List<Teacher> GetTeachersAll()
         {
