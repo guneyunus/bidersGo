@@ -12,6 +12,8 @@ using bidersGo.Application.Features.Commands.TeacherCreate;
 using bidersGo.Application.Features.Queries.AddressGetAll;
 using bidersGo.Application.Features.Queries.AddressGetById;
 using bidersGo.Application.Features.Queries.AdminGetById;
+using bidersGo.Application.Features.Queries.LessonGetAll;
+using bidersGo.Application.Features.Queries.LessonGetById;
 using bidersGo.Application.Features.Queries.ModeratorGetById;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using bidersGo.Application.Features.Queries.TeacherGetById;
@@ -34,6 +36,8 @@ namespace bidersGo.Application.Mapping
             CreateMap<Moderator, ModeratorCreateCommandResponse>().ReverseMap();
             CreateMap<Admin, AdminCreateCommandResponse>().ReverseMap();
             CreateMap<AddressGetAllQueryResponse, Address>();
+            CreateMap<Lesson, LessonGetByIdQueryResponse>();
+            CreateMap<LessonGetAllQueryResponse, List<Lesson>>();
 
 
 
