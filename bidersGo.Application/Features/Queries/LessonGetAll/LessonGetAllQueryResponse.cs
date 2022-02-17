@@ -9,7 +9,6 @@ namespace bidersGo.Application.Features.Queries.LessonGetAll
 {
     public class LessonGetAllQueryResponse
     {
-        
         public List<LessonGetByIdQueryResponse> LessonGetAll { get; set; }
     }
 }
