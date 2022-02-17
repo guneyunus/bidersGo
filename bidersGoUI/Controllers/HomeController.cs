@@ -10,6 +10,7 @@ using bidersGo.Application.Features.Commands.AddressCreate;
 using bidersGo.Application.Features.Queries.AddressGetAll;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using MediatR;
+using bidersGo.Application.Features.Queries.LessonGetAll;
 
 namespace bidersGoUI.Controllers
 {
@@ -52,7 +53,13 @@ namespace bidersGoUI.Controllers
 
             return View(response);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetLesson()
+        {
+            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
 
+            return View(response);
+        }
         public IActionResult Privacy()
         {
             return View();

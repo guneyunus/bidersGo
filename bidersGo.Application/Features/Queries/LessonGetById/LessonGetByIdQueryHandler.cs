@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using bidersGo.Application.Interfaces.UnitOfWork;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace bidersGo.Application.Features.Queries.LessonGetById
 {
-    public class LessonGetByIdQueryHandler
+    public class LessonGetByIdQueryHandler : IRequestHandler<LessonGetByIdQueryRequest, LessonGetByIdQueryResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
