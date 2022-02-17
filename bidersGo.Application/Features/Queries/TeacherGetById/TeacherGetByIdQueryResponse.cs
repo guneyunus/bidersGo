@@ -16,6 +16,8 @@ namespace bidersGo.Application.Features.Queries.TeacherGetById
         public string NickName { get; set; }
         public string Email { get; set; }
         public Address Address { get; set; }
+        public Lesson Lesson { get; set; }
+        public Guid LessonId { get; set; }
         public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; }
     }
 }

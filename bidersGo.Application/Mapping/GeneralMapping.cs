@@ -17,6 +17,7 @@ using bidersGo.Application.Features.Queries.LessonGetById;
 using bidersGo.Application.Features.Queries.ModeratorGetById;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using bidersGo.Application.Features.Queries.TeacherGetById;
+using bidersGo.Application.Features.Queries.TeacherOfLesson;
 using bidersGo.Domain.Entities;
 
 namespace bidersGo.Application.Mapping
@@ -38,6 +39,7 @@ namespace bidersGo.Application.Mapping
             CreateMap<AddressGetAllQueryResponse, Address>();
             CreateMap<Lesson, LessonGetByIdQueryResponse>();
             CreateMap<LessonGetAllQueryResponse, List<Lesson>>();
+            CreateMap<TeacherOfLessonQueryResponse, List<Teacher>>();
 
 
 
