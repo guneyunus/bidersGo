@@ -26,6 +26,7 @@ namespace bidersGo.Persistence.Context
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<WorkingHoursOfWeek> WorkingHoursOfWeeks { get; set; }
+        public DbSet<WorkingForOneHour> workingForOneHours { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +62,12 @@ namespace bidersGo.Persistence.Context
                 .HasOne(x => x.Teacher)
                 .WithMany(x => x.WorkingHoursOfWeek)
                 .HasForeignKey(x => x.TeacherId);
+
+            modelBuilder.Entity<WorkingForOneHour>()
+                .HasOne(x => x.week)
+                .WithMany(x => x.WorkingForOneHours)
+                .HasForeignKey(x => x.weekID);
+                
 
             modelBuilder.ApplyConfiguration(new LessonConfiguration());
 
