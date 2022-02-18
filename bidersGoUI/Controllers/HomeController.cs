@@ -7,8 +7,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using bidersGo.Application.Features.Commands.AddressCreate;
+using bidersGo.Application.Features.Queries.AddressGetAll;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using MediatR;
+using bidersGo.Application.Features.Queries.LessonGetAll;
+using bidersGo.Application.Features.Queries.LessonGetById;
 
 namespace bidersGoUI.Controllers
 {
@@ -40,26 +43,31 @@ namespace bidersGoUI.Controllers
         {
             return await _mediator.Send(request);
         }
-        [HttpGet]
-        public IActionResult CreateAddress()
-        {
-            var model = new AddressCreateCommandRequest();
-            return View(model);
-        }
 
-        [HttpPost]
-        public async Task<AddressCreateCommandResponse> CreateAddress(AddressCreateCommandRequest request)
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAdress()
         {
             
-            return await _mediator.Send(request);
-        }
+            AddressGetAllQueryResponse response = await _mediator.Send(new AddressGetAllQueryRequest());
 
+            return View(response);
+        }
         [HttpGet]
-        public IActionResult GetAdress()
+        public async Task<IActionResult> GetLesson()
         {
-            return View();
-        }
+            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
 
+            return View(response);
+        }
+        [HttpGet()]
+        public async Task<IActionResult> GetLessonById(Guid id)
+        {
+           LessonGetByIdQueryResponse response = await _mediator.Send(new LessonGetByIdQueryRequest() { Guid=id});
+
+            return View(response);
+        }
         public IActionResult Privacy()
         {
             return View();

@@ -20,11 +20,11 @@ namespace bidersGo.Application.Features.Queries.StudentGetById
             _unitOfWork = unitOfWork;
 
         }
-        public async Task<StudentByIdQueryResponse> Handle(StudentGetByIdQueryRequest request, CancellationToken cancellationToken)
+        public  Task<StudentByIdQueryResponse> Handle(StudentGetByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            Student student = await _unitOfWork.StudentRepository.GetById(request.Guid);
+            Student student = _unitOfWork.StudentRepository.GetById(request.Guid);
 
-            return _mapper.Map<Student, StudentByIdQueryResponse>(student);
+            return Task.FromResult(_mapper.Map<Student, StudentByIdQueryResponse>(student));
         }
     }
 }

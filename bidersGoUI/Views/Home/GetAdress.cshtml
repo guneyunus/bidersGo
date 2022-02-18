@@ -1,0 +1,13 @@
+﻿@model bidersGo.Application.Features.Queries.AddressGetAll.AddressGetAllQueryResponse
+
+@foreach (var item in Model.AddressGetAll)
+{
+    
+    <h1>@item.BuildName</h1>
+    <h1>@item.City</h1>
+    <h1>@item.BuildNo</h1>
+    <h1>@item.State</h1>
+    <h1>@item.Street</h1>
+    <h1>@item.ZipCode</h1>
+}
+

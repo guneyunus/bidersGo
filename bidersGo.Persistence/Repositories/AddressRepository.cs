@@ -17,17 +17,23 @@ namespace bidersGo.Persistence.Repositories
             _context = context;
         }
 
-        public Address GetAddressById(Guid guid)
+        
+        Address IAddressRepository.GetAddressById(Guid guid)
         {
             return _context.Addresses.Where(x => x.Id == guid).FirstOrDefault();
         }
 
-        public Address GetByCityWithStudent(string CityName)
+        List<Address> IAddressRepository.getAllAdresAddresses()
         {
-            return null;
+            return _context.Addresses.ToList();
         }
 
-        public Address GetSelectedAdress(Address address)
+        Address IAddressRepository.GetByCityWithStudent(string CityName)
+        {
+            throw null;
+        }
+
+        Address IAddressRepository.GetSelectedAdress(Address address)
         {
             return _context.Addresses.Where(x => x.Id == address.Id).FirstOrDefault();
         }

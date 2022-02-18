@@ -11,5 +11,6 @@ namespace bidersGo.Application.Interfaces.Repositories
         Address GetByCityWithStudent(string CityName);
         Address GetSelectedAdress(Address address);
         Address GetAddressById(Guid guid);
+        List<Address> getAllAdresAddresses();
     }
 }

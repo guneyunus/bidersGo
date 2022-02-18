@@ -49,5 +49,16 @@ namespace bidersGo.Persistence.Repositories
         {
             _context.Entry(entity).State = EntityState.Modified;
         }
+
+        List<TEntity> IRepository<TEntity>.GetAll()
+        {
+            return _context.Set<TEntity>().ToList();
+        }
+
+        TEntity IRepository<TEntity>.GetById(Guid id)
+        {
+            return _context.Set<TEntity>().Find(id);
+
+        }
     }
 }
