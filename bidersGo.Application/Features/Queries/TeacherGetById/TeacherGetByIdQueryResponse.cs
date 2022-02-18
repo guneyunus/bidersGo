@@ -18,6 +18,6 @@ namespace bidersGo.Application.Features.Queries.TeacherGetById
         public Address Address { get; set; }
         public Lesson Lesson { get; set; }
         public Guid LessonId { get; set; }
-        public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; }
+        public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; } = new List<WorkingHoursOfWeek>();
     }
 }
