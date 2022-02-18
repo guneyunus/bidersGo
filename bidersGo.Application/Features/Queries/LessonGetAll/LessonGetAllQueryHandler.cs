@@ -26,7 +26,7 @@ namespace bidersGo.Application.Features.Queries.LessonGetAll
             //Todo: mapleme işlemi hatalı
             var lesson = _unitOfWork.LessonRepository.GetLessonsAll();
             var model = new LessonGetAllQueryResponse();
-
+            
             foreach (var item in lesson)
             {
                 model.LessonGetAll.Add(_mapper.Map<LessonGetByIdQueryResponse>(item));
