@@ -12,6 +12,6 @@ namespace bidersGo.Application.Features.Queries.LessonGetById
         //public Guid Guid { get; set; }
         public string LessonName { get; set; }
         public bool IsOnline { get; set; }
-        //public List<LessonDetail> LessonDetails { get; set; }
+        
     }
 }
