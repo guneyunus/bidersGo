@@ -11,6 +11,7 @@ using bidersGo.Application.Features.Queries.AddressGetAll;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using MediatR;
 using bidersGo.Application.Features.Queries.LessonGetAll;
+using bidersGo.Application.Features.Queries.LessonGetById;
 
 namespace bidersGoUI.Controllers
 {
@@ -57,6 +58,13 @@ namespace bidersGoUI.Controllers
         public async Task<IActionResult> GetLesson()
         {
             LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
+
+            return View(response);
+        }
+        [HttpGet()]
+        public async Task<IActionResult> GetLessonById(Guid id)
+        {
+           LessonGetByIdQueryResponse response = await _mediator.Send(new LessonGetByIdQueryRequest() { Guid=id});
 
             return View(response);
         }
