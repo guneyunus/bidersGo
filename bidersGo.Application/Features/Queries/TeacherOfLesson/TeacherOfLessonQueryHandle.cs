@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using bidersGo.Application.Features.Queries.TeacherGetById;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using MediatR;
 
@@ -26,7 +27,13 @@ namespace bidersGo.Application.Features.Queries.TeacherOfLesson
                 .Where(x => x.LessonId == request.Guid)
                 .ToList();
 
-            var model = _mapper.Map<TeacherOfLessonQueryResponse>(teachers);
+            //var model = _mapper.Map<TeacherOfLessonQueryResponse>(teachers);
+
+            var model = new TeacherOfLessonQueryResponse();
+            foreach (var teacher in teachers)
+            {
+              model.Teachers.Add(_mapper.Map<TeacherGetByIdQueryResponse>(teacher));  
+            }
 
             return Task.FromResult(model);
 

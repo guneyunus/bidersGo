@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using bidersGo.Application.Features.Queries.LessonGetById;
 
 namespace bidersGo.Application.Features.Queries.LessonGetAll
 {
@@ -24,7 +25,14 @@ namespace bidersGo.Application.Features.Queries.LessonGetAll
         {
             //Todo: mapleme işlemi hatalı
             var lesson = _unitOfWork.LessonRepository.GetLessonsAll();
-            var model = _mapper.Map<LessonGetAllQueryResponse>(lesson);
+            var model = new LessonGetAllQueryResponse();
+
+            foreach (var item in lesson)
+            {
+                model.LessonGetAll.Add(_mapper.Map<LessonGetByIdQueryResponse>(item));
+            }
+
+
             return Task.FromResult(model);
         }
     }

@@ -37,12 +37,11 @@ namespace bidersGo.Application.Mapping
             CreateMap<Moderator, ModeratorCreateCommandResponse>().ReverseMap();
             CreateMap<Admin, AdminCreateCommandResponse>().ReverseMap();
             CreateMap<AddressGetAllQueryResponse, Address>();
-            CreateMap<Lesson, LessonGetByIdQueryResponse>();
-            CreateMap<LessonGetAllQueryResponse, List<Lesson>>();
-            CreateMap<TeacherOfLessonQueryResponse, List<Teacher>>();
-
-
-
+            CreateMap<Lesson, LessonGetByIdQueryResponse>().ReverseMap();
+            //CreateMap<LessonGetAllQueryResponse, List<Lesson>>();
+            //CreateMap<TeacherOfLessonQueryResponse, List<Teacher>>();
+            //CreateMap<List<Teacher>, List<TeacherGetByIdQueryResponse> >();
+            
         }
     }
 }
