@@ -7,8 +7,8 @@ namespace bidersGo.Application.Interfaces.Repositories
 {
     public interface IRepository<T>
     {
-        Task<T> GetById(Guid id);
-        Task<List<T>> GetAll();
+        T GetById(Guid id);
+        List<T> GetAll();
         void Create(T entity);
         Task CreateAsync(T entity);
         void Update(T entity);
