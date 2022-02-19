@@ -368,8 +368,8 @@ namespace bidersGo.Persistence.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TcKimlik")
-                        .HasColumnType("int");
+                    b.Property<string>("TcKimlik")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");

@@ -1,0 +1,206 @@
+﻿@using bidersGo.Application.Features.Commands.TeacherCreate
+@model TeacherCreateCommandRequest
+@{
+    ViewData["Title"] = "Kayıt Ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-4">
+                <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+                    <div class="w-100">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <div>
+                                    <div class="text-center">
+                                        <div>
+                                            <a href=@Url.Action("Index", "Dashboard") class="">
+                                                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
+                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
+                                            </a>
+                                        </div>
+
+                                        <h4 class="font-size-18 mt-4">Register account</h4>
+                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                    </div>
+
+                                    <div class="p-2 mt-5">
+                                        <form method="post" asp-controller="Home" asp-action="RegisterTeacher">
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-mail-line auti-custom-input-icon"></i>
+                                                <label asp-for="Email">E-Posta Adresi</label>
+                                                <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Name">Ad</label>
+                                                <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter username">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Surname">Soyad</label>
+                                                <input asp-for="Surname" type="text" class="form-control" id="surname" placeholder="Enter username">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="UserName">Kullanıcı Adı</label>
+                                                <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
+                                            </div>
+
+
+
+                                            @*<div id="forModerator" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label>Kullanıcı Moderator Adı</label>
+                                                <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                            </div>*@
+
+                                            @*<div id="forStudent" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+
+                                                <label for="status">Öğrenim Durumu Seçiniz</label>
+                                                <select name="status" id="status">
+                                                    <option value="ortaokul">Orta Okul</option>
+                                                    <option value="lise">Lise</option>
+                                                    <option value="universite">Üniversite</option>
+                                                </select>
+                                            </div>*@
+
+                                            
+
+                                             <div class="mb-4">
+                                               <select id="selectedLessonId"  >
+                                                   <option>Lüstef Ders Seçiniz</option> 
+                                                   @foreach (var dersler in ViewBag.Lessons)
+                                                    {
+                                                        <option value="@dersler.Id">@dersler.LessonName</option>
+                                                    }
+                                                </select>
+                                                 <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
+                                                 <input asp-for="Branch" type="hidden" class="form-control" id="brans">
+                                            </div>
+                                           
+                                           @* <div id="forAdmin" style="display: none;visibility: hidden " class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label>Kullanıcı Admin Adı</label>
+                                                <input type="text" class="form-control" id="username2" placeholder="Enter username">
+                                            </div>*@
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Password">Şifre</label>
+                                                <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="ConfirmPassword">Şifre</label>
+                                                <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpassword" placeholder="Enter password">
+                                            </div>
+
+
+                                            @*<div>
+                                                <select id="roles">
+                                                    @foreach (var item in ViewBag.Roles)
+                                                    {
+
+                                                        if (item == "Passive" || item == "Modarator")
+                                                        {
+                                                            continue;
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
+
+                                                    }
+                                                </select>
+                                                <input type="hidden" asp-for="RoleForRegister" value="" />
+                                            </div>*@
+
+
+                                            <div class="text-center">
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                            </div>
+
+                                            <div class="mt-4 text-center">
+                                                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-5 text-center">
+                                        <p>Üyeliğiniz var mı? <a asp-controller="Account" asp-action="Login">Giriş için tıklayınız..</a></p>
+                                        <p>
+                                            ©
+                                            <script>document.write(new Date().getFullYear())</script> Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="authentication-bg position-relative">
+                    <div class="bg-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+<script>
+    //var SelectBoxRoles = $("#roles");
+    //var ForModerator = $("#forModerator");
+    //var ForStudent = $("#forStudent");
+    //var ForTeacher = $("#forTeacher");
+    //var ForAdmin = $("#forAdmin");
+    var selectedLessonIdParameter = $("#selectedLessonId");
+    var LessonIdHideParameterValue = $("#LessonIdHideParameter");
+    var degisken = null;
+   var brans = $("#brans");
+    selectedLessonIdParameter.on("change",function(){
+        
+        var branchText = $( "#selectedLessonId option:selected" ).text();
+        
+        degisken = selectedLessonIdParameter.val();
+        LessonIdHideParameterValue.attr("value",degisken);
+       brans.attr("value",branchText);
+        
+    });
+    console.log("log");
+
+    //SelectBoxRoles.on("change",
+    //    function() {
+    //        console.log(SelectBoxRoles.val());
+    //        if (SelectBoxRoles.val() =="Moderator") {
+    //            ForModerator.css({ "display": "block", "visibility": "visible" });
+    //        } else {
+    //            ForModerator.css({ "display": "none", "visibility": "hidden" });
+    //        }
+
+    //        SelectBoxRoles.val() =="Admin" ? ForAdmin.css({"display": "block", "visibility": "visible"}) :
+    //        ForAdmin.css({"display": "none", "visibility": "hidden"});
+
+    //         SelectBoxRoles.val() =="Student" ? ForStudent.css({"display": "block", "visibility": "visible"}) :
+    //         ForStudent.css({"display": "none", "visibility": "hidden"});
+
+    //         SelectBoxRoles.val() =="Teacher" ? ForTeacher.css({"display": "block", "visibility": "visible"}) :
+    //         ForTeacher.css({"display": "none", "visibility": "hidden"});
+    //    });
+   
+
+</script>
+
+}

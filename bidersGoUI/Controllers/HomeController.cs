@@ -12,6 +12,10 @@ using bidersGo.Application.Features.Queries.StudentGetById;
 using MediatR;
 using bidersGo.Application.Features.Queries.LessonGetAll;
 using bidersGo.Application.Features.Queries.LessonGetById;
+using Microsoft.AspNetCore.Authorization;
+using bidersGo.Application.Features.Commands.TeacherCreate;
+using Microsoft.AspNetCore.Identity;
+using bidersGo.Application.Interfaces.UnitOfWork;
 
 namespace bidersGoUI.Controllers
 {
@@ -19,10 +23,12 @@ namespace bidersGoUI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IMediator _mediator;
-        public HomeController(ILogger<HomeController> logger,IMediator mediator)
+        private readonly IUnitOfWork _unitOfWork;
+        public HomeController(ILogger<HomeController> logger,IMediator mediator,IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _mediator = mediator;
+            _unitOfWork = unitOfWork;
         }
 
         
@@ -82,6 +88,30 @@ namespace bidersGoUI.Controllers
         public IActionResult GetTeacher()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> RegisterTeacher()
+        {
+            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
+            ViewBag.Lessons = response.LessonGetAll;
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> RegisterTeacher(TeacherCreateCommandRequest request)
+        {
+
+            //if (!ModelState.IsValid)
+            //{
+            //    request.Password = string.Empty;
+            //    request.ConfirmPassword = string.Empty;
+            //    return View(request);
+            //}
+             TeacherCreateCommandResponse response = await _mediator.Send(request);
+            
+
+
+            return Ok(response);
         }
     }
 }

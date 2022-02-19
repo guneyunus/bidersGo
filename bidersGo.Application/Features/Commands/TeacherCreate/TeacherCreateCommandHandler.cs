@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using bidersGo.Application.Features.Queries.AddressGetAll;
+using bidersGo.Application.Features.Queries.AddressGetById;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGo.Domain.Entities;
 using MediatR;
@@ -28,16 +30,20 @@ namespace bidersGo.Application.Features.Commands.TeacherCreate
             {
                 Name=request.Name,
                 Surname=request.Surname,
-                TcKimlik=request.TcKimlik,
+                TcKimlik= request.TcKimlik,
                 Email=request.Email,
                 NickName=request.NickName,
-                Password=request.Password
+                Password=request.Password,
+                Branch = request.Branch,
+                LessonId= request.LessonId,
+                Address = new Address() {State= request.State }
             };
             var teacher = _unitOfWork.TeacherRepository.CreateAsync(NewTeacher);
+            _unitOfWork.Save();
             return new TeacherCreateCommandResponse() 
             {
                 Succeed=teacher==null?false:true,
-                Message="Kayıt işlemi başarıyla gerçekleşti"
+                Message= teacher == null ? "Kayıt işleminde hata gerçekleşti" : "Kayıt işlemi başarıyla gerçekleşti"
             };
         }
     }

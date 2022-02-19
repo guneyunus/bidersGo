@@ -13,6 +13,7 @@ using bidersGo.Infrastructure;
 using bidersGo.Infrastructure.Attributes;
 using bidersGo.Persistence;
 using FluentValidation.AspNetCore;
+using bidersGo.Application.Features.Commands.AddressCreate;
 
 namespace bidersGoUI
 {
@@ -31,7 +32,8 @@ namespace bidersGoUI
             services.AddApplicationServices();
             services.AddInfrastructureServices();
             services.AddPersistenceServices(Configuration);
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddressCreateCommandValidator>());
             
         }
 

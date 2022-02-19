@@ -9,7 +9,7 @@ namespace bidersGo.Application.Features.Queries.LessonGetById
 {
     public class LessonGetByIdQueryResponse
     {
-        //public Guid Guid { get; set; }
+        public Guid Id { get; set; }
         public string LessonName { get; set; }
         public bool IsOnline { get; set; }
         

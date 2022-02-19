@@ -28,7 +28,7 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form method="post" asp-controller="Account" asp-action="Register">
+                                        <form method="post" asp-controller="Account" asp-action="RegisterTeacher">
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
@@ -96,7 +96,7 @@
                                                 <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpassword" placeholder="Enter password">
                                             </div>
 
-                                            <div>
+                                            @*<div>
                                                 <select id="roles">
                                                     @foreach (var item in ViewBag.Roles)
                                                     {
@@ -113,7 +113,7 @@
                                                     }
                                                 </select>
                                                 <input type="hidden" asp-for="RoleForRegister" value="" />
-                                            </div>
+                                            </div>*@
 
 
                                             <div class="text-center">
@@ -150,7 +150,7 @@
 </div>
 
 
-@section scripts{
+@*@section scripts{
 <script>
     var SelectBoxRoles = $("#roles");
     var ForModerator = $("#forModerator");
@@ -180,6 +180,6 @@
         });
 
 
-</script>
+</script>*@
 
 }

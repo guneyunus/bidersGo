@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bidersGo.Persistence.Migrations
 {
-    public partial class DbCreate : Migration
+    public partial class last : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -126,7 +126,7 @@ namespace bidersGo.Persistence.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Branch = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TcKimlik = table.Column<int>(type: "int", nullable: false),
+                    TcKimlik = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NickName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -217,9 +217,6 @@ namespace bidersGo.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TeacherId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    WorkingHours = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    WorkingStart = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    WorkingStop = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -272,6 +269,29 @@ namespace bidersGo.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "workingForOneHours",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    weekID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WorkingHourTotalTime = table.Column<double>(type: "float", nullable: false),
+                    WorkingStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    WorkingStop = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_workingForOneHours", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_workingForOneHours_WorkingHoursOfWeeks_weekID",
+                        column: x => x.weekID,
+                        principalTable: "WorkingHoursOfWeeks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_LessonDetails_LessonId",
                 table: "LessonDetails",
@@ -318,6 +338,11 @@ namespace bidersGo.Persistence.Migrations
                 column: "LessonId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_workingForOneHours_weekID",
+                table: "workingForOneHours",
+                column: "weekID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WorkingHoursOfWeeks_TeacherId",
                 table: "WorkingHoursOfWeeks",
                 column: "TeacherId");
@@ -341,16 +366,19 @@ namespace bidersGo.Persistence.Migrations
                 name: "SubscriptionType");
 
             migrationBuilder.DropTable(
-                name: "WorkingHoursOfWeeks");
+                name: "workingForOneHours");
 
             migrationBuilder.DropTable(
                 name: "Students");
 
             migrationBuilder.DropTable(
-                name: "Teachers");
+                name: "WorkingHoursOfWeeks");
 
             migrationBuilder.DropTable(
                 name: "Subscription");
+
+            migrationBuilder.DropTable(
+                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

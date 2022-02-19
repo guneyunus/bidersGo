@@ -10,8 +10,8 @@ using bidersGo.Persistence.Context;
 namespace bidersGo.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220215082142_DbCreate")]
-    partial class DbCreate
+    [Migration("20220218211017_last")]
+    partial class last
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -370,8 +370,8 @@ namespace bidersGo.Persistence.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TcKimlik")
-                        .HasColumnType("int");
+                    b.Property<string>("TcKimlik")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -383,6 +383,37 @@ namespace bidersGo.Persistence.Migrations
                     b.HasIndex("LessonId");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("bidersGo.Domain.Entities.WorkingForOneHour", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("WorkingHourTotalTime")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("WorkingStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("WorkingStop")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("weekID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("weekID");
+
+                    b.ToTable("workingForOneHours");
                 });
 
             modelBuilder.Entity("bidersGo.Domain.Entities.WorkingHoursOfWeek", b =>
@@ -398,15 +429,6 @@ namespace bidersGo.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("WorkingHours")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("WorkingStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("WorkingStop")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -497,6 +519,17 @@ namespace bidersGo.Persistence.Migrations
                     b.Navigation("Lesson");
                 });
 
+            modelBuilder.Entity("bidersGo.Domain.Entities.WorkingForOneHour", b =>
+                {
+                    b.HasOne("bidersGo.Domain.Entities.WorkingHoursOfWeek", "week")
+                        .WithMany("WorkingForOneHours")
+                        .HasForeignKey("weekID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("week");
+                });
+
             modelBuilder.Entity("bidersGo.Domain.Entities.WorkingHoursOfWeek", b =>
                 {
                     b.HasOne("bidersGo.Domain.Entities.Teacher", "Teacher")
@@ -530,6 +563,11 @@ namespace bidersGo.Persistence.Migrations
                     b.Navigation("Meets");
 
                     b.Navigation("WorkingHoursOfWeek");
+                });
+
+            modelBuilder.Entity("bidersGo.Domain.Entities.WorkingHoursOfWeek", b =>
+                {
+                    b.Navigation("WorkingForOneHours");
                 });
 #pragma warning restore 612, 618
         }
