@@ -9,7 +9,7 @@ using bidersGo.Domain.Entities;
 namespace bidersGo.Application.Features.Queries.TeacherOfLesson
 {
     public class TeacherOfLessonQueryResponse
-    { 
-        public List<TeacherGetByIdQueryResponse> Teachers { get; set; }
+    {
+        public List<TeacherGetByIdQueryResponse> Teachers { get; set; } = new List<TeacherGetByIdQueryResponse>();
     }
 }
