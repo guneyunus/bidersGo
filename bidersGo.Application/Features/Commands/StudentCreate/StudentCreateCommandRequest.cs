@@ -17,7 +17,8 @@ namespace bidersGo.Application.Features.Commands.StudentCreate
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsSearchLesson { get; set; }
-        public Guid SubscriptionId { get; set; }
-        public Guid AddressId { get; set; }
+        public Guid? SubscriptionId { get; set; }
+        //public Guid AddressId { get; set; }
+        public string State { get; set; }
     }
 }

@@ -30,14 +30,18 @@ namespace bidersGo.Application.Features.Commands.StudentCreate
                 TcKimlik = request.TcKimlik,
                 Email = request.Email,
                 NickName = request.NickName,
-                Password = request.Password
+                Password = request.Password,
+                Address = new Address() { State = request.State},
+                IsSearchLesson = request.IsSearchLesson,
+                SubscriptionId = request.SubscriptionId
             };
 
             var student = _unitOfWork.StudentRepository.CreateAsync(NewStudent);
+            _unitOfWork.Save();
             return new StudentCreateCommandResponse()
             {
                 Succeed = student == null ? false : true,
-                Message = "Kayıt Başarıyla Gerçekleşti"
+                Message = student == null ? "Öğrenci Kayıt işleminde hata gerçekleşti" : "Öğrenci Kayıt işlemi başarıyla gerçekleşti"
 
 
             };

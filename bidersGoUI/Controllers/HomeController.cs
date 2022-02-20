@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Identity;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGo.Application.Features.Commands.LessonCreate;
 using bidersGo.Application.Features.Commands.ModeratorCreate;
+using bidersGo.Application.Features.Commands.StudentCreate;
 
 namespace bidersGoUI.Controllers
 {
@@ -106,6 +107,20 @@ namespace bidersGoUI.Controllers
             
             return Ok(response);
         }
+
+        [HttpGet]
+        public IActionResult RegisterStudent()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegisterStudent(StudentCreateCommandRequest request)
+        {
+            StudentCreateCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+
         [HttpGet]
         public IActionResult CreateLesson()
         {

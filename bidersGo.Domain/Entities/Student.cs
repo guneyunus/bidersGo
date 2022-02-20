@@ -19,7 +19,7 @@ namespace bidersGo.Domain.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsSearchLesson { get; set; }
-        public Guid SubscriptionId { get; set; }
+        public Guid? SubscriptionId { get; set; }
         public Subscription Subscription { get; set; }
        
     }
