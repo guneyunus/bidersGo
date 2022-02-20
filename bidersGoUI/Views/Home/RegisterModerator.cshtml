@@ -1,7 +1,7 @@
-﻿@using bidersGo.Application.Features.Commands.TeacherCreate
-@model TeacherCreateCommandRequest
+﻿@using bidersGo.Application.Features.Commands.ModeratorCreate
+@model ModeratorCreateCommandRequest
 @{
-    ViewData["Title"] = "Kayıt Ekranı";
+    ViewData["Title"] = "Moderator Kayıt Ekranı";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -27,12 +27,18 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form method="post" asp-controller="Home" asp-action="RegisterTeacher">
+                                        <form method="post" asp-controller="Home" asp-action="RegisterModerator">
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
                                                 <label asp-for="Email">E-Posta Adresi</label>
                                                 <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="TcKimlik">Tc Kimlik Numarası</label>
+                                                <input asp-for="TcKimlik" type="text" class="form-control" id="tcNo" placeholder="Enter username">
                                             </div>
 
                                             <div class="auth-form-group-custom mb-4">
@@ -49,53 +55,16 @@
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
-                                                <label asp-for="UserName">Kullanıcı Adı</label>
-                                                <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
+                                                <label asp-for="NickName">Kullanıcı Adı</label>
+                                                <input asp-for="NickName" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
-                                             <div class="mb-4">
-                                               <select id="selectedLessonId"  >
-                                                   <option>Lüstef Ders Seçiniz</option> 
-                                                   @foreach (var dersler in ViewBag.Lessons)
-                                                    {
-                                                        <option value="@dersler.Id">@dersler.LessonName</option>
-                                                    }
-                                                </select>
-                                                 <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
-                                                 <input asp-for="Branch" type="hidden" class="form-control" id="brans">
-                                            </div>
+                                             
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Password">Şifre</label>
                                                 <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
                                             </div>
-
-                                            <div class="auth-form-group-custom mb-4">
-                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
-                                                <label asp-for="ConfirmPassword">Şifre</label>
-                                                <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpassword" placeholder="Enter password">
-                                            </div>
-
-
-                                            @*<div>
-                                                <select id="roles">
-                                                    @foreach (var item in ViewBag.Roles)
-                                                    {
-
-                                                        if (item == "Passive" || item == "Modarator")
-                                                        {
-                                                            continue;
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@item">@item</option>
-                                                        }
-
-                                                    }
-                                                </select>
-                                                <input type="hidden" asp-for="RoleForRegister" value="" />
-                                            </div>*@
-
 
                                             <div class="text-center">
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
@@ -130,49 +99,3 @@
     </div>
 </div>
 
-
-@section scripts{
-<script>
-    //var SelectBoxRoles = $("#roles");
-    //var ForModerator = $("#forModerator");
-    //var ForStudent = $("#forStudent");
-    //var ForTeacher = $("#forTeacher");
-    //var ForAdmin = $("#forAdmin");
-    var selectedLessonIdParameter = $("#selectedLessonId");
-    var LessonIdHideParameterValue = $("#LessonIdHideParameter");
-    var degisken = null;
-   var brans = $("#brans");
-    selectedLessonIdParameter.on("change",function(){
-        
-        var branchText = $( "#selectedLessonId option:selected" ).text();
-        
-        degisken = selectedLessonIdParameter.val();
-        LessonIdHideParameterValue.attr("value",degisken);
-       brans.attr("value",branchText);
-        
-    });
-    console.log("log");
-
-    //SelectBoxRoles.on("change",
-    //    function() {
-    //        console.log(SelectBoxRoles.val());
-    //        if (SelectBoxRoles.val() =="Moderator") {
-    //            ForModerator.css({ "display": "block", "visibility": "visible" });
-    //        } else {
-    //            ForModerator.css({ "display": "none", "visibility": "hidden" });
-    //        }
-
-    //        SelectBoxRoles.val() =="Admin" ? ForAdmin.css({"display": "block", "visibility": "visible"}) :
-    //        ForAdmin.css({"display": "none", "visibility": "hidden"});
-
-    //         SelectBoxRoles.val() =="Student" ? ForStudent.css({"display": "block", "visibility": "visible"}) :
-    //         ForStudent.css({"display": "none", "visibility": "hidden"});
-
-    //         SelectBoxRoles.val() =="Teacher" ? ForTeacher.css({"display": "block", "visibility": "visible"}) :
-    //         ForTeacher.css({"display": "none", "visibility": "hidden"});
-    //    });
-   
-
-</script>
-
-}

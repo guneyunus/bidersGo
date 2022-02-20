@@ -31,11 +31,12 @@ namespace bidersGo.Application.Features.Commands.ModeratorCreate
                 Password=request.Password
             };
             var moderator = _unitOfWork.ModeratorRepository.CreateAsync(NewModerator);
+            _unitOfWork.Save();
 
             return new ModeratorCreateCommandResponse()
             {
                 Succeed = moderator == null ? false : true,
-                Message="Kayıt işlemi başarıyla gerçekleşmişitir"
+                Message = moderator == null ? "Moderator Kayıt işleminde hata gerçekleşti" : "Moderator Kayıt işlemi başarıyla gerçekleşti"
             };
         }
     }

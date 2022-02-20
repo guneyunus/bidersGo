@@ -14,7 +14,7 @@ namespace bidersGo.Domain.Entities
         public string NickName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int TcKimlik { get; set; }
+        public string TcKimlik { get; set; }
 
     }
 }

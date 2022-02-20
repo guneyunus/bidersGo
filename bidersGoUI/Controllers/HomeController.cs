@@ -17,6 +17,7 @@ using bidersGo.Application.Features.Commands.TeacherCreate;
 using Microsoft.AspNetCore.Identity;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGo.Application.Features.Commands.LessonCreate;
+using bidersGo.Application.Features.Commands.ModeratorCreate;
 
 namespace bidersGoUI.Controllers
 {
@@ -114,6 +115,20 @@ namespace bidersGoUI.Controllers
         public async Task<IActionResult> CreateLesson(LessonCreateCommandRequest request)
         {
             LessonCreateCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public IActionResult RegisterModerator()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterModerator(ModeratorCreateCommandRequest request)
+        {
+            ModeratorCreateCommandResponse response= await _mediator.Send(request);
 
             return Ok(response);
         }
