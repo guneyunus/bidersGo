@@ -1,0 +1,118 @@
+﻿@using bidersGo.Application.Features.Commands.LessonCreate
+@model LessonCreateCommandRequest
+@{
+    ViewData["Title"] = "Ders Kayıt Ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-4">
+                <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+                    <div class="w-100">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <div>
+                                    <div class="text-center">
+                                        <div>
+                                            <a href=@Url.Action("Index", "Dashboard") class="">
+                                                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
+                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
+                                            </a>
+                                        </div>
+
+                                        <h4 class="font-size-18 mt-4">Register account</h4>
+                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                    </div>
+
+                                    <div class="p-2 mt-5">
+                                        <form method="post" asp-controller="Home" asp-action="CreateLesson">
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-mail-line auti-custom-input-icon"></i>
+                                                <label asp-for="LessonName">Ders Adı</label>
+                                                <input asp-for="LessonName" class="form-control" id="lessonname" placeholder="Ders Adı Girin">
+                                            </div>
+                                            <div class="mb-4">
+                                               <select id="selectedLessonState"  >
+                                                   <option>Lüstef Ders Durumunu Seçiniz</option> 
+                                                   <option value="true">Online Ders</option> 
+                                                   <option value="false">Yüz Yüze Ders</option>
+                                                </select>
+                                                 <input asp-for="IsOnline" type="hidden" class="form-control" id="isOnline" value="">
+                                            </div>
+                                            
+
+                                             @*<div class="mb-4">
+                                               <select id="selectedLessonId"  >
+                                                   <option>Lüstef Ders Seçiniz</option> 
+                                                   @foreach (var dersler in ViewBag.Lessons)
+                                                    {
+                                                        <option value="@dersler.Id">@dersler.LessonName</option>
+                                                    }
+                                                </select>
+                                                 <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
+                                                 <input asp-for="Branch" type="hidden" class="form-control" id="brans">
+                                            </div>*@
+
+                                            <div class="text-center">
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                            </div>
+
+                                            <div class="mt-4 text-center">
+                                                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="authentication-bg position-relative">
+                    <div class="bg-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+<script>
+    //var selectedLessonIdParameter = $("#selectedLessonId");
+    //var LessonIdHideParameterValue = $("#LessonIdHideParameter");
+    //var degisken = null;
+    //var brans = $("#brans");
+    //selectedLessonIdParameter.on("change",function(){
+        
+    //    var branchText = $( "#selectedLessonId option:selected" ).text();
+        
+    //    degisken = selectedLessonIdParameter.val();
+    //    LessonIdHideParameterValue.attr("value",degisken);
+    //   brans.attr("value",branchText);
+        
+    //});
+    //console.log("log");
+
+    var selectedLessonState = $("#selectedLessonState");
+    var isOnlineState = $("#isOnline");
+
+    var newState = null;
+    selectedLessonState.on("change",function(){
+       newState= selectedLessonState.val();
+       console.log(newState)
+       isOnlineState.attr("value",newState);
+    });
+    console.log("xxxxxx");
+   
+
+</script>
+
+}
+

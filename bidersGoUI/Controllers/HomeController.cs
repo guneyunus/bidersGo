@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 using bidersGo.Application.Features.Commands.TeacherCreate;
 using Microsoft.AspNetCore.Identity;
 using bidersGo.Application.Interfaces.UnitOfWork;
+using bidersGo.Application.Features.Commands.LessonCreate;
 
 namespace bidersGoUI.Controllers
 {
@@ -100,16 +101,19 @@ namespace bidersGoUI.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterTeacher(TeacherCreateCommandRequest request)
         {
-
-            //if (!ModelState.IsValid)
-            //{
-            //    request.Password = string.Empty;
-            //    request.ConfirmPassword = string.Empty;
-            //    return View(request);
-            //}
-             TeacherCreateCommandResponse response = await _mediator.Send(request);
+            TeacherCreateCommandResponse response = await _mediator.Send(request);
             
+            return Ok(response);
+        }
+        [HttpGet]
+        public IActionResult CreateLesson()
+        {
+            return View();
+        }
 
+        public async Task<IActionResult> CreateLesson(LessonCreateCommandRequest request)
+        {
+            LessonCreateCommandResponse response = await _mediator.Send(request);
 
             return Ok(response);
         }
