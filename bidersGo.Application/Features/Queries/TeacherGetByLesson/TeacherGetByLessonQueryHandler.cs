@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using bidersGo.Application.Features.Queries.TeacherGetById;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using MediatR;
 using System;
@@ -21,9 +22,18 @@ namespace bidersGo.Application.Features.Queries.TeacherGetByLesson
         }
         public Task<TeacherGetByLessonQueryResponse> Handle(TeacherGetByLessonQueryRequest request, CancellationToken cancellationToken)
         {
-            var teacher = _unitOfWork.TeacherRepository.GetTeacherById(request.LessonId);
+            //var teacher = _unitOfWork.TeacherRepository.GetTeacherById(request.LessonId);
 
-            TeacherGetByLessonQueryResponse model = _mapper.Map<TeacherGetByLessonQueryResponse>(teacher);
+            //TeacherGetByLessonQueryResponse model = _mapper.Map<TeacherGetByLessonQueryResponse>(teacher);
+            //return Task<TeacherGetByLessonQueryResponse>.FromResult(model);
+            var data = _unitOfWork.TeacherRepository.GetAll()
+                .Select(x => _mapper.Map<TeacherGetByIdQueryResponse>(x))
+                .ToList();
+            var model = new TeacherGetByLessonQueryResponse()
+            {
+                TeacherGetByLesson = data
+            };
+
             return Task<TeacherGetByLessonQueryResponse>.FromResult(model);
         }
     }

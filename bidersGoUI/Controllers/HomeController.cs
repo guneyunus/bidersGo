@@ -20,6 +20,7 @@ using bidersGo.Application.Features.Commands.LessonCreate;
 using bidersGo.Application.Features.Commands.ModeratorCreate;
 using bidersGo.Application.Features.Commands.StudentCreate;
 using bidersGo.Application.Features.Commands.LessonUpdate;
+using bidersGo.Application.Features.Queries.TeacherGetByLesson;
 
 namespace bidersGoUI.Controllers
 {
@@ -120,6 +121,13 @@ namespace bidersGoUI.Controllers
         public IActionResult GetTeacher()
         {
             return View();
+        }
+        [HttpGet()]
+        public async Task<IActionResult> GetTeacherByLesson(Guid id)
+        {
+            TeacherGetByLessonQueryResponse response = await _mediator.Send(new TeacherGetByLessonQueryRequest() { LessonId = id });
+
+            return View(response);
         }
         [HttpGet]
         public async Task<IActionResult> RegisterTeacher()
