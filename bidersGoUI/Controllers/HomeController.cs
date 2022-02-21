@@ -123,11 +123,14 @@ namespace bidersGoUI.Controllers
             return View();
         }
         [HttpGet()]
-        public async Task<IActionResult> GetTeacherByLesson(Guid id)
+        public async Task<IActionResult> GetTeacherByLesson()
         {
-            TeacherGetByLessonQueryResponse response = await _mediator.Send(new TeacherGetByLessonQueryRequest() { LessonId = id });
-
-            return View(response);
+            LessonGetAllQueryResponse lesson = await _mediator.Send(new LessonGetAllQueryRequest());
+            ViewBag.Lessons = lesson.LessonGetAll;
+            //return View();
+            TeacherGetByLessonQueryResponse response = await _mediator.Send(new TeacherGetByLessonQueryRequest());
+            ViewBag.Teacher = response.TeacherGetByLesson;
+            return View();
         }
         [HttpGet]
         public async Task<IActionResult> RegisterTeacher()
