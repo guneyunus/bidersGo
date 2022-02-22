@@ -23,7 +23,7 @@ namespace bidersGo.Domain.Entities
         public Lesson Lesson { get; set; }
         public Guid LessonId { get; set; }
         public List<Meet> Meets { get; set; }
-        public bool IsApproved { get; set; } = false;
+        public bool IsApproved { get; set; }
 
 
     }

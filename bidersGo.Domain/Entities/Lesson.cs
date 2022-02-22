@@ -12,8 +12,7 @@ namespace bidersGo.Domain.Entities
         public string LessonName { get; set; }
         public bool IsOnline { get; set; }
         public List<LessonDetail> LessonDetails { get; set; }
-
-        
+        public List<Teacher> Teachers { get; set; }
 
     }
 }
