@@ -22,13 +22,16 @@ namespace bidersGo.Application.Features.Queries.TeacherGetByLesson
         }
         public Task<TeacherGetByLessonQueryResponse> Handle(TeacherGetByLessonQueryRequest request, CancellationToken cancellationToken)
         {
-            //var teacher = _unitOfWork.TeacherRepository.GetTeacherById(request.LessonId);
+            
+            //var data = _unitOfWork.TeacherRepository.GetAll()
+                
+            //    .Select(x => _mapper.Map<TeacherGetByIdQueryResponse>(x))
+                
+            //    .ToList();
 
-            //TeacherGetByLessonQueryResponse model = _mapper.Map<TeacherGetByLessonQueryResponse>(teacher);
-            //return Task<TeacherGetByLessonQueryResponse>.FromResult(model);
-            var data = _unitOfWork.TeacherRepository.GetAll()
-                .Select(x => _mapper.Map<TeacherGetByIdQueryResponse>(x))
-                .ToList();
+            var data = _unitOfWork.LessonRepository.GetTeacherForOneLesson(request.LessonId).Select(x=>_mapper.Map<TeacherGetByIdQueryResponse>(x)).ToList();
+            
+
             var model = new TeacherGetByLessonQueryResponse()
             {
                 TeacherGetByLesson = data

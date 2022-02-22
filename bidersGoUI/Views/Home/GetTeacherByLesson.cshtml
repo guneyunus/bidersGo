@@ -34,9 +34,9 @@
                                             <div>
                                                 <select id="selectLesson">
                                                     <option hidden="hidden">Lütfen Ders Seçiniz</option>
-                                                    @foreach (var item in ViewBag.Lessons)
+                                                    @foreach (var item in ViewBag.Teacher)
                                                     {
-                                                        <option value="@item.Id"> @item.LessonName </option>
+                                                        <option value="@item.Lesson.Id"> @item.Lesson.LessonName </option>
                                                     }
                                                 </select>
                                                 <input type="hidden" value="" asp-for="LessonId" id="lessonId" />
@@ -108,28 +108,28 @@
 
                var options = $('#selectTeacher option');
 
-           var values = $.map(options ,function(option) {
+                var values = $.map(options ,function(option) {
                     return option.value;
                 });
                 var texts = $.map(options ,function(option) {
                     return option.text;
                 });
-           console.log(texts);
-           for(let i=0; i<values.length; i++){
-               if(values[i] == lessonId.val()){
-                   console.log("Başarılıııı");
-                   for(let j=0; j<texts.length; j++){
+                console.log(texts);
+                for(let i=0; i<values.length; i++){
+                if(values[i] == lessonId.val()){
+                    console.log("Başarılıııı");
+                    for(let j=0; j<texts.length; j++){
                        if(i==j){
                          console.log(texts[j]);
                          $('#selectTeacher').append($('<option>').val(values[i]).text(texts[j]));
                        }
                        
-                   }
+                    }
                 // var x=  $('#selectTeacher option');
                  //console.log(x);
                 // x.attr("style","visibility:visible;");
-               }
-           }
+                }
+            }
             });
 
            //var deneme=  $('#selectTeacher option').val();

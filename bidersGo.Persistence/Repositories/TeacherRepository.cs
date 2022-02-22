@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using bidersGo.Application.Interfaces.Repositories;
 using bidersGo.Domain.Entities;
 using bidersGo.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace bidersGo.Persistence.Repositories
 {
@@ -16,7 +17,6 @@ namespace bidersGo.Persistence.Repositories
         {
             _context = context;
         }
-
         public List<WorkingHoursOfWeek> GetMeetForWeek()
         {
             return _context.WorkingHoursOfWeeks.ToList();

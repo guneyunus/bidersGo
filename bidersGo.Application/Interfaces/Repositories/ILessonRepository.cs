@@ -11,5 +11,7 @@ namespace bidersGo.Application.Interfaces.Repositories
         Lesson GetLessonWithDetails(string LessonName);
         List<Lesson> GetLessonsAll();
 
+        List<Teacher> GetAllTeacherWithLesson();
+        List<Teacher> GetTeacherForOneLesson(Guid guid);
     }
 }

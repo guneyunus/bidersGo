@@ -47,7 +47,6 @@ namespace bidersGo.Persistence.Context
                 .WithMany(x => x.Meets)
                 .HasForeignKey(x => x.TeacherId);
 
-
             modelBuilder.Entity<SubscriptionType>()
                 .HasOne(x => x.Subscription)
                 .WithMany(x => x.SubscriptionTypes)
@@ -67,11 +66,18 @@ namespace bidersGo.Persistence.Context
                 .HasOne(x => x.week)
                 .WithMany(x => x.WorkingForOneHours)
                 .HasForeignKey(x => x.weekID);
-                
+
+            modelBuilder.Entity<Teacher>()
+                .HasOne(x => x.Lesson)
+                .WithMany(x => x.Teachers)
+                .HasForeignKey(x => x.LessonId);
+
 
             modelBuilder.ApplyConfiguration(new LessonConfiguration());
 
 
         }
+
+        
     }
 }
