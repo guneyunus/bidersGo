@@ -22,13 +22,6 @@ namespace bidersGo.Application.Features.Queries.TeacherGetByLesson
         }
         public Task<TeacherGetByLessonQueryResponse> Handle(TeacherGetByLessonQueryRequest request, CancellationToken cancellationToken)
         {
-            
-            //var data = _unitOfWork.TeacherRepository.GetAll()
-                
-            //    .Select(x => _mapper.Map<TeacherGetByIdQueryResponse>(x))
-                
-            //    .ToList();
-
             var data = _unitOfWork.LessonRepository.GetTeacherForOneLesson(request.LessonId).Select(x=>_mapper.Map<TeacherGetByIdQueryResponse>(x)).ToList();
             
 

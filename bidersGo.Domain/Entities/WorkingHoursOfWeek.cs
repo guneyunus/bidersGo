@@ -11,7 +11,7 @@ namespace bidersGo.Domain.Entities
     { 
         public Teacher Teacher { get; set; }
         public Guid TeacherId{ get; set; }
-        public List<WorkingForOneHour> WorkingForOneHours { get; set; }
-        
+        public List<WorkingForOneHour> WorkingForOneHours { get; set; } = new List<WorkingForOneHour>();
+
     }
 }

@@ -17,6 +17,13 @@ namespace bidersGo.Persistence.Repositories
         {
             _context = context;
         }
+
+        public void CreateWorkingForOneHour(WorkingForOneHour hour)
+        {
+            _context.workingForOneHours.Add(hour);
+            _context.SaveChanges();
+        }
+
         public List<WorkingHoursOfWeek> GetMeetForWeek()
         {
             return _context.WorkingHoursOfWeeks.ToList();

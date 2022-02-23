@@ -9,6 +9,7 @@ using bidersGo.Application.Features.Commands.AdminCreate;
 using bidersGo.Application.Features.Commands.ModeratorCreate;
 using bidersGo.Application.Features.Commands.StudentCreate;
 using bidersGo.Application.Features.Commands.TeacherCreate;
+using bidersGo.Application.Features.Commands.TeacherWorkingHoursCreate;
 using bidersGo.Application.Features.Queries.AddressGetAll;
 using bidersGo.Application.Features.Queries.AddressGetById;
 using bidersGo.Application.Features.Queries.AdminGetById;
@@ -38,10 +39,9 @@ namespace bidersGo.Application.Mapping
             CreateMap<Admin, AdminCreateCommandResponse>().ReverseMap();
             CreateMap<AddressGetAllQueryResponse, Address>();
             CreateMap<Lesson, LessonGetByIdQueryResponse>().ReverseMap();
-            //CreateMap<LessonGetAllQueryResponse, List<Lesson>>();
-            //CreateMap<TeacherOfLessonQueryResponse, List<Teacher>>();
-            //CreateMap<List<Teacher>, List<TeacherGetByIdQueryResponse> >();
-            
+            CreateMap<WorkingForOneHour, TeacherWorkingHoursCreateCommandRequest>().ReverseMap();
+
+
         }
     }
 }
