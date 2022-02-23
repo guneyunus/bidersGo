@@ -133,12 +133,22 @@ namespace bidersGoUI.Controllers
             return Json(response);
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetLessonAll()
         {
             LessonGetAllQueryResponse model = await _mediator.Send(new LessonGetAllQueryRequest());
             return View(model);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> GetLessonAll(LessonGetAllQueryResponse model)
+        {
+            return null;
+        }
+
+
+        
 
 
         [HttpGet]
