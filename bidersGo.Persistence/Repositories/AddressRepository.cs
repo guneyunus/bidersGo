@@ -30,7 +30,7 @@ namespace bidersGo.Persistence.Repositories
 
         Address IAddressRepository.GetByCityWithStudent(string CityName)
         {
-            throw null;
+            return _context.Addresses.Where(x => x.City == CityName).FirstOrDefault();
         }
 
         Address IAddressRepository.GetSelectedAdress(Address address)

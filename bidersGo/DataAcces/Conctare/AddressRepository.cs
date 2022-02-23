@@ -17,7 +17,7 @@ namespace bidersGo.DataAcces.Conctare
 
         public Address GetByCityWithStudent(string CityName)
         {
-            return null;
+            return _context.Addresses.Where(x => x.City == CityName).FirstOrDefault();
         }
 
         public Address GetSelectedAdress(Address address)
