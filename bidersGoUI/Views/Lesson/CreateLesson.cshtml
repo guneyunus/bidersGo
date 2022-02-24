@@ -1,6 +1,10 @@
-﻿
+﻿@using bidersGo.Application.Features.Commands.LessonCreate
+@model LessonCreateCommandRequest
+@{
+    ViewData["Title"] = "Ders Kayıt Ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-@model bidersGo.Application.Features.Commands.LessonUpdate.LessonUpdateCommandRequest
 <div>
     <div class="container-fluid p-0">
         <div class="row g-0">
@@ -23,32 +27,34 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form method="post" asp-controller="Home" asp-action="UpdateLesson">
-                                                <div>
-                                                    <select id="selectLesson" >
-                                                        <option>Lütfen Ders Seçiniz</option>
-                                                        @foreach (var item in ViewBag.Dersler)
-                                                    {
-                                                        <option value="@item.Id"> @item.LessonName </option>
-                                                    }
-                                                </select>
-                                                </div>
-                                                
-                                             
+                                        <form method="post" asp-controller="Lesson" asp-action="CreateLesson">
+
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
                                                 <label asp-for="LessonName">Ders Adı</label>
-                                                <input asp-for="LessonName" class="form-control"  placeholder="Ders Adı Girin">
+                                                <input asp-for="LessonName" class="form-control" id="lessonname" placeholder="Ders Adı Girin">
                                             </div>
-                                            <input type="hidden" asp-for="Guid" value="" id="LessonGuid" />
                                             <div class="mb-4">
-                                                <select id="selectedLessonState">
-                                                    <option>Lüstfen Ders Durumunu Seçiniz</option>
-                                                    <option value="true">Online Ders</option>
-                                                    <option value="false">Yüz Yüze Ders</option>
+                                               <select id="selectedLessonState"  >
+                                                   <option>Lüstfen Ders Durumunu Seçiniz</option> 
+                                                   <option value="true">Online Ders</option> 
+                                                   <option value="false">Yüz Yüze Ders</option>
                                                 </select>
-                                                <input asp-for="IsOnline" type="hidden" class="form-control" id="isOnline" value="">
+                                                 <input asp-for="IsOnline" type="hidden" class="form-control" id="isOnline" value="">
                                             </div>
+                                            
+
+                                             @*<div class="mb-4">
+                                               <select id="selectedLessonId"  >
+                                                   <option>Lüstef Ders Seçiniz</option> 
+                                                   @foreach (var dersler in ViewBag.Lessons)
+                                                    {
+                                                        <option value="@dersler.Id">@dersler.LessonName</option>
+                                                    }
+                                                </select>
+                                                 <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
+                                                 <input asp-for="Branch" type="hidden" class="form-control" id="brans">
+                                            </div>*@
 
                                             <div class="text-center">
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
@@ -76,25 +82,38 @@
     </div>
 </div>
 
-@section Scripts{
 
-    <script>
+@section scripts{
+<script>
+    //var selectedLessonIdParameter = $("#selectedLessonId");
+    //var LessonIdHideParameterValue = $("#LessonIdHideParameter");
+    //var degisken = null;
+    //var brans = $("#brans");
+    //selectedLessonIdParameter.on("change",function(){
+        
+    //    var branchText = $( "#selectedLessonId option:selected" ).text();
+        
+    //    degisken = selectedLessonIdParameter.val();
+    //    LessonIdHideParameterValue.attr("value",degisken);
+    //   brans.attr("value",branchText);
+        
+    //});
+    //console.log("log");
 
-        var selectedLesson = $("#selectLesson");
-        var changeLessonId = $("#LessonGuid");
-        var isOnline = $("#isOnline");
-        var selectedLessonState = $("#selectedLessonState");
+    var selectedLessonState = $("#selectedLessonState");
+    var isOnlineState = $("#isOnline");
 
-        selectedLesson.on("change", function(){
-            //console.log(selectedLesson.val());
+    var newState = null;
+    selectedLessonState.on("change",function(){
+       newState= selectedLessonState.val();
+       console.log(newState)
+       isOnlineState.attr("value",newState);
+    });
+    console.log("xxxxxx");
+   
 
-            changeLessonId.attr("value",selectedLesson.val());
-            console.log(changeLessonId.val());
-        })
-        selectedLessonState.on("change",function(){
-            isOnline.attr("value",selectedLessonState.val());
-        })
+</script>
 
-
-    </script>
 }
+
+

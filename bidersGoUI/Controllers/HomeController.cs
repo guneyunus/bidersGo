@@ -36,77 +36,12 @@ namespace bidersGoUI.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        
         public IActionResult Index()
         {
 
             return View();
         }
 
-        [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetay([FromQuery] StudentGetByIdQueryRequest request)
-        {
-            return await _mediator.Send(request);
-        }
-
-        [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetayOne([FromQuery] StudentGetByIdQueryRequest request)
-        {
-            return await _mediator.Send(request);
-        }
-
-
-
-        [HttpGet]
-        public async Task<IActionResult> GetAdress()
-        {
-            
-            AddressGetAllQueryResponse response = await _mediator.Send(new AddressGetAllQueryRequest());
-
-            return View(response);
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetLesson()
-        {
-            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
-
-            return View(response);
-        }
-        
-
-        [HttpGet()]
-        public async Task<IActionResult> GetLessonById(Guid id)
-        {
-           LessonGetByIdQueryResponse response = await _mediator.Send(new LessonGetByIdQueryRequest() { Guid=id});
-
-            return View(response);
-        }
-        [HttpGet]
-        public IActionResult CreateLesson()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> CreateLesson(LessonCreateCommandRequest request)
-        {
-            LessonCreateCommandResponse response = await _mediator.Send(request);
-
-            return Ok(response);
-        }
-        [HttpGet]
-        public async Task<IActionResult> UpdateLesson()
-        {
-            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
-            ViewBag.Dersler = response.LessonGetAll;
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> UpdateLesson(LessonUpdateCommandRequest request)
-        {
-            LessonUpdateCommandResponse response = await _mediator.Send(request);
-
-            return Ok(response);
-        }
         public IActionResult Privacy()
         {
             return View();
@@ -117,21 +52,6 @@ namespace bidersGoUI.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [HttpGet]
-        public IActionResult GetTeacher()
-        {
-            return View();
-        }
-        [HttpGet()]
-        public async Task<IActionResult> GetTeacherByLesson(string id)
-        {
-         
-            Guid RequestGuid = Guid.Parse(id);
-            TeacherGetByLessonQueryResponse response = await _mediator.Send(new TeacherGetByLessonQueryRequest(){LessonId = RequestGuid});
-
-    
-            return Json(response);
-        }
 
         [HttpGet]
         public async Task<IActionResult> GetLessonAll()
@@ -140,7 +60,6 @@ namespace bidersGoUI.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> GetLessonAll(LessonGetAllQueryResponse model)
         {
@@ -148,52 +67,5 @@ namespace bidersGoUI.Controllers
         }
 
 
-        
-
-
-        [HttpGet]
-        public async Task<IActionResult> RegisterTeacher()
-        {
-            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
-            ViewBag.Lessons = response.LessonGetAll;
-            return View();
-        }
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> RegisterTeacher(TeacherCreateCommandRequest request)
-        {
-            TeacherCreateCommandResponse response = await _mediator.Send(request);
-            
-            return Ok(response);
-        }
-
-        [HttpGet]
-        public IActionResult RegisterStudent()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> RegisterStudent(StudentCreateCommandRequest request)
-        {
-            StudentCreateCommandResponse response = await _mediator.Send(request);
-
-            return Ok(response);
-        }
-
-        
-
-        [HttpGet]
-        public IActionResult RegisterModerator()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> RegisterModerator(ModeratorCreateCommandRequest request)
-        {
-            ModeratorCreateCommandResponse response= await _mediator.Send(request);
-
-            return Ok(response);
-        }
     }
 }
