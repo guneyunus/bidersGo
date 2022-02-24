@@ -32,7 +32,7 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate
             {
                 return null;
             }
-
+            //hocanın calısma tablosu varsa o tabloyu dön
             var teacher = _unitOfWork.TeacherRepository.GetTeacherById(request.Id);
             var WorkingWeek = new WorkingHoursOfWeek()
             {
@@ -41,6 +41,7 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate
                 WorkingForOneHours = new List<WorkingForOneHour>()
             };
 
+            _unitOfWork.TeacherRepository.CreateWorkingForWeek(WorkingWeek);
             var response = new TeacherWorkingWeekCreateCommandResponse()
             {
                 Data = WorkingWeek,

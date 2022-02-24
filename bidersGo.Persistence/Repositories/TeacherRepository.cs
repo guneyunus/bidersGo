@@ -24,6 +24,12 @@ namespace bidersGo.Persistence.Repositories
             _context.SaveChanges();
         }
 
+        public void CreateWorkingForWeek(WorkingHoursOfWeek hour)
+        {
+            _context.WorkingHoursOfWeeks.Add(hour);
+            _context.SaveChanges();
+        }
+
         public List<WorkingHoursOfWeek> GetMeetForWeek()
         {
             return _context.WorkingHoursOfWeeks.ToList();
@@ -44,9 +50,20 @@ namespace bidersGo.Persistence.Repositories
             return _context.Teachers.Where(x => x.Name == Name).FirstOrDefault();
         }
 
+        public Teacher GetTeacherByWorkingTableId(Guid id)
+        {
+            return _context.WorkingHoursOfWeeks.Where(x => x.Id == id).Select(x => x.Teacher).FirstOrDefault();
+            
+        }
+
         public List<Teacher> GetTeachersAll()
         {
             return _context.Teachers.ToList();
+        }
+
+        public WorkingHoursOfWeek GetWorkingTable(Guid id)
+        {
+            return _context.WorkingHoursOfWeeks.Where(x => x.Id == id).First();
         }
     }
 }

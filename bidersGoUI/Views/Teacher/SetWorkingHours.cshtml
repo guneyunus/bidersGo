@@ -1,4 +1,6 @@
-﻿<div class="demo-container">
+﻿@model bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate.TeacherWorkingWeekCreateCommandResponse
+
+<div class="demo-container">
     <div id="scheduler">
 
     </div>
@@ -22,16 +24,35 @@
             </div>
         </div>
     </div>
+    <div>
+        @foreach (var item in Model.Data.WorkingForOneHours)
+        {
+            <p>@item.WorkingStart</p>
+            <p>@item.WorkingStop</p>
+            <p>@item.WorkingHourTotalTime</p>
+            <p>@item.week</p>
+            <p>@item.weekID</p>
+
+                           
+
+        }
+        <div>
+            <input type="hidden" id="WorkingTableId"  asp-for="Data.Id" />
+        </div>
+    </div>
 </div>
 
 
 
 @section Scripts
 {
-    
+
     <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
 
     <script>
+
+        var hiddenId = $("#WorkingTableId");
+        console.log(hiddenId.val());
 
         var data = [
             {
@@ -43,64 +64,7 @@
                 startDate: new Date('2021-04-26T19:00:00.000Z'),
                 endDate: new Date('2021-04-26T20:00:00.000Z'),
                 allDay: true,
-            }, {
-                text: 'Install New Router in Dev Room',
-                startDate: new Date('2021-04-26T21:30:00.000Z'),
-                endDate: new Date('2021-04-26T22:30:00.000Z'),
-            }, {
-                text: 'Approve Personal Computer Upgrade Plan',
-                startDate: new Date('2021-04-27T17:00:00.000Z'),
-                endDate: new Date('2021-04-27T18:00:00.000Z'),
-            }, {
-                text: 'Final Budget Review',
-                startDate: new Date('2021-04-27T19:00:00.000Z'),
-                endDate: new Date('2021-04-27T20:35:00.000Z'),
-            }, {
-                text: 'New Brochures',
-                startDate: new Date('2021-04-27T21:30:00.000Z'),
-                endDate: new Date('2021-04-27T22:45:00.000Z'),
-            }, {
-                text: 'Install New Database',
-                startDate: new Date('2021-04-28T16:45:00.000Z'),
-                endDate: new Date('2021-04-28T18:15:00.000Z'),
-            }, {
-                text: 'Approve New Online Marketing Strategy',
-                startDate: new Date('2021-04-28T19:00:00.000Z'),
-                endDate: new Date('2021-04-28T21:00:00.000Z'),
-            }, {
-                text: 'Upgrade Personal Computers',
-                startDate: new Date('2021-04-28T22:15:00.000Z'),
-                endDate: new Date('2021-04-28T23:30:00.000Z'),
-            }, {
-                text: 'Customer Workshop',
-                startDate: new Date('2021-04-29T18:00:00.000Z'),
-                endDate: new Date('2021-04-29T19:00:00.000Z'),
-                allDay: true,
-            }, {
-                text: 'Prepare 2021 Marketing Plan',
-                startDate: new Date('2021-04-29T18:00:00.000Z'),
-                endDate: new Date('2021-04-29T20:30:00.000Z'),
-            }, {
-                text: 'Brochure Design Review',
-                startDate: new Date('2021-04-29T21:00:00.000Z'),
-                endDate: new Date('2021-04-29T22:30:00.000Z'),
-            }, {
-                text: 'Create Icons for Website',
-                startDate: new Date('2021-04-30T17:00:00.000Z'),
-                endDate: new Date('2021-04-30T18:30:00.000Z'),
-            }, {
-                text: 'Upgrade Server Hardware',
-                startDate: new Date('2021-04-30T21:30:00.000Z'),
-                endDate: new Date('2021-04-30T23:00:00.000Z'),
-            }, {
-                text: 'Submit New Website Design',
-                startDate: new Date('2021-04-30T23:30:00.000Z'),
-                endDate: new Date('2021-05-01T01:00:00.000Z'),
-            }, {
-                text: 'Launch New Website',
-                startDate: new Date('2021-04-30T19:20:00.000Z'),
-                endDate: new Date('2021-04-30T21:00:00.000Z'),
-            },
+            }
         ];
 
 
@@ -127,6 +91,13 @@
                 onAppointmentAdded(e) {
                     showToast('Added', e.appointmentData.text, 'success');
                     console.log(e.appointmentData);
+                    $.ajax({
+                        url: "https://localhost:5001/teacher/SetWorkingOneHour/" + hiddenId.val() + e.appointmentData.startDate + e.appointmentData.endDate,
+                        type: 'POST',
+                        beforeSend: function(xhr) {
+                            xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    });
                 },
                 onAppointmentUpdated(e) {
                     showToast('Updated', e.appointmentData.text, 'info');

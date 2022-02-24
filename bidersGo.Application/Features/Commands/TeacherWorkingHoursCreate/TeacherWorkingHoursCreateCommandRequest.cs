@@ -10,10 +10,11 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingHoursCreate
 {
     public class TeacherWorkingHoursCreateCommandRequest : IRequest<TeacherWorkingHoursCreateCommandResponse>
     {
-        public WorkingHoursOfWeek week { get; set; }
-        public Guid weekID { get; set; }
-        public DateTime WorkingStart { get; set; }
-        public DateTime WorkingStop { get; set; }
+        //workingHoursOfWeek yani yeni adıyla çalışma saatleri tablosunun id'si
+            
+        public Guid Id { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
 
     }
 
