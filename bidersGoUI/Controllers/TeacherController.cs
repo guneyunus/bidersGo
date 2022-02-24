@@ -12,15 +12,15 @@ namespace bidersGoUI.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult SetWorkingHours()
+        //[HttpGet("/{id}")]
+        //public IActionResult SetWorkingHours(string id)
+        //{
+        //    return View();
+        //}
+        [HttpPost]
+        public IActionResult SetWorkingHours(string id)
         {
             return View();
-        }
-        [HttpPost]
-        public IActionResult SetWorkingHours(string a)
-        {
-            return Json("deneme");
         }
     }
 }

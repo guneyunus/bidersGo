@@ -122,7 +122,7 @@ namespace bidersGoUI.Controllers
         {
             return View();
         }
-        [HttpGet()]//localhost:5001/home/getteacherbylesson/123123123123
+        [HttpGet()]
         public async Task<IActionResult> GetTeacherByLesson(string id)
         {
          

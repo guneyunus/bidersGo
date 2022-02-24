@@ -9,6 +9,7 @@ namespace bidersGo.Application.Features.Queries.TeacherGetById
 {
     public class TeacherGetByIdQueryResponse
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Branch { get; set; }

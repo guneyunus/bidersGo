@@ -23,7 +23,7 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form method="post" asp-controller="Home" asp-action="GetLessonAll">
+                                        <form method="post" asp-controller="Teacher" asp-action="SetWorkingHours">
                                             <div>
                                                 <select id="selectLesson">
                                                     <option hidden="hidden">Lütfen Ders Seçiniz</option>
@@ -34,22 +34,15 @@
                                                 </select>
                                               
                                             </div>
-
                                             <div>
                                                 <select id="selectTeacher">
                                                     <option style="visibility:visible;">Lütfen Öğretmen Seçiniz</option>
-                                                    
                                                 </select>
                                             </div>
-
-
-                                           
-
                                             <div class="text-center">
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Devam et</button>
                                             </div>
-
-                                           
+                                            <input type="hidden" id="SecretId" name="id" value="" />
                                         </form>
                                     </div>
 
@@ -79,6 +72,11 @@
                 dersiDegis(selectLesson.val());
             });
 
+            lessonID.on("change", function() {
+                console.log(lessonID.val());
+                $("#SecretId").attr("value", lessonID.val());
+            });
+
             function dersiDegis(x) {
                 $.ajax({
                         url:"https://localhost:5001/home/GetTeacherByLesson/"+ x,
@@ -95,9 +93,9 @@
                             var deneme = TeacherItem.teacherGetByLesson;
                             for (var i = 0; i <= deneme.length; i++) {
                                 console.log(deneme[i]);
-                                lessonID.append($('<option>').text(deneme[i].name));
-                                
+                                lessonID.append($('<option>').val(deneme[i].id).text(deneme[i].name));
                             }
+                            
 
                         }
                     });

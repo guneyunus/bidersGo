@@ -22,6 +22,7 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingHoursCreate
         }
         public Task<TeacherWorkingHoursCreateCommandResponse> Handle(TeacherWorkingHoursCreateCommandRequest request, CancellationToken cancellationToken)
         {
+            ////teacherreposyor.saatEkle(req.start,req.stop)
             throw new NotImplementedException();
         }
     }

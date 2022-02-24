@@ -12,7 +12,7 @@ namespace bidersGo.Domain.Entities
         
         public WorkingHoursOfWeek week { get; set; }
         public Guid weekID { get; set; }
-        public double WorkingHourTotalTime { get; set; }
+        public double? WorkingHourTotalTime { get; set; }
         public DateTime WorkingStart { get; set; }
         public DateTime WorkingStop { get; set; }
     }
