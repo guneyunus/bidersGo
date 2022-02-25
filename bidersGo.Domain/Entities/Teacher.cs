@@ -18,7 +18,7 @@ namespace bidersGo.Domain.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public Address Address { get; set; }
-        public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; }
+        public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; } = new List<WorkingHoursOfWeek>();
         public bool IsWorking { get; set; }
         public Lesson Lesson { get; set; }
         public Guid LessonId { get; set; }

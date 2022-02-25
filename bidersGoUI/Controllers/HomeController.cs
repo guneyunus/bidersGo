@@ -60,11 +60,7 @@ namespace bidersGoUI.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GetLessonAll(LessonGetAllQueryResponse model)
-        {
-            return null;
-        }
+       
 
 
     }

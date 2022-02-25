@@ -23,17 +23,26 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingHoursCreate
         }
         public Task<TeacherWorkingHoursCreateCommandResponse> Handle(TeacherWorkingHoursCreateCommandRequest request, CancellationToken cancellationToken)
         {
+            //hocanın çalışma saatleri tablosu
             var tablo = _unitOfWork.TeacherRepository.GetWorkingTable(request.Id);
             var teacher = _unitOfWork.TeacherRepository.GetTeacherByWorkingTableId(request.Id);
 
-            tablo.WorkingForOneHours.Add(new WorkingForOneHour()
+            
+
+            var NewLessonTime = new WorkingForOneHour()
             {
                 week = tablo,
                 weekID = tablo.Id,
                 WorkingStart = request.startDate,
-                WorkingStop = request.endDate
-            });
-            _unitOfWork.Save();
+                WorkingStop = request.endDate,
+                WorkingHourTotalTime = 1
+            };
+            
+            teacher.WorkingHoursOfWeek[0].WorkingForOneHours.Add(NewLessonTime);
+            _unitOfWork.TeacherRepository.Update(teacher);
+            _unitOfWork.TeacherRepository.CreateWorkingForOneHour(NewLessonTime);
+
+            //TODO hata kontrolü yapılmalı eklenmezse ne olacak?
             var response = new TeacherWorkingHoursCreateCommandResponse()
             {
                 Message = "başarılı",

@@ -79,6 +79,7 @@
                 views: ['day', 'week'],
                 currentView: 'week',
                 currentDate: new Date(2021, 3, 29),
+                dateSerializationFormat: 'yyyy-MM-ddTHH:mm:ssZ',
                 startDayHour: 9,
                 endDayHour: 19,
                 editing: {
@@ -92,7 +93,8 @@
                     showToast('Added', e.appointmentData.text, 'success');
                     console.log(e.appointmentData);
                     $.ajax({
-                        url: "https://localhost:5001/teacher/SetWorkingOneHour/" + hiddenId.val() + e.appointmentData.startDate + e.appointmentData.endDate,
+                        url: "https://localhost:5001/teacher/SetWorkingOneHour/",
+                        data: { "Id": hiddenId.val(), "startDate": e.appointmentData.startDate, "endDate": e.appointmentData.endDate },
                         type: 'POST',
                         beforeSend: function(xhr) {
                             xhr.overrideMimeType("text/plain; charset=x-user-defined");

@@ -44,7 +44,7 @@ namespace bidersGoUI.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> SetWorkingOneHour(TeacherWorkingHoursCreateCommandRequest request)
         {
             TeacherWorkingHoursCreateCommandResponse response = await _mediator.Send(request);
@@ -57,7 +57,7 @@ namespace bidersGoUI.Controllers
             return View();
         }
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<IActionResult> GetTeacherByLesson(string id)
         {
 

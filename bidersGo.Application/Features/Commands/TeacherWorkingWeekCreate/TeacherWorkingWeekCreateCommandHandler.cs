@@ -28,20 +28,30 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate
         public Task<TeacherWorkingWeekCreateCommandResponse> Handle(TeacherWorkingWeekCreateCommandRequest request,
             CancellationToken cancellationToken)
         {
+            var WorkingWeek =new WorkingHoursOfWeek();
             if (request.Id == null)
             {
                 return null;
             }
             //hocanın calısma tablosu varsa o tabloyu dön
             var teacher = _unitOfWork.TeacherRepository.GetTeacherById(request.Id);
-            var WorkingWeek = new WorkingHoursOfWeek()
+            if (teacher.WorkingHoursOfWeek.Count == 0)
             {
-                Teacher = teacher,
-                TeacherId = teacher.Id,
-                WorkingForOneHours = new List<WorkingForOneHour>()
-            };
-
-            _unitOfWork.TeacherRepository.CreateWorkingForWeek(WorkingWeek);
+                WorkingWeek= new WorkingHoursOfWeek()
+                {
+                    Teacher = teacher,
+                    TeacherId = teacher.Id,
+                    WorkingForOneHours = new List<WorkingForOneHour>()
+                };
+                teacher.WorkingHoursOfWeek.Add(WorkingWeek);
+                _unitOfWork.TeacherRepository.CreateWorkingForWeek(WorkingWeek);
+            }
+            else
+            {
+                 WorkingWeek = teacher.WorkingHoursOfWeek[0];
+            }
+            
+           
             var response = new TeacherWorkingWeekCreateCommandResponse()
             {
                 Data = WorkingWeek,
