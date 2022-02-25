@@ -68,6 +68,16 @@
         ];
 
 
+        function tabloVerileriniYenile(a) {
+            $.ajax({
+                url: "../../../teacher/GetHoursInWorkingTable/" + a,
+                type: 'GET',
+                beforeSend: function(xhr) {
+                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                }
+            });
+        }
+
         $(() => {
             function showToast(event, value, type) {
                 DevExpress.ui.notify(`${event} "${value}" task`, type, 800);
@@ -93,13 +103,16 @@
                     showToast('Added', e.appointmentData.text, 'success');
                     console.log(e.appointmentData);
                     $.ajax({
-                        url: "https://localhost:5001/teacher/SetWorkingOneHour/",
+                        url: "../../../teacher/SetWorkingOneHour/",
                         data: { "Id": hiddenId.val(), "startDate": e.appointmentData.startDate, "endDate": e.appointmentData.endDate },
                         type: 'POST',
                         beforeSend: function(xhr) {
                             xhr.overrideMimeType("text/plain; charset=x-user-defined");
                         }
+                    }).done(function () {
+                        tabloVerileriniYenile(hiddenId.val());
                     });
+                    //calllback done function hocanın çalışma tablosundaki verileri getir
                 },
                 onAppointmentUpdated(e) {
                     showToast('Updated', e.appointmentData.text, 'info');

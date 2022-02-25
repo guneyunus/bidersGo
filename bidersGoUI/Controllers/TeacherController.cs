@@ -11,6 +11,7 @@ using bidersGo.Application.Features.Queries.TeacherGetByLesson;
 using bidersGo.Application.Features.Queries.LessonGetAll;
 using Microsoft.AspNetCore.Authorization;
 using bidersGo.Application.Features.Commands.TeacherCreate;
+using bidersGo.Application.Features.Queries.WorkingWeekForLesson;
 
 namespace bidersGoUI.Controllers
 {
@@ -82,6 +83,15 @@ namespace bidersGoUI.Controllers
             TeacherCreateCommandResponse response = await _mediator.Send(request);
 
             return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetHoursInWorkingTable(Guid id)
+        {
+            WorkingWeekOfHourInOneQueryResponse response = await _mediator.Send(new WorkingWeekOfHourInOneQueryRequest()
+                {Id = id});
+            
+            return Json(response);
         }
     }
 }
