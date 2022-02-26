@@ -7,10 +7,12 @@ using bidersGo.Application.Interfaces.Context;
 using Microsoft.EntityFrameworkCore;
 using bidersGo.Domain.Entities;
 using bidersGo.Persistence.Context.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using bidersGo.Domain.Entities.Identity;
 
 namespace bidersGo.Persistence.Context
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser,ApplicationRole,string>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -28,9 +30,14 @@ namespace bidersGo.Persistence.Context
         public DbSet<WorkingHoursOfWeek> WorkingHoursOfWeeks { get; set; }
         public DbSet<WorkingForOneHour> workingForOneHours { get; set; }
 
+
+        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*base.OnModelCreating(modelBuilder);*/ //asagıdaki methodların calısması için bu satırı yazmaka şart..
+            base.OnModelCreating(modelBuilder);
+            //asagıdaki methodların calısması için bu satırı yazmaka şart..
+            
 
             modelBuilder.Entity<LessonDetail>()
                 .HasOne(x => x.Lesson)

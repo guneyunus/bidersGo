@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using bidersGo.Domain.Common;
+using bidersGo.Domain.Entities.Identity;
 
 namespace bidersGo.Domain.Entities
 {
@@ -15,6 +17,9 @@ namespace bidersGo.Domain.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public string TcKimlik { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public virtual ApplicationUser User { get; set; }
 
     }
 }
