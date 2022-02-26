@@ -32,6 +32,15 @@ namespace bidersGo.Application.Features.Commands.TeacherCreate
 
         public async Task<TeacherCreateCommandResponse> Handle(TeacherCreateCommandRequest request, CancellationToken cancellationToken)
         {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user != null)
+            {
+                return new TeacherCreateCommandResponse()
+                {
+                    Succeed = false,
+                    Message = "Kayıt işleminde hata gerçekleşti. Bu email Adressi daha önce kullanılmıştır."
+                };
+            }
             if (request.Password != request.ConfirmPassword)
             {
                 return new TeacherCreateCommandResponse()
@@ -57,6 +66,7 @@ namespace bidersGo.Application.Features.Commands.TeacherCreate
                     Message = "Kayıt işleminde hata gerçekleşti" 
                 };
             }
+            _userManager.AddToRoleAsync(TeacherUser, RoleNames.Passive);
 
             var NewTeacher = new Teacher() 
             {
