@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
 using bidersGo.Domain.Common;
+using bidersGo.Domain.Entities.Identity;
 
 namespace bidersGo.Domain.Entities
 {
@@ -21,6 +23,9 @@ namespace bidersGo.Domain.Entities
         public bool IsSearchLesson { get; set; }
         public Guid? SubscriptionId { get; set; }
         public Subscription Subscription { get; set; }
-       
+        public string UserId { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public virtual ApplicationUser User { get; set; }
+
     }
 }

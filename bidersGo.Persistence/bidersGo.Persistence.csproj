@@ -17,4 +17,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\bidersGo.Application\bidersGo.Application.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
 </Project>
