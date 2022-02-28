@@ -16,10 +16,13 @@ using bidersGo.Application.Features.Queries.AdminGetById;
 using bidersGo.Application.Features.Queries.LessonGetAll;
 using bidersGo.Application.Features.Queries.LessonGetById;
 using bidersGo.Application.Features.Queries.ModeratorGetById;
+using bidersGo.Application.Features.Queries.RoleGetById;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using bidersGo.Application.Features.Queries.TeacherGetById;
 using bidersGo.Application.Features.Queries.TeacherOfLesson;
+using bidersGo.Application.Features.Queries.UserGetById;
 using bidersGo.Domain.Entities;
+using bidersGo.Domain.Entities.Identity;
 
 namespace bidersGo.Application.Mapping
 {
@@ -40,6 +43,9 @@ namespace bidersGo.Application.Mapping
             CreateMap<AddressGetAllQueryResponse, Address>();
             CreateMap<Lesson, LessonGetByIdQueryResponse>().ReverseMap();
             CreateMap<WorkingForOneHour, TeacherWorkingHoursCreateCommandRequest>().ReverseMap();
+            CreateMap<ApplicationUser, UserGetByIdQueryResponse>().ReverseMap();
+            CreateMap<ApplicationRole, RoleGetByIdQueryResponse>().ReverseMap();
+
 
 
         }
