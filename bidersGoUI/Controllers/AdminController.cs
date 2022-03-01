@@ -1,4 +1,5 @@
 ﻿using bidersGo.Application.Features.Commands.AdminCreate;
+using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGo.Domain.Entities.Identity;
 using bidersGoUI.Extentions;
 using DevExtreme.AspNet.Data;
@@ -13,10 +14,12 @@ namespace bidersGoUI.Controllers
     {
         private readonly IMediator _mediator;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AdminController(IMediator mediator,UserManager<ApplicationUser> userManager)
+        private readonly IUnitOfWork _unitOfWork;
+        public AdminController(IMediator mediator,UserManager<ApplicationUser> userManager,IUnitOfWork unitOfWork)
         {
             _mediator = mediator;
             _userManager = userManager;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
@@ -41,6 +44,18 @@ namespace bidersGoUI.Controllers
         }
 
         public IActionResult Users()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetAdmin(DataSourceLoadOptions loadOptions)
+        {
+            var data = _unitOfWork.AdminRepository.GetAdminAll();
+            return Ok(DataSourceLoader.Load(data, loadOptions));
+        }
+
+        public IActionResult Admins()
         {
             return View();
         }
