@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using bidersGo.Application.Features.Commands.TeacherWorkingHoursCreate;
 using bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate;
@@ -12,6 +13,9 @@ using bidersGo.Application.Features.Queries.LessonGetAll;
 using Microsoft.AspNetCore.Authorization;
 using bidersGo.Application.Features.Commands.TeacherCreate;
 using bidersGo.Application.Features.Queries.WorkingWeekForLesson;
+using bidersGo.Domain.Entities;
+using bidersGo.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace bidersGoUI.Controllers
 {
@@ -19,14 +23,25 @@ namespace bidersGoUI.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TeacherController(IMediator mediator, IUnitOfWork unitOfWork)
+        public TeacherController(IMediator mediator, IUnitOfWork unitOfWork,UserManager<ApplicationUser> userManager)
         {
             _mediator = mediator;
             _unitOfWork = unitOfWork;
+            _userManager = userManager;
         }
+
         public IActionResult Index()
         {
+            ClaimsPrincipal currentUser = this.User;
+            //bool isTeacher = currentUser.IsInRole("Teacher");
+            var id = _userManager.GetUserId(currentUser);
+            //if (isTeacher == false)
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
+            ViewBag.Id = id;
             return View();
         }
         
