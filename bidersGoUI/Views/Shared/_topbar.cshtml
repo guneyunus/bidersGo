@@ -29,32 +29,8 @@
                 </a>
             </div>
 
-            <div class="d-grid">
-                <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#composemodal">
-                    @if (signInManager.IsSignedIn(Context.User))
-                    {
-                        <a asp-controller="Account" asp-action="Logout">Çıkış Yap <i class="fal fa-long-arrow-right"></i></a>
+                
 
-                        @*var currentUser = userManager.FindByNameAsync(User.Identity.Name).Result;
-
-                            @if (userManager.IsInRoleAsync(currentUser, RoleNames.Admin).Result)
-                            {
-                            <a href="#">Admin Panel <i class="fal fa-long-arrow-right"></i></a>
-                            }*@
-
-                        if (Context.User.IsInRole(RoleNames.Admin))
-                        {
-                            <a href="#">Admin Panel <i class="fal fa-long-arrow-right"></i></a>
-                        }
-                    }
-                    else
-                    {
-                        <a asp-controller="Account" asp-action="Login">Giriş Yap <i class="fal fa-long-arrow-right"></i></a>
-                    }
-                </button>
-
-
-            </div>
 
             <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
                 <i class="ri-menu-2-line align-middle"></i>
@@ -129,9 +105,9 @@
                                     </ul>
                                 </div>
 
-                                <div class="dropdown-divider"></div>
+                                @*<div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
-                            </div>
+                            </div>*@
 
                             <div class="col-md-4">
                                 <h5 class="font-size-14">Extra Pages</h5>
@@ -228,10 +204,33 @@
         </div>
 
         <div class="dropdown d-none d-sm-inline-block">
-            <button type="button" class="btn header-item waves-effect"
+
+            <button type="button" class="btn btn-info waves-effect waves-light  mt-3" data-bs-toggle="modal" data-bs-target="#composemodal">
+                    @if (signInManager.IsSignedIn(Context.User))
+                    {
+                        <a asp-controller="Account" asp-action="Logout" class="text-light">Çıkış Yap <i class="fal fa-long-arrow-right"></i></a>
+
+                        @*var currentUser = userManager.FindByNameAsync(User.Identity.Name).Result;
+
+                            @if (userManager.IsInRoleAsync(currentUser, RoleNames.Admin).Result)
+                            {
+                            <a href="#">Admin Panel <i class="fal fa-long-arrow-right"></i></a>
+                            }*@
+
+                        if (Context.User.IsInRole(RoleNames.Admin))
+                        {
+                            <a href="#">Admin Panel <i class="fal fa-long-arrow-right"></i></a>
+                        }
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login"  class="text-light">Giriş Yap <i class="fal fa-long-arrow-right"></i></a>
+                    }
+                </button>
+            @*<button type="button" class="btn header-item waves-effect"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="" src="~/assets/images/flags/us.jpg" alt="Header Language" height="16">
-            </button>
+            </button>*@
             <div class="dropdown-menu dropdown-menu-end">
 
                 <!-- item-->
