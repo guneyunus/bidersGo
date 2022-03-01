@@ -2,7 +2,7 @@
 @model StudentCreateCommandRequest
 @{
     ViewData["Title"] = "Student Kayıt Ekranı";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
 }
 
 <div>
@@ -76,7 +76,8 @@
                                                 <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
                                             </div>
 
-                                            <div class="mb-4">
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                <select id="selectedLessonSearching"  >
                                                    <option>Lüstfen Ders Arayış Durumunuzu Seçiniz</option> 
                                                    <option value="true">Evet</option> 

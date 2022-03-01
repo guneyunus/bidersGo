@@ -15,6 +15,9 @@ using bidersGo.Persistence;
 using FluentValidation.AspNetCore;
 using bidersGo.Application.Features.Commands.AddressCreate;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
 
 namespace bidersGoUI
 {
@@ -53,6 +56,11 @@ namespace bidersGoUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
+                RequestPath = new PathString("/vendor")
+            });
 
             app.UseRouting();
             app.UseAuthentication();

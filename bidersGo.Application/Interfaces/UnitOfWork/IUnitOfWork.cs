@@ -20,6 +20,8 @@ namespace bidersGo.Application.Interfaces.UnitOfWork
         ILessonRepository LessonRepository { get; }
         IMeetRepository MeetRepository { get; }
         IWorkingWeekRepository workingWeekRepository { get; }
+        IUserRepository UserRepository { get; }
+        IRoleRepository RoleRepository { get; }
         void Save();
         Task<int> SaveAsync();
     }
