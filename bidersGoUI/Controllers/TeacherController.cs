@@ -45,13 +45,13 @@ namespace bidersGoUI.Controllers
             return View();
         }
         
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> SetWorkingHours(string id)
         {
-            //convert string to guid
-
-            TeacherWorkingWeekCreateCommandResponse model =
-                await _mediator.Send(new TeacherWorkingWeekCreateCommandRequest(){Id = Guid.Parse(id)});
+            //convert userId to TeacherId
+            var Teacher = _unitOfWork.TeacherRepository.GetTeacherByUserId(id);
+                TeacherWorkingWeekCreateCommandResponse model =
+                await _mediator.Send(new TeacherWorkingWeekCreateCommandRequest(){Id =(Teacher.Id)});
 
             if (model == null)
             {

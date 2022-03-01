@@ -1,5 +1,4 @@
-﻿using bidersGo.Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +7,8 @@ using Newtonsoft.Json;
 
 namespace bidersGo.Domain.Entities
 {
-    public class WorkingForOneHour :BaseEntity
+    public class Appointment
     {
-        
-        public WorkingHoursOfWeek week { get; set; }
-        public Guid weekID { get; set; }
-       
         [JsonProperty(PropertyName = "AppointmentId")]
         public int AppointmentId { get; set; }
         [JsonProperty(PropertyName = "Text")]
@@ -30,8 +25,5 @@ namespace bidersGo.Domain.Entities
         public string RecurrenceRule { get; set; }
         [JsonProperty(PropertyName = "RecurrenceException")]
         public string RecurrenceException { get; set; }
-        [JsonProperty(PropertyName = "IsDisabled")]
-        public bool isDisabled { get; set; }
-
     }
 }

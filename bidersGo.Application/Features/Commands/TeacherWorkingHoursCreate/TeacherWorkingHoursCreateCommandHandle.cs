@@ -33,9 +33,9 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingHoursCreate
             {
                 week = tablo,
                 weekID = tablo.Id,
-                WorkingStart = request.startDate,
-                WorkingStop = request.endDate,
-                WorkingHourTotalTime = 1
+                //WorkingStart = request.startDate,
+                //WorkingStop = request.endDate,
+                
             };
             
             teacher.WorkingHoursOfWeek[0].WorkingForOneHours.Add(NewLessonTime);

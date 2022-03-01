@@ -27,12 +27,10 @@
     <div>
         @foreach (var item in Model.Data.WorkingForOneHours)
         {
-            <p>@item.WorkingStart</p>
-            <p>@item.WorkingStop</p>
-            <p>@item.WorkingHourTotalTime</p>
+            
             <p>@item.week</p>
             <p>@item.weekID</p>
-
+            <p>@item.AppointmentId</p>
                            
 
         }
@@ -48,35 +46,50 @@
 {
 
     <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
+    <script src="~/vendor/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
 
     <script>
 
         var hiddenId = $("#WorkingTableId");
+        var urlparameters = "../../../teacher/GetHoursInWorkingTable/";
         console.log(hiddenId.val());
 
-        var data = [
-            {
-                text: 'Website Re-Design Plan',
-                startDate: new Date('2021-04-26T16:30:00.000Z'),
-                endDate: new Date('2021-04-26T18:30:00.000Z'),
-            }, {
-                text: 'Book Flights to San Fran for Sales Trip',
-                startDate: new Date('2021-04-26T19:00:00.000Z'),
-                endDate: new Date('2021-04-26T20:00:00.000Z'),
-                allDay: true,
+        var store = new DevExpress.data.DataSource({
+            key: "TeacherId",
+            load: function(loadOptions) {
+                return sendRequest(`${urlparameters}${hiddenId.val()}`);
+            },
+            insert: function(values) {
+                // ...
+            },
+            update: function(key, values) {
+                // ...
+            },
+            remove: function(key) {
+                // ...
             }
-        ];
+        });
 
+        
 
-        function tabloVerileriniYenile(a) {
-            $.ajax({
-                url: "../../../teacher/GetHoursInWorkingTable/" + a,
-                type: 'GET',
-                beforeSend: function(xhr) {
-                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                }
+        function sendRequest(url, method = 'GET', data) {
+            var d = $.Deferred();
+            $.ajax(url,
+                { method,
+                    data,
+                    cache: false,
+                    xhrFields: { withCredentials: true }
+                }).done((result) => {
+                    
+                    d.resolve(method === 'GET' ? result.data : result);
+                    console.log(result.data);
+            }).fail((xhr) => {
+                d.reject(xhr.responseJSON ? xhr.responseJSON.Message : xhr.statusText);
             });
+
+            return d.promise();
         }
+
 
         $(() => {
             function showToast(event, value, type) {
@@ -85,13 +98,14 @@
 
             var scheduler = $('#scheduler').dxScheduler({
                 timeZone: 'America/Los_Angeles',
-                dataSource: data,
-                views: ['day', 'week'],
+                dataSource: store,
+                views: ['week'],
                 currentView: 'week',
                 currentDate: new Date(2021, 3, 29),
                 dateSerializationFormat: 'yyyy-MM-ddTHH:mm:ssZ',
-                startDayHour: 9,
-                endDayHour: 19,
+                startDayHour: 8,
+                endDayHour: 24,
+                allDayExpr: 'AllDay',
                 editing: {
                     allowAdding: true,
                     allowDeleting: true,
@@ -109,8 +123,8 @@
                         beforeSend: function(xhr) {
                             xhr.overrideMimeType("text/plain; charset=x-user-defined");
                         }
-                    }).done(function () {
-                        tabloVerileriniYenile(hiddenId.val());
+                    }).done(function() {
+                        /*tabloVerileriniYenile(hiddenId.val());*/
                     });
                     //calllback done function hocanın çalışma tablosundaki verileri getir
                 },

@@ -50,6 +50,11 @@ namespace bidersGo.Persistence.Repositories
             return _context.Teachers.Where(x => x.Name == Name).FirstOrDefault();
         }
 
+        public Teacher GetTeacherByUserId(string id)
+        {
+            return _context.Teachers.Where(x => x.UserId == id).First();
+        }
+
         public Teacher GetTeacherByWorkingTableId(Guid id)
         {
             return _context.WorkingHoursOfWeeks.Where(x => x.Id == id).Select(x => x.Teacher).FirstOrDefault();

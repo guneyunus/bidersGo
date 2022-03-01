@@ -79,6 +79,7 @@ namespace bidersGo.Persistence.Context
                 .WithMany(x => x.Teachers)
                 .HasForeignKey(x => x.LessonId);
 
+            
 
             modelBuilder.ApplyConfiguration(new LessonConfiguration());
 
