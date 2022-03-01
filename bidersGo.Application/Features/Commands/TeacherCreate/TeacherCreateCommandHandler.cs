@@ -54,10 +54,10 @@ namespace bidersGo.Application.Features.Commands.TeacherCreate
             {
                 UserName = request.UserName,
                 Email = request.Email,
-                Password = request.Password,
+               //Password = request.Password,
                 EmailConfirmed = true
             };
-            var UserKaydet = await _userManager.CreateAsync(TeacherUser);
+            var UserKaydet = await _userManager.CreateAsync(TeacherUser,request.Password);
             if (UserKaydet.Succeeded == false)
             {
                 return new TeacherCreateCommandResponse()

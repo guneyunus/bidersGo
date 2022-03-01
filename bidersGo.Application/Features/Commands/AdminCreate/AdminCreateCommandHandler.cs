@@ -56,10 +56,10 @@ namespace bidersGo.Application.Features.Commands.AdminCreate
             {
                 UserName = request.NickName,
                 Email = request.Email,
-                Password = request.Password,
+                //Password = request.Password,
                 EmailConfirmed = true
             };
-            var UserSave = await _userManager.CreateAsync(AdminUser);
+            var UserSave = await _userManager.CreateAsync(AdminUser, request.Password);
             if (UserSave.Succeeded == false)
             {
                 return new AdminCreateCommandResponse()
@@ -77,7 +77,7 @@ namespace bidersGo.Application.Features.Commands.AdminCreate
                 Surname=request.Surname,
                 Email=request.Email,
                 NickName=request.NickName,
-                Password=request.Password,
+                //Password=request.Password,
                 UserId = AdminUser.Id
             };
             var admin = _unitOfWork.AdminRepository.CreateAsync(NewAdmin);

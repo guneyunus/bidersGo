@@ -40,10 +40,10 @@ namespace bidersGo.Application.Features.Commands.StudentCreate
             {
                 UserName = request.NickName,
                 Email = request.Email,
-                Password = request.Password,
+               // Password = request.Password,
                 EmailConfirmed = true
             };
-            var UserSave = await _userManager.CreateAsync(StudentUser);
+            var UserSave = await _userManager.CreateAsync(StudentUser,request.Password);
             if (UserSave.Succeeded == false)
             {
                 return new StudentCreateCommandResponse()

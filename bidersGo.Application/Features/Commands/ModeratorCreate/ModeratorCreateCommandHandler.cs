@@ -38,10 +38,10 @@ namespace bidersGo.Application.Features.Commands.ModeratorCreate
             {
                 UserName = request.NickName,
                 Email = request.Email,
-                Password = request.Password,
+                //Password = request.Password,
                 EmailConfirmed = true
             };
-            var UserSave = await _userManager.CreateAsync(ModeratorUser);
+            var UserSave = await _userManager.CreateAsync(ModeratorUser, request.Password);
             if (UserSave.Succeeded == false)
             {
                 return new ModeratorCreateCommandResponse()
@@ -59,7 +59,7 @@ namespace bidersGo.Application.Features.Commands.ModeratorCreate
                 Email=request.Email,
                 TcKimlik=request.TcKimlik,
                 NickName=request.NickName,
-                Password=request.Password,
+                //Password=request.Password,
                 UserId= ModeratorUser.Id
             };
             var moderator = _unitOfWork.ModeratorRepository.CreateAsync(NewModerator);
