@@ -16,6 +16,8 @@ using bidersGo.Application.Features.Queries.WorkingWeekForLesson;
 using bidersGo.Domain.Entities;
 using bidersGo.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
+using bidersGoUI.Extentions;
+using DevExtreme.AspNet.Data;
 
 namespace bidersGoUI.Controllers
 {
@@ -68,7 +70,13 @@ namespace bidersGoUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTeacher()
+        public IActionResult GetTeacher(DataSourceLoadOptions loadOptions)
+        {
+            var data = _unitOfWork.TeacherRepository.GetTeachersAll().ToList();
+            return Ok(DataSourceLoader.Load(data, loadOptions));
+        }
+
+        public IActionResult Teachers()
         {
             return View();
         }

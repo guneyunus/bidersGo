@@ -1,5 +1,8 @@
 ﻿using bidersGo.Application.Features.Commands.StudentCreate;
 using bidersGo.Application.Features.Queries.StudentGetById;
+using bidersGo.Application.Interfaces.UnitOfWork;
+using bidersGoUI.Extentions;
+using DevExtreme.AspNet.Data;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +15,11 @@ namespace bidersGoUI.Controllers
     public class StudentController : Controller
     {
         private readonly IMediator _mediator;
-        public StudentController(IMediator mediator)
+        private readonly IUnitOfWork _unitOfWork;
+        public StudentController(IMediator mediator,IUnitOfWork unitOfWork)
         {
               _mediator = mediator;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
@@ -44,6 +49,18 @@ namespace bidersGoUI.Controllers
             StudentCreateCommandResponse response = await _mediator.Send(request);
 
             return Ok(response);
+        }
+
+        [HttpGet]
+        public IActionResult GetStudent(DataSourceLoadOptions loadOptions)
+        {
+            var data = _unitOfWork.StudentRepository.GetStudentsAll();
+            return Ok(DataSourceLoader.Load(data, loadOptions));
+        }
+
+        public IActionResult Students()
+        {
+            return View();
         }
     }
 }
