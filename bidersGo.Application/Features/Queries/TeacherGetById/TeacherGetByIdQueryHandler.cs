@@ -26,7 +26,6 @@ namespace bidersGo.Application.Features.Queries.TeacherGetById
         public Task<TeacherGetByIdQueryResponse> Handle(TeacherGetByIdQueryRequest request, CancellationToken cancellationToken)
         {
             var teacher = _unitOfWork.TeacherRepository.GetTeacherById(request.Guid);
-
             TeacherGetByIdQueryResponse model = _mapper.Map<TeacherGetByIdQueryResponse>(teacher);
             return  Task<TeacherGetByIdQueryResponse>.FromResult(model);
         }

@@ -27,6 +27,9 @@ namespace bidersGo.Persistence.UnitOfWork
         private LessonRepository _lessonRepository;
         private MeetRepository _meetRepository;
         private AddressRepository _addressRepository;
+        private WorkingWeekRepository _workingWeekRepository;
+        private UserRepository _userRepository;
+        private RoleRepository _roleRepository;
 
         public IAdminRepository AdminRepository =>_adminRepository = _adminRepository ?? new AdminRepository(_context);
 
@@ -46,6 +49,13 @@ namespace bidersGo.Persistence.UnitOfWork
             _lessonRepository = _lessonRepository ?? new LessonRepository(_context);
 
         public IMeetRepository MeetRepository => _meetRepository = _meetRepository ?? new MeetRepository(_context);
+
+        public IWorkingWeekRepository workingWeekRepository => _workingWeekRepository = _workingWeekRepository ?? new WorkingWeekRepository(_context);
+
+        public IUserRepository UserRepository =>
+            _userRepository = _userRepository ?? new UserRepository(_context);
+        public IRoleRepository RoleRepository =>
+            _roleRepository = _roleRepository ?? new RoleRepository(_context);
 
         public void Dispose()
         {

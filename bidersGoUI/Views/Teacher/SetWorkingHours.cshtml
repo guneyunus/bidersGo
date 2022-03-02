@@ -1,0 +1,185 @@
+﻿@model bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate.TeacherWorkingWeekCreateCommandResponse
+
+<div class="demo-container">
+    <div id="scheduler">
+
+    </div>
+    <div class="options">
+        <div class="caption">Options</div>
+        <div class="options-container">
+            <div class="option">
+                <div id="allow-adding"></div>
+            </div>
+            <div class="option">
+                <div id="allow-deleting"></div>
+            </div>
+            <div class="option">
+                <div id="allow-updating"></div>
+            </div>
+            <div class="option">
+                <div id="allow-resizing"></div>
+            </div>
+            <div class="option">
+                <div id="allow-dragging"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @foreach (var item in Model.Data.WorkingForOneHours)
+        {
+            
+            <p>@item.week</p>
+            <p>@item.weekID</p>
+            <p>@item.AppointmentId</p>
+                           
+
+        }
+        <div>
+            <input type="hidden" id="WorkingTableId"  asp-for="Data.Id" />
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
+    <script src="~/vendor/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
+
+    <script>
+
+        var hiddenId = $("#WorkingTableId");
+        var urlparameters = "../../../teacher/GetHoursInWorkingTable/";
+        console.log(hiddenId.val());
+
+        var store = new DevExpress.data.DataSource({
+            key: "TeacherId",
+            load: function(loadOptions) {
+                return sendRequest(`${urlparameters}${hiddenId.val()}`);
+            },
+            insert: function(values) {
+                // ...
+            },
+            update: function(key, values) {
+                // ...
+            },
+            remove: function(key) {
+                // ...
+            }
+        });
+
+        
+
+        function sendRequest(url, method = 'GET', data) {
+            var d = $.Deferred();
+            $.ajax(url,
+                { method,
+                    data,
+                    cache: false,
+                    xhrFields: { withCredentials: true }
+                }).done((result) => {
+                    
+                    d.resolve(method === 'GET' ? result.data : result);
+                    console.log(result.data);
+            }).fail((xhr) => {
+                d.reject(xhr.responseJSON ? xhr.responseJSON.Message : xhr.statusText);
+            });
+
+            return d.promise();
+        }
+
+
+        $(() => {
+            function showToast(event, value, type) {
+                DevExpress.ui.notify(`${event} "${value}" task`, type, 800);
+            }
+
+            var scheduler = $('#scheduler').dxScheduler({
+                timeZone: 'America/Los_Angeles',
+                dataSource: store,
+                views: ['week'],
+                currentView: 'week',
+                currentDate: new Date(2021, 3, 29),
+                dateSerializationFormat: 'yyyy-MM-ddTHH:mm:ssZ',
+                startDayHour: 8,
+                endDayHour: 24,
+                allDayExpr: 'AllDay',
+                editing: {
+                    allowAdding: true,
+                    allowDeleting: true,
+                    allowUpdating: true,
+                    allowResizing: true,
+                    allowDragging: true,
+                },
+                onAppointmentAdded(e) {
+                    showToast('Added', e.appointmentData.text, 'success');
+                    console.log(e.appointmentData);
+                    $.ajax({
+                        url: "../../../teacher/SetWorkingOneHour/",
+                        data: { "Id": hiddenId.val(), "startDate": e.appointmentData.startDate, "endDate": e.appointmentData.endDate },
+                        type: 'POST',
+                        beforeSend: function(xhr) {
+                            xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                        }
+                    }).done(function() {
+                        /*tabloVerileriniYenile(hiddenId.val());*/
+                    });
+                    //calllback done function hocanın çalışma tablosundaki verileri getir
+                },
+                onAppointmentUpdated(e) {
+                    showToast('Updated', e.appointmentData.text, 'info');
+                },
+                onAppointmentDeleted(e) {
+                    showToast('Deleted', e.appointmentData.text, 'warning');
+                },
+                height: 600,
+            }).dxScheduler('instance');
+
+            $('#allow-adding').dxCheckBox({
+                text: 'Allow adding',
+                value: true,
+                onValueChanged(e) {
+                    scheduler.option('editing.allowAdding', e.value);
+                    console.log(e.value);
+                },
+            });
+
+            $('#allow-deleting').dxCheckBox({
+                text: 'Allow deleting',
+                value: true,
+                onValueChanged(e) {
+                    scheduler.option('editing.allowDeleting', e.value);
+                },
+            });
+
+            $('#allow-updating').dxCheckBox({
+                text: 'Allow updating',
+                value: true,
+                onValueChanged(e) {
+                    scheduler.option('editing.allowUpdating', e.value);
+                    dragging.option('disabled', !e.value);
+                    resizing.option('disabled', !e.value);
+                },
+            });
+
+            var resizing = $('#allow-resizing').dxCheckBox({
+                text: 'Allow resizing',
+                value: true,
+                onValueChanged(e) {
+                    scheduler.option('editing.allowResizing', e.value);
+                },
+            }).dxCheckBox('instance');
+
+            var dragging = $('#allow-dragging').dxCheckBox({
+                text: 'Allow dragging',
+                value: true,
+                onValueChanged(e) {
+                    scheduler.option('editing.allowDragging', e.value);
+                },
+            }).dxCheckBox('instance');
+        });
+
+    </script>
+}

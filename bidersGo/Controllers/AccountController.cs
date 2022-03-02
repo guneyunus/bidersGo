@@ -1,4 +1,5 @@
-﻿using bidersGo.Models;
+﻿using bidersGo.Entities;
+using bidersGo.Models;
 using bidersGo.Models.Identity;
 using bidersGo.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -41,7 +42,7 @@ namespace bidersGo.Controllers
         }
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult RegisterStudent()
         {
             var RoleTable = _roleManager.Roles.ToList();
             List<string> roleList = new List<string>();
@@ -55,7 +56,7 @@ namespace bidersGo.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> RegisterStudent(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -95,6 +96,70 @@ namespace bidersGo.Controllers
                 //}
                 result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleNames.Admin : RoleNames.Passive);
             }
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult RegisterTeacher()
+        {
+            
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> RegisterTeacher(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Password = string.Empty;
+                model.ConfirmPassword = string.Empty;
+                return View(model);
+            }
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user != null)
+            {
+                ModelState.AddModelError(nameof(model.UserName), "Bu kullanıcı adı daha önce kullanılmıştır.");
+                return View(model);
+            }
+            user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null)
+            {
+                ModelState.AddModelError(nameof(model.Email), "Bu email adresi daha önce kullanılmıştır.");
+                return View(model);
+            }
+            user = new ApplicationUser()
+            {
+                UserName = model.UserName,
+                Name = model.Name,
+                Surname = model.Surname,
+                Branch = model.Branch,
+                Email = model.Email
+
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                //kullanıcıya rol atama 
+                var count = _userManager.Users.Count();
+                //if (count ==1)
+                //{
+                //    result = await _userManager.AddToRoleAsync(user, RoleNames.Admin);
+                //}
+                result = await _userManager.AddToRoleAsync(user, count == 1 ? RoleNames.Admin : RoleNames.Passive);
+            }
+            Teacher teacher = new Teacher()
+            {
+                NickName= model.UserName,
+                Name = model.Name,
+                Surname= model.Surname,
+                //TcKimlik = model.TcKimlik,
+                Branch = model.Branch,
+                Email= model.Email,
+                //Address = model.Address
+            };
+
             return View();
         }
 

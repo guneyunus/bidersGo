@@ -16,6 +16,12 @@ namespace bidersGo.Persistence.Repositories
         {
             _context = context;
         }
+
+        public List<Teacher> GetAllTeacherWithLesson()
+        {
+            return _context.Teachers.ToList();
+        }
+
         public List<Lesson> GetLessonsAll()
         {
             return _context.Lessons.ToList();
@@ -28,6 +34,17 @@ namespace bidersGo.Persistence.Repositories
                 .Include(x => x.LessonDetails)
                 //.ThenInclude(x => x.LessonId)
                 .FirstOrDefault();
+        }
+
+        public List<Teacher> GetTeacherForOneLesson(Guid guid)
+        {
+            //return _context.Teachers
+            //    .Include(x => x.Lesson)
+            //    .ThenInclude(x => x.Id)
+            //    .Where(x=>x.LessonId == guid)
+            //    .ToList();
+
+            return _context.Teachers.Where(x => x.LessonId == guid).ToList();
         }
     }
 }

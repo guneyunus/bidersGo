@@ -84,7 +84,7 @@ namespace bidersGo.DataAcces.Conctare
 
         public List<Meet> GetLessonFinishTime(DateTime dateFinish)
         {
-            throw new NotImplementedException();
+            return _context.Meets.Where(x => x.LessonFinishTime == dateFinish).ToList();
         }
     }
 }

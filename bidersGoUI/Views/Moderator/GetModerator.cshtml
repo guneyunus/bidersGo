@@ -1,0 +1,12 @@
+@model bidersGo.Application.Features.Queries.ModeratorGetAll.ModeratorGetAllQueryResponse
+
+@foreach (var item in Model.GetModeratorAll)
+{
+    <input type="text" value="@item.Name" />
+    <input type="text" value="@item.Surname" />
+    <input type="text" value="@item.NickName" />
+    <input type="text" value="@item.Email" />
+    <input type="text" value="@item.TcKimlik" />
+}
+
+

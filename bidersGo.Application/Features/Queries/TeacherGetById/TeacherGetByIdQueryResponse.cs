@@ -9,6 +9,7 @@ namespace bidersGo.Application.Features.Queries.TeacherGetById
 {
     public class TeacherGetByIdQueryResponse
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Branch { get; set; }
@@ -18,6 +19,6 @@ namespace bidersGo.Application.Features.Queries.TeacherGetById
         public Address Address { get; set; }
         public Lesson Lesson { get; set; }
         public Guid LessonId { get; set; }
-        public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; }
+        public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; } = new List<WorkingHoursOfWeek>();
     }
 }

@@ -1,0 +1,107 @@
+
+
+@model bidersGo.Application.Features.Commands.ModeratorUpdate.ModeratorUpdateCommandRequest
+<div>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-4">
+                <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+                    <div class="w-100">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <div>
+                                    <div class="text-center">
+                                        <div>
+                                            <a href=@Url.Action("Index", "Dashboard") class="">
+                                                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
+                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
+                                            </a>
+                                        </div>
+
+                                        <h4 class="font-size-18 mt-4">Register account</h4>
+                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                    </div>
+
+                                    <div class="p-2 mt-5">
+                                        <form method="post" asp-controller="Home" asp-action="UpdateModerator">
+                                            <div>
+                                                <select id="selectModerator">
+                                                    <option>Lütfen Moderator Adý Seçiniz</option>
+                                                    @foreach (var item in ViewBag.Moderator)
+                                                    {
+                                                        <option value="@item.Id"> @item.Name </option>
+                                                    }
+                                                </select>
+                                            </div>
+
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-mail-line auti-custom-input-icon"></i>
+                                                <label asp-for="Name">Moderator Adý</label>
+                                                <input asp-for="Name" class="form-control" placeholder="Yeni Ad Girin">
+                                            </div>
+                                            <input type="hidden" asp-for="Id" value="" id="Id" />
+                                            <div>
+                                                <select id="selectModerator1">
+                                                    <option>Lütfen Moderator Adý Seçiniz</option>
+                                                    @foreach (var item in ViewBag.Moderator)
+                                                    {
+                                                        <option value="@item.Id"> @item.Surname </option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-mail-line auti-custom-input-icon"></i>
+                                                <label asp-for="Surname">Moderator Soyadý</label>
+                                                <input asp-for="Surname" class="form-control" placeholder="Yeni Soyadý Girin">
+                                            </div>
+                                            <input type="hidden" asp-for="Id" value="" id="Id1" />
+
+
+
+                                            <div class="text-center">
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                            </div>
+
+                                            <div class="mt-4 text-center">
+                                                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="authentication-bg position-relative">
+                    <div class="bg-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+
+        var selectedModerator = $("#selectModerator");
+        var changeModeratorName = $("#Id");
+        var selectedModerator1 = $("#selectModerator1");
+        var changeModeratorSurname = $("#Id1");
+
+        selectedModerator.on("change", function(){
+            changeModeratorName.attr("value",selectedModerator.val());
+            console.log(changeModeratorName.val());
+        })
+        selectedModerator1.on("change", function () {
+            changeModeratorSurname.attr("value", selectedModerator1.val());
+        });
+
+
+    </script>
+}

@@ -8,6 +8,7 @@ namespace bidersGo.Application.Features.Queries.AdminGetById
 {
     public class AdminGetByIdQueryResponse
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string NickName { get; set; }

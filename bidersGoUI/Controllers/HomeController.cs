@@ -12,6 +12,15 @@ using bidersGo.Application.Features.Queries.StudentGetById;
 using MediatR;
 using bidersGo.Application.Features.Queries.LessonGetAll;
 using bidersGo.Application.Features.Queries.LessonGetById;
+using Microsoft.AspNetCore.Authorization;
+using bidersGo.Application.Features.Commands.TeacherCreate;
+using Microsoft.AspNetCore.Identity;
+using bidersGo.Application.Interfaces.UnitOfWork;
+using bidersGo.Application.Features.Commands.LessonCreate;
+using bidersGo.Application.Features.Commands.ModeratorCreate;
+using bidersGo.Application.Features.Commands.StudentCreate;
+using bidersGo.Application.Features.Commands.LessonUpdate;
+using bidersGo.Application.Features.Queries.TeacherGetByLesson;
 
 namespace bidersGoUI.Controllers
 {
@@ -19,55 +28,20 @@ namespace bidersGoUI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IMediator _mediator;
-        public HomeController(ILogger<HomeController> logger,IMediator mediator)
+        private readonly IUnitOfWork _unitOfWork;
+        public HomeController(ILogger<HomeController> logger,IMediator mediator,IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _mediator = mediator;
+            _unitOfWork = unitOfWork;
         }
 
-        
         public IActionResult Index()
         {
 
             return View();
         }
 
-        [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetay([FromQuery] StudentGetByIdQueryRequest request)
-        {
-            return await _mediator.Send(request);
-        }
-
-        [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetayOne([FromQuery] StudentGetByIdQueryRequest request)
-        {
-            return await _mediator.Send(request);
-        }
-
-
-
-        [HttpGet]
-        public async Task<IActionResult> GetAdress()
-        {
-            
-            AddressGetAllQueryResponse response = await _mediator.Send(new AddressGetAllQueryRequest());
-
-            return View(response);
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetLesson()
-        {
-            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
-
-            return View(response);
-        }
-        [HttpGet()]
-        public async Task<IActionResult> GetLessonById(Guid id)
-        {
-           LessonGetByIdQueryResponse response = await _mediator.Send(new LessonGetByIdQueryRequest() { Guid=id});
-
-            return View(response);
-        }
         public IActionResult Privacy()
         {
             return View();
@@ -78,10 +52,16 @@ namespace bidersGoUI.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         [HttpGet]
-        public IActionResult GetTeacher()
+        public async Task<IActionResult> GetLessonAll()
         {
-            return View();
+            LessonGetAllQueryResponse model = await _mediator.Send(new LessonGetAllQueryRequest());
+            return View(model);
         }
+
+       
+
+
     }
 }

@@ -1,0 +1,91 @@
+﻿
+@model bidersGo.Application.Features.Queries.UserGetById.UserGetByIdQueryRequest
+@{
+    ViewData["Title"] = "Giriş Ekranı";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+<div>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-4">
+                <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+                    <div class="w-100">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <div>
+                                    <div class="text-center">
+                                        <div>
+                                            <a href=@Url.Action("Index", "Dashboard") class="">
+                                                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
+                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
+                                            </a>
+                                        </div>
+
+                                        <h4 class="font-size-18 mt-4">Welcome Back !</h4>
+                                        <p class="text-muted">Sign in to continue to Nazox.</p>
+                                    </div>
+
+                                    <div class="p-2 mt-5">
+                                        <form method="post" asp-controller="Account" asp-action="Login">
+
+                                            <div class="mb-3 auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="UserName">Kullanıcı Adı</label>
+                                                <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
+                                            </div>
+
+                                            <div class="mb-3 auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Email">E-Posta Adresi</label>
+                                                <input asp-for="Email" type="text" class="form-control" id="username" placeholder="Enter username">
+                                            </div>
+
+                                            
+
+                                            <div class="mb-3 auth-form-group-custom mb-4">
+                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="Password">Password</label>
+                                                <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            </div>
+
+                                            
+
+                                            <div class="mt-4 text-center">
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+                                            </div>
+
+                                            <div class="mt-4 text-center">
+                                                <a href=@Url.Action("Index", "AuthRecoverpw") class="text-muted"><i class="mdi mdi-lock me-1"></i> Forgot your password?</a>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-5 text-center">
+                                        <p>Don't have an account ?</p>
+
+                                        <p> <a asp-controller="Student" asp-action="RegisterStudent" class="fw-medium text-primary">Öğrenci olarak kayıt olmak için tıklayınız..</a> </p>
+                                        <p> <a asp-controller="Teacher" asp-action="RegisterTeacher" class="fw-medium text-primary">Öpretmen olarak kayıt olmak için tıklayınız..</a> </p>
+                                        <p> <a asp-controller="Moderator" asp-action="RegisterModerator" class="fw-medium text-primary">Moderatör olarak kayıt olmak için tıklayınız..</a> </p>
+                                        <p><a asp-controller="Admin" asp-action="RegisterAdmin" class="fw-medium text-primary">Admin olarak kayıt olmak için tıklayınız..</a> </p>
+                                        <p>
+                                            ©
+                                            <script>document.write(new Date().getFullYear())</script> Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="authentication-bg">
+                    <div class="bg-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

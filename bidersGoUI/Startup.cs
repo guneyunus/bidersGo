@@ -13,6 +13,11 @@ using bidersGo.Infrastructure;
 using bidersGo.Infrastructure.Attributes;
 using bidersGo.Persistence;
 using FluentValidation.AspNetCore;
+using bidersGo.Application.Features.Commands.AddressCreate;
+using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
 
 namespace bidersGoUI
 {
@@ -31,7 +36,8 @@ namespace bidersGoUI
             services.AddApplicationServices();
             services.AddInfrastructureServices();
             services.AddPersistenceServices(Configuration);
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddressCreateCommandValidator>());
             
         }
 
@@ -50,9 +56,14 @@ namespace bidersGoUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
+                RequestPath = new PathString("/vendor")
+            });
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

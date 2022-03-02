@@ -13,6 +13,11 @@ namespace bidersGo.Application.Interfaces.Repositories
         Teacher GetTeacherByName(string Name);
         Address GetTeacherAdress(Teacher teacher);
         List<WorkingHoursOfWeek> GetMeetForWeek();
+        void CreateWorkingForOneHour(WorkingForOneHour hour);
+        void CreateWorkingForWeek(WorkingHoursOfWeek hour);
+        WorkingHoursOfWeek GetWorkingTable(Guid id);
+        Teacher GetTeacherByUserId(string id);
+        Teacher GetTeacherByWorkingTableId(Guid id);
 
     }
 }

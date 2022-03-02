@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using bidersGo.Domain.Entities;
+
+namespace bidersGo.Application.Interfaces.Repositories
+{
+    public interface IWorkingWeekRepository : IRepository<WorkingHoursOfWeek>
+    {
+        WorkingHoursOfWeek WorkingHoursOfWeek(Guid Id);
+    }
+}

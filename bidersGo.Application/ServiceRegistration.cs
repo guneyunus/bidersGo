@@ -15,6 +15,7 @@ namespace bidersGo.Application
         {
             serviceCollection.AddMediatR(Assembly.GetExecutingAssembly());
             serviceCollection.AddAutoMapper(Assembly.GetExecutingAssembly());
+
         }
     }
 }

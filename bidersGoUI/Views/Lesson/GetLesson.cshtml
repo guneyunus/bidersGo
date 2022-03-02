@@ -1,0 +1,10 @@
+﻿@model bidersGo.Application.Features.Queries.LessonGetAll.LessonGetAllQueryResponse
+
+
+
+@foreach (var item in Model.LessonGetAll)
+{
+    <input type="text" value="@item.LessonName" />
+    <input type="text" value="@item.IsOnline" />
+    <input type="text" value="@item.Id" />
+}
