@@ -10,11 +10,13 @@ namespace bidersGoUI.Controllers
     public class AccountController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMediator _mediator;
-        public AccountController(SignInManager<ApplicationUser> signInManager, IMediator mediator)
+        public AccountController(SignInManager<ApplicationUser> signInManager, IMediator mediator, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _mediator = mediator;
+            _userManager = userManager;
         }
         public IActionResult Login()
         {
@@ -31,7 +33,38 @@ namespace bidersGoUI.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home", new { area = "" });
+
+                //1.adım usernameden userı bul
+                var user = await _userManager.FindByNameAsync(request.UserName);
+
+                //2.adım userın rolunu tespit et
+                var role = await _userManager.GetRolesAsync(user);
+
+                if (role[0] == "Admin")
+                {
+                    return RedirectToAction("Users", "Admin");
+                }
+                else if (role[0] == "Teacher")
+                {
+                    return RedirectToAction("Index", "Teacher");
+
+                }
+                else if (role[0] == "Student")
+                {
+                    return RedirectToAction("Index", "Student");
+
+                }
+                else if (role[0] == "Moderator")
+                {
+                    return RedirectToAction("Index", "Moderator");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                //3.userin rolune göre controllerina yönlendir
+                
             }
             else
             {

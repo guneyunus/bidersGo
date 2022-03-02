@@ -26,21 +26,36 @@ namespace bidersGo.Application.Features.Commands.RoleUpdate
         {
 
             var user = _unitOfWork.UserRepository.GetUserById(request.Id);
-            //var userRole = _unitOfWork.RoleRepository.GetRoleById(request.Id);
+            
+            var userRoles = await _userManager.GetRolesAsync(user);
 
+            var removed = await _userManager.RemoveFromRoleAsync(user, userRoles.First());
 
-           // var userManager =  _userManager.FindByIdAsync(request.Id); // bu sonuc application user dönmüyor sorun burda 
-            var userManagerRole = _userManager.GetRolesAsync(user).Result.ToString();
-           // await _userManager.RemoveFromRolesAsync(user, userManagerRole); // gecici olarak kapattım hatadan kurtulmak için
+            if (removed.Succeeded)
+            {
+                foreach (var item in RoleNames.Roles)
+                {
+                    if (item == request.Name)
+                    {
+                     await _userManager.AddToRoleAsync(user, item);
+                    }
+                }
+            }
+            else
+            {
+                return new RoleUpdateCommandResponse()
+                {
+                    Succeed = false ,
+                    Message = "Kulanıcı Role Güncelleme işleminde hata gerçekleşti!"
+                };
 
-
-            var result = _unitOfWork.RoleRepository.GetRoleByName(userManagerRole); //patlamasın diye rastgele yazdım
+            }
             _unitOfWork.Save();
 
             return new RoleUpdateCommandResponse()
             {
-                Succeed = result == null ? false : true,
-                Message = result == null ? "Ders Güncelleme işleminde hata gerçekleşti" : "Ders Güncelleme işlemi başarıyla gerçekleşti"
+                Succeed = true,
+                Message =  "Kullanıcı Role Güncelleme işlemi başarıyla gerçekleşti"
             };
         }
     }
