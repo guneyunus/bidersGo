@@ -18,6 +18,9 @@ using bidersGo.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using bidersGoUI.Extentions;
 using DevExtreme.AspNet.Data;
+using bidersGo.Application.Features.Commands.TeacherUpdate;
+using bidersGo.Application.Features.Queries.TeacherGetAll;
+using bidersGo.Application.Features.Commands.TeacherDelete;
 
 namespace bidersGoUI.Controllers
 {
@@ -115,6 +118,34 @@ namespace bidersGoUI.Controllers
                 {Id = id});
             
             return Json(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateTeacher()
+        {
+            TeacherGetAllQueryResponse response = await _mediator.Send(new TeacherGetAllQueryRequest());
+            ViewBag.Teacher = response.TeacherGetAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateTeacher(TeacherUpdateCommandRequest request)
+        {
+            TeacherUpdateCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeleteTeacher()
+        {
+            TeacherGetAllQueryResponse response = await _mediator.Send(new TeacherGetAllQueryRequest());
+            ViewBag.Ogretmenler = response.TeacherGetAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteTeacher(TeacherDeleteCommandRequest request)
+        {
+            TeacherDeleteCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
         }
     }
 }

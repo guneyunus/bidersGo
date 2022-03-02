@@ -1,4 +1,7 @@
 ﻿using bidersGo.Application.Features.Commands.ModeratorCreate;
+using bidersGo.Application.Features.Commands.ModeratorDelete;
+using bidersGo.Application.Features.Commands.ModeratorUpdate;
+using bidersGo.Application.Features.Queries.ModeratorGetAll;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGoUI.Extentions;
 using DevExtreme.AspNet.Data;
@@ -47,5 +50,34 @@ namespace bidersGoUI.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> DeleteModerator()
+        {
+            ModeratorGetAllQueryResponse response = await _mediator.Send(new ModeratorGetAllQueryRequest());
+            ViewBag.Moderator1 = response.GetModeratorAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteModerator(ModeratorDeleteCommandRequest request)
+        {
+            ModeratorDeleteCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateModerator()
+        {
+            ModeratorGetAllQueryResponse response = await _mediator.Send(new ModeratorGetAllQueryRequest());
+            ViewBag.Moderator = response.GetModeratorAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateModerator(ModeratorUpdateCommandRequest request)
+        {
+            ModeratorUpdateCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+
     }
 }

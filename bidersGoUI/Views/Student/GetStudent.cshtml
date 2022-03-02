@@ -1,0 +1,12 @@
+@model bidersGo.Application.Features.Queries.StudentGetAll.StudentGetAllQueryResponse
+
+@foreach (var item in Model.StudentGetAll)
+{
+    <input type="text" value="@item.Name" />
+    <input type="text" value="@item.Surname" />
+    <input type="text" value="@item.Email" />
+
+
+
+
+}

@@ -1,4 +1,5 @@
 ﻿using bidersGo.Application.Features.Commands.LessonCreate;
+using bidersGo.Application.Features.Commands.LessonDelete;
 using bidersGo.Application.Features.Commands.LessonUpdate;
 using bidersGo.Application.Features.Queries.LessonGetAll;
 using bidersGo.Application.Features.Queries.LessonGetById;
@@ -62,6 +63,20 @@ namespace bidersGoUI.Controllers
             LessonGetByIdQueryResponse response = await _mediator.Send(new LessonGetByIdQueryRequest() { Guid = id });
 
             return View(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeleteLesson()
+        {
+            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
+            ViewBag.Lesson = response.LessonGetAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteLesson(LessonDeleteCommandRequest request)
+        {
+            LessonDeleteCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
         }
 
         //[HttpGet]

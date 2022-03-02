@@ -1,4 +1,7 @@
 ﻿using bidersGo.Application.Features.Commands.StudentCreate;
+using bidersGo.Application.Features.Commands.StudentDelete;
+using bidersGo.Application.Features.Commands.StudenUpdate;
+using bidersGo.Application.Features.Queries.StudentGetAll;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGoUI.Extentions;
@@ -61,6 +64,34 @@ namespace bidersGoUI.Controllers
         public IActionResult Students()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateStudent()
+        {
+            StudentGetAllQueryResponse response = await _mediator.Send(new StudentGetAllQueryRequest());
+            ViewBag.Ogrenciler = response.StudentGetAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateStudent(StudentUpdateCommandRequest request)
+        {
+            StudentUpdateCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeleteStudent()
+        {
+            StudentGetAllQueryResponse response = await _mediator.Send(new StudentGetAllQueryRequest());
+            ViewBag.Student = response.StudentGetAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteStudent(StudentDeleteCommandRequest request)
+        {
+            StudentDeleteCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
         }
     }
 }

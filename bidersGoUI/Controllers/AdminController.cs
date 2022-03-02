@@ -1,4 +1,7 @@
 ﻿using bidersGo.Application.Features.Commands.AdminCreate;
+using bidersGo.Application.Features.Commands.AdminDelete;
+using bidersGo.Application.Features.Commands.AdminUpdate;
+using bidersGo.Application.Features.Queries.AdminGetAll;
 using bidersGo.Application.Interfaces.UnitOfWork;
 using bidersGo.Domain.Entities.Identity;
 using bidersGoUI.Extentions;
@@ -58,6 +61,34 @@ namespace bidersGoUI.Controllers
         public IActionResult Admins()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateAdmin()
+        {
+            AdminGetAllQueryResponse response = await _mediator.Send(new AdminGetAllQueryRequest());
+            ViewBag.Admin = response.AdminGetAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateAdmin(AdminUpdateCommandRequest request)
+        {
+            AdminUpdateCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> DeleteAdmin()
+        {
+            AdminGetAllQueryResponse response = await _mediator.Send(new AdminGetAllQueryRequest());
+            ViewBag.Admin1 = response.AdminGetAll;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteAdmin(AdminDeleteCommandRequest request)
+        {
+            AdminDeleteCommandResponse response = await _mediator.Send(request);
+
+            return Ok(response);
         }
     }
 }
