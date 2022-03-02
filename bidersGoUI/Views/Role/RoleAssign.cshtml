@@ -31,13 +31,15 @@
                                                 </div>
 
                                                 <div>
-                                                    <select id="selectLesson" >
+                                                    <select id="selectUserList" value="" >
                                                         <option>Lütfen Kullanıcı Seçiniz</option>
                                                         @foreach (var item in ViewBag.Users)
                                                     {
                                                         <option value="@item.Id">@item.UserName- @item.Email  </option>
                                                     }
                                                 </select>
+                                                
+                                            <input type="hidden" id="selectUser" name="Id" value="" />
                                                 </div>
                                                 <br>
                                                 <br>
@@ -48,43 +50,24 @@
                                                 </div>
 
                                                  <div>
-                                                    <select id="selectLesson" >
+                                                    <select id="selectRoleList" >
                                                         <option>Lütfen Role Seçiniz</option>
                                                         @foreach (var item in ViewBag.Roles)
                                                     {
-                                                        <option value="@item.Id"> @item.Name </option>
+                                                        <option value="@item.Name"> @item.Name </option>
                                                     }
                                                 </select>
-                                                </div>
+                                                <input type="hidden" id="selectRole" name="Name" value="" />
 
-                                                 @*<div>
-                                                    <select id="selectLesson" >
-                                                        <option>Lütfen Role Seçiniz</option>
-                                                        @foreach (var item in ViewBag.UserRoleManager)
-                                                    {
-                                                        <option value="@item.Id"> @item.Name </option>
-                                                    }
-                                                </select>
-                                                </div>*@
-                                             
-                                            
-                                          @*  <input type="hidden" asp-for="Guid" value="" id="LessonGuid" />*@
-                                            <@*div class="mb-4">
-                                                <select id="selectedLessonState">
-                                                    <option>Lüstfen Ders Durumunu Seçiniz</option>
-                                                    <option value="true">Online Ders</option>
-                                                    <option value="false">Yüz Yüze Ders</option>
-                                                </select>
-                                                <input asp-for="IsOnline" type="hidden" class="form-control" id="isOnline" value="">
-                                            </div>*@
 
-                                            <div class="text-center">
+                                                </div> <div class="text-center">
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
                                             </div>
 
                                             <div class="mt-4 text-center">
                                                 <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
                                             </div>
+
                                         </form>
                                     </div>
 
@@ -103,25 +86,29 @@
         </div>
     </div>
 </div>
+@*view üzerindeki model yapısı formu post etmek istediğimiz action parametresinden farklı olduğu için formu name parametlereleri ile bind ettik*@
 
 @section Scripts{
 
     <script>
+        var userIdString = null;
+        var selectUser = $("#selectUser");
+        var selectUserList = $("#selectUserList");
+        var selectRoleList = $("#selectRoleList");
+        var selectRole = $("#selectRole");
 
-        var selectedLesson = $("#selectLesson");
-        var changeLessonId = $("#LessonGuid");
-        var isOnline = $("#isOnline");
-        var selectedLessonState = $("#selectedLessonState");
-
-        selectedLesson.on("change", function(){
-            //console.log(selectedLesson.val());
-
-            changeLessonId.attr("value",selectedLesson.val());
-            console.log(changeLessonId.val());
+        selectUserList.on("change", function(){
+            console.log(selectUserList.val());
+            userIdString = selectUserList.val();
+            $("#selectUser").attr("value",userIdString);
+            console.log($("#selectUser").val());
         })
-        selectedLessonState.on("change",function(){
-            isOnline.attr("value",selectedLessonState.val());
+        selectRoleList.on("change",function(){
+            selectRole.attr("value",selectRoleList.val());
+            console.log(selectRole.val());
         })
+
+
 
 
     </script>

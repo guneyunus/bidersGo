@@ -1,9 +1,11 @@
 ﻿using bidersGo.Application.Features.Commands.StudentCreate;
 using bidersGo.Application.Features.Queries.StudentGetById;
 using bidersGo.Application.Interfaces.UnitOfWork;
+using bidersGo.Domain.Entities.Identity;
 using bidersGoUI.Extentions;
 using DevExtreme.AspNet.Data;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace bidersGoUI.Controllers
 {
+    [Authorize(Roles = "Student,Admin")]
     public class StudentController : Controller
     {
         private readonly IMediator _mediator;
@@ -25,15 +28,15 @@ namespace bidersGoUI.Controllers
         {
             return View();
         }
-
+        //TODO: route optimization
         [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetay([FromQuery] StudentGetByIdQueryRequest request)
+        public async Task<StudentByIdQueryResponse> StudentDetay(StudentGetByIdQueryRequest request)
         {
             return await _mediator.Send(request);
         }
 
         [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetayOne([FromQuery] StudentGetByIdQueryRequest request)
+        public async Task<StudentByIdQueryResponse> StudentDetayOne(StudentGetByIdQueryRequest request)
         {
             return await _mediator.Send(request);
         }

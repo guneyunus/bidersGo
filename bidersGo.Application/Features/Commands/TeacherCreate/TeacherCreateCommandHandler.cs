@@ -83,7 +83,8 @@ namespace bidersGo.Application.Features.Commands.TeacherCreate
                 
             };
             var teacher = _unitOfWork.TeacherRepository.CreateAsync(NewTeacher);
-            _unitOfWork.Save();
+            if(teacher!=null)
+                _unitOfWork.SaveAsync();
             return new TeacherCreateCommandResponse() 
             {
                 Succeed=teacher==null?false:true,
