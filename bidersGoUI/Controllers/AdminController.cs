@@ -10,6 +10,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using bidersGo.Application.Features.Commands.RolesAdded;
 
 namespace bidersGoUI.Controllers
 {
@@ -89,6 +90,13 @@ namespace bidersGoUI.Controllers
             AdminDeleteCommandResponse response = await _mediator.Send(request);
 
             return Ok(response);
+        }
+
+        public async Task<IActionResult> RoleAdd(RolesAddCommandRequest request)
+        {
+            RolesAddCommandResponse response = await _mediator.Send(request);
+
+            return View(response);
         }
     }
 }

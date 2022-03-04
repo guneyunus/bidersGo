@@ -13,7 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace bidersGoUI.Controllers
 {
@@ -22,28 +24,25 @@ namespace bidersGoUI.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IUnitOfWork _unitOfWork;
-        public StudentController(IMediator mediator,IUnitOfWork unitOfWork)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public StudentController(IMediator mediator,IUnitOfWork unitOfWork,UserManager<ApplicationUser> userManager)
         {
               _mediator = mediator;
             _unitOfWork = unitOfWork;
+            _userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult>  Index()
         {
-            return View();
-        }
-        //TODO: route optimization
-        [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetay(StudentGetByIdQueryRequest request)
-        {
-            return await _mediator.Send(request);
-        }
+            ClaimsPrincipal currentUser = this.User;
+            var id = _userManager.GetUserId(currentUser);
+            var studentId = _unitOfWork.StudentRepository.GetStudentByUserId(Guid.Parse(id));
+            
+            StudentByIdQueryResponse response = await _mediator.Send(new StudentGetByIdQueryRequest()
+                {Guid = studentId.Id});
 
-        [HttpGet("{Id}")]
-        public async Task<StudentByIdQueryResponse> StudentDetayOne(StudentGetByIdQueryRequest request)
-        {
-            return await _mediator.Send(request);
+            return View(response);
         }
-
+        
         [HttpGet]
         public IActionResult RegisterStudent()
         {

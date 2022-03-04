@@ -23,10 +23,10 @@ namespace bidersGo.Application.Features.Commands.AdminCreate
             _unitOfWork = unitOfWork;
             _userManager = userManager;
             _roleManager = roleManager;
-            CheckRoles();
+            SetRoles();
         }
 
-        private void CheckRoles()
+        private void SetRoles()
         {
             foreach (var roleName in RoleNames.Roles)
             {

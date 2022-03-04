@@ -40,12 +40,9 @@ namespace bidersGoUI.Controllers
         public IActionResult Index()
         {
             ClaimsPrincipal currentUser = this.User;
-            //bool isTeacher = currentUser.IsInRole("Teacher");
+            
             var id = _userManager.GetUserId(currentUser);
-            //if (isTeacher == false)
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            
             ViewBag.Id = id;
             return View();
         }

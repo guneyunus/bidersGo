@@ -32,6 +32,11 @@ namespace bidersGo.Persistence.Repositories
             return _context.Students.Where(x => x.Name == Name).FirstOrDefault();
         }
 
+        public Student GetStudentByUserId(Guid id)
+        {
+            return _context.Students.FirstOrDefault(x => Guid.Parse(x.UserId)== id);
+        }
+
         public List<Student> GetStudentsAll()
         {
             return _context.Students.ToList();
