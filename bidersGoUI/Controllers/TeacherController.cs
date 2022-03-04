@@ -21,6 +21,7 @@ using DevExtreme.AspNet.Data;
 using bidersGo.Application.Features.Commands.TeacherUpdate;
 using bidersGo.Application.Features.Queries.TeacherGetAll;
 using bidersGo.Application.Features.Commands.TeacherDelete;
+using Newtonsoft.Json;
 
 namespace bidersGoUI.Controllers
 {
@@ -114,8 +115,64 @@ namespace bidersGoUI.Controllers
             WorkingWeekOfHourInOneQueryResponse response = await _mediator.Send(new WorkingWeekOfHourInOneQueryRequest()
                 {Id = id});
             
+            
             return Json(response);
         }
+
+        [HttpGet] public async Task<object> Get(DataSourceLoadOptions loadOptions,Guid id)
+        {
+            WorkingWeekOfHourInOneQueryResponse response = await _mediator.Send(new WorkingWeekOfHourInOneQueryRequest()
+                {Id = id});
+            var _data = response.WorkingHoursOfWeek.WorkingForOneHours;
+            
+            return DataSourceLoader.Load(_data, loadOptions);
+        }
+
+        [HttpPost]
+        public IActionResult Post(string values,string id)
+        {
+            var newAppointment = new WorkingForOneHour();
+            JsonConvert.PopulateObject(values, newAppointment);
+
+            newAppointment.weekID = Guid.Parse(id);
+
+            if (!TryValidateModel(newAppointment))
+                return BadRequest();
+
+            _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(newAppointment.weekID).WorkingForOneHours.Add(newAppointment);
+            _unitOfWork.SaveAsync();
+            
+
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult Put(string key, string values)
+        {
+           // var appointment = _data.Appointments.First(a => a.AppointmentId == key);
+           var appointment = new WorkingForOneHour();
+            JsonConvert.PopulateObject(values, appointment);
+
+            appointment = _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(appointment.weekID).WorkingForOneHours
+                .FirstOrDefault(x => x.Id == Guid.Parse(key));
+
+            if (!TryValidateModel(appointment))
+                return BadRequest();
+
+            _unitOfWork.SaveAsync();
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public void Delete(string key,Guid id)
+        {
+            var appointment = _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(id).WorkingForOneHours
+                .FirstOrDefault(x => x.Id == Guid.Parse(key));
+            _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(id).WorkingForOneHours.Remove(appointment);
+            _unitOfWork.SaveAsync();
+        }
+
         [HttpGet]
         public async Task<IActionResult> UpdateTeacher()
         {

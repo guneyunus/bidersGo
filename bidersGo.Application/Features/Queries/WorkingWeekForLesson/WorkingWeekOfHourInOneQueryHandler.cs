@@ -21,6 +21,7 @@ namespace bidersGo.Application.Features.Queries.WorkingWeekForLesson
         }
         public Task<WorkingWeekOfHourInOneQueryResponse> Handle(WorkingWeekOfHourInOneQueryRequest request, CancellationToken cancellationToken)
         {
+            //buradaki guid öğretmenin çalışma tablosunu temsil eden guid
             var tablo = _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(request.Id);
 
             var response = new WorkingWeekOfHourInOneQueryResponse()

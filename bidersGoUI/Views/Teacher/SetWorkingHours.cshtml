@@ -30,7 +30,7 @@
             
             <p>@item.week</p>
             <p>@item.weekID</p>
-            <p>@item.AppointmentId</p>
+            
                            
 
         }
@@ -51,45 +51,8 @@
     <script>
 
         var hiddenId = $("#WorkingTableId");
-        var urlparameters = "../../../teacher/GetHoursInWorkingTable/";
+        var url = "../../../teacher/";
         console.log(hiddenId.val());
-
-        var store = new DevExpress.data.DataSource({
-            key: "TeacherId",
-            load: function(loadOptions) {
-                return sendRequest(`${urlparameters}${hiddenId.val()}`);
-            },
-            insert: function(values) {
-                // ...
-            },
-            update: function(key, values) {
-                // ...
-            },
-            remove: function(key) {
-                // ...
-            }
-        });
-
-        
-
-        function sendRequest(url, method = 'GET', data) {
-            var d = $.Deferred();
-            $.ajax(url,
-                { method,
-                    data,
-                    cache: false,
-                    xhrFields: { withCredentials: true }
-                }).done((result) => {
-                    
-                    d.resolve(method === 'GET' ? result.data : result);
-                    console.log(result.data);
-            }).fail((xhr) => {
-                d.reject(xhr.responseJSON ? xhr.responseJSON.Message : xhr.statusText);
-            });
-
-            return d.promise();
-        }
-
 
         $(() => {
             function showToast(event, value, type) {
@@ -98,7 +61,26 @@
 
             var scheduler = $('#scheduler').dxScheduler({
                 timeZone: 'America/Los_Angeles',
-                dataSource: store,
+                dataSource:DevExpress.data.AspNet.createStore({
+                    key: 'Id',
+                    loadUrl: `${url}Get/`,
+                    insertUrl: `${url}Post/`,
+                    updateUrl: `${url}Put`,
+                    deleteUrl: `${url}Delete/`,
+                    onBeforeSend(method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                        if (method == "load") {
+                            ajaxOptions.url += hiddenId.val();
+                        }
+                        if (method == "insert") {
+                            ajaxOptions.url += hiddenId.val();
+                            console.log(ajaxOptions);
+                        }
+                        if (method == "delete") {
+                            ajaxOptions.url += hiddenId.val();
+                        }
+                }
+                }),
                 views: ['week'],
                 currentView: 'week',
                 currentDate: new Date(2021, 3, 29),
@@ -113,27 +95,27 @@
                     allowResizing: true,
                     allowDragging: true,
                 },
-                onAppointmentAdded(e) {
-                    showToast('Added', e.appointmentData.text, 'success');
-                    console.log(e.appointmentData);
-                    $.ajax({
-                        url: "../../../teacher/SetWorkingOneHour/",
-                        data: { "Id": hiddenId.val(), "startDate": e.appointmentData.startDate, "endDate": e.appointmentData.endDate },
-                        type: 'POST',
-                        beforeSend: function(xhr) {
-                            xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                        }
-                    }).done(function() {
-                        /*tabloVerileriniYenile(hiddenId.val());*/
-                    });
-                    //calllback done function hocanın çalışma tablosundaki verileri getir
-                },
-                onAppointmentUpdated(e) {
-                    showToast('Updated', e.appointmentData.text, 'info');
-                },
-                onAppointmentDeleted(e) {
-                    showToast('Deleted', e.appointmentData.text, 'warning');
-                },
+                //onAppointmentAdded(e) {
+                //    showToast('Added', e.appointmentData.text, 'success');
+                //    console.log(e.appointmentData);
+                //    $.ajax({
+                //        url: "../../../teacher/SetWorkingOneHour/",
+                //        data: { "Id": hiddenId.val(), "startDate": e.appointmentData.startDate, "endDate": e.appointmentData.endDate },
+                //        type: 'POST',
+                //        beforeSend: function(xhr) {
+                //            xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                //        }
+                //    }).done(function() {
+                //        /*tabloVerileriniYenile(hiddenId.val());*/
+                //    });
+                //    //calllback done function hocanın çalışma tablosundaki verileri getir
+                //},
+                //onAppointmentUpdated(e) {
+                //    showToast('Updated', e.appointmentData.text, 'info');
+                //},
+                //onAppointmentDeleted(e) {
+                //    showToast('Deleted', e.appointmentData.text, 'warning');
+                //},
                 height: 600,
             }).dxScheduler('instance');
 

@@ -13,9 +13,7 @@ namespace bidersGo.Domain.Entities
         
         public WorkingHoursOfWeek week { get; set; }
         public Guid weekID { get; set; }
-       
-        [JsonProperty(PropertyName = "AppointmentId")]
-        public int AppointmentId { get; set; }
+        
         [JsonProperty(PropertyName = "Text")]
         public string Text { get; set; }
         [JsonProperty(PropertyName = "Description")]
@@ -24,8 +22,9 @@ namespace bidersGo.Domain.Entities
         public string StartDate { get; set; }
         [JsonProperty(PropertyName = "EndDate")]
         public string EndDate { get; set; }
+
         [JsonProperty(PropertyName = "AllDay")]
-        public bool AllDay { get; set; }
+        public bool AllDay { get; set; } = false;
         [JsonProperty(PropertyName = "RecurrenceRule")]
         public string RecurrenceRule { get; set; }
         [JsonProperty(PropertyName = "RecurrenceException")]
