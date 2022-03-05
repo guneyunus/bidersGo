@@ -24,22 +24,11 @@
             </div>
         </div>
     </div>
-    <div>
-        @foreach (var item in Model.Data.WorkingForOneHours)
-        {
-            
-            <p>@item.week</p>
-            <p>@item.weekID</p>
-            
-                           
-
-        }
-        <div>
-            <input type="hidden" id="WorkingTableId"  asp-for="Data.Id" />
-        </div>
-    </div>
+    
 </div>
-
+<div>
+    <input type="hidden" id="WorkingTableId" value="@ViewBag.TabloId" />
+</div>
 
 
 @section Scripts
@@ -62,10 +51,10 @@
             var scheduler = $('#scheduler').dxScheduler({
                 timeZone: 'America/Los_Angeles',
                 dataSource:DevExpress.data.AspNet.createStore({
-                    key: 'Id',
+                    key: 'id',
                     loadUrl: `${url}Get/`,
                     insertUrl: `${url}Post/`,
-                    updateUrl: `${url}Put`,
+                    updateUrl: `${url}Put/`,
                     deleteUrl: `${url}Delete/`,
                     onBeforeSend(method, ajaxOptions) {
                         ajaxOptions.xhrFields = { withCredentials: true };
@@ -76,17 +65,28 @@
                             ajaxOptions.url += hiddenId.val();
                             console.log(ajaxOptions);
                         }
-                        if (method == "delete") {
+                        if (method == "update") {
                             ajaxOptions.url += hiddenId.val();
+                            console.log(ajaxOptions);
+                        }
+                        if (method == "delete") {
+                            console.log(ajaxOptions);
+                            /*ajaxOptions.url += key;*/
                         }
                 }
                 }),
                 views: ['week'],
                 currentView: 'week',
-                currentDate: new Date(2021, 3, 29),
+                currentDate: Date.now(),
                 dateSerializationFormat: 'yyyy-MM-ddTHH:mm:ssZ',
                 startDayHour: 8,
                 endDayHour: 24,
+                textExpr: 'Text',
+                startDateExpr: 'StartDate',
+                endDateExpr: 'EndDate',
+                recurrenceRuleExpr: 'RecurrenceRule',
+                recurrenceExceptionExpr: 'RecurrenceException',
+                descriptionExpr:'Description',
                 allDayExpr: 'AllDay',
                 editing: {
                     allowAdding: true,
@@ -95,28 +95,15 @@
                     allowResizing: true,
                     allowDragging: true,
                 },
-                //onAppointmentAdded(e) {
-                //    showToast('Added', e.appointmentData.text, 'success');
-                //    console.log(e.appointmentData);
-                //    $.ajax({
-                //        url: "../../../teacher/SetWorkingOneHour/",
-                //        data: { "Id": hiddenId.val(), "startDate": e.appointmentData.startDate, "endDate": e.appointmentData.endDate },
-                //        type: 'POST',
-                //        beforeSend: function(xhr) {
-                //            xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                //        }
-                //    }).done(function() {
-                //        /*tabloVerileriniYenile(hiddenId.val());*/
-                //    });
-                //    //calllback done function hocanın çalışma tablosundaki verileri getir
-                //},
-                //onAppointmentUpdated(e) {
-                //    showToast('Updated', e.appointmentData.text, 'info');
-                //},
-                //onAppointmentDeleted(e) {
-                //    showToast('Deleted', e.appointmentData.text, 'warning');
-                //},
-                height: 600,
+                onAppointmentDeleted(e) {
+                    showToast('Deleted', e.appointmentData.text, 'warning');
+                    
+                },
+                onAppointmentDeleting(e) {
+                    showToast('Silmek İstiyor Musunuz', e.appointmentData.text, 'warning');
+                    console.log(e);
+                },
+                height: 600
             }).dxScheduler('instance');
 
             $('#allow-adding').dxCheckBox({

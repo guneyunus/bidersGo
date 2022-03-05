@@ -10,5 +10,11 @@ namespace bidersGo.Application.Interfaces.Repositories
     public interface IWorkingWeekRepository : IRepository<WorkingHoursOfWeek>
     {
         WorkingHoursOfWeek WorkingHoursOfWeek(Guid Id);
+
+        void setApmoinment(WorkingForOneHour entityForOneHour);
+
+        void UpdateAppointment(WorkingForOneHour entityForOneHour );
+
+        void DeleteAppointment(Guid id);
     }
 }

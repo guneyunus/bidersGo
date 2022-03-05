@@ -30,6 +30,20 @@ namespace bidersGo.Persistence.Repositories
             _context.SaveChanges();
         }
 
+        public void CreateWorkingWeekAddToTeacher(Guid teacherGuid, WorkingHoursOfWeek hours)
+        {
+            var teacher =
+                _context.Teachers.Where(x => x.Id == teacherGuid).First();
+            teacher.WorkingHoursOfWeek.Add(hours);
+            _context.Update(teacher);
+            _context.SaveChanges();
+        }
+
+        public WorkingHoursOfWeek GetByTeacherId(Guid id)
+        {
+            return _context.WorkingHoursOfWeeks.FirstOrDefault(x => x.TeacherId == id);
+        }
+
         public List<WorkingHoursOfWeek> GetMeetForWeek()
         {
             return _context.WorkingHoursOfWeeks.ToList();
@@ -42,7 +56,11 @@ namespace bidersGo.Persistence.Repositories
 
         public Teacher GetTeacherById(Guid teacherGuid)
         {
-            return _context.Teachers.Where(x => x.Id == teacherGuid).FirstOrDefault();
+            return _context.Teachers
+                .Include(x=>x.WorkingHoursOfWeek)
+                .ThenInclude(x=>x.WorkingForOneHours)
+                .Where(x => x.Id == teacherGuid)
+                .FirstOrDefault();
         }
 
         public Teacher GetTeacherByName(string Name)
@@ -52,7 +70,11 @@ namespace bidersGo.Persistence.Repositories
 
         public Teacher GetTeacherByUserId(string id)
         {
-            return _context.Teachers.Where(x => x.UserId == id).First();
+            return _context.Teachers
+                .Include(x => x.WorkingHoursOfWeek)
+                .ThenInclude(x => x.WorkingForOneHours)
+                .Where(x => x.UserId == id)
+                .First();
         }
 
         public Teacher GetTeacherByWorkingTableId(Guid id)

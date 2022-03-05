@@ -60,6 +60,12 @@ namespace bidersGoUI.Controllers
             {
                 return BadRequest();
             }
+            //ogretmenin calısma tablosunun id'sini viewbag içerisinde gönder
+
+            var tabloId = model.Data.Id;
+
+            ViewBag.TabloId = tabloId;
+
             return View(model);
         }
 
@@ -139,38 +145,32 @@ namespace bidersGoUI.Controllers
             if (!TryValidateModel(newAppointment))
                 return BadRequest();
 
-            _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(newAppointment.weekID).WorkingForOneHours.Add(newAppointment);
-            _unitOfWork.SaveAsync();
+            _unitOfWork.workingWeekRepository.setApmoinment(newAppointment);
             
-
             return Ok();
         }
 
         [HttpPut]
         public IActionResult Put(string key, string values)
         {
-           // var appointment = _data.Appointments.First(a => a.AppointmentId == key);
-           var appointment = new WorkingForOneHour();
+            var appointment = new WorkingForOneHour();
             JsonConvert.PopulateObject(values, appointment);
 
-            appointment = _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(appointment.weekID).WorkingForOneHours
-                .FirstOrDefault(x => x.Id == Guid.Parse(key));
+            //appointment.weekID = Guid.Parse(key);
+            _unitOfWork.workingWeekRepository.UpdateAppointment(appointment);
+
+            
 
             if (!TryValidateModel(appointment))
                 return BadRequest();
-
-            _unitOfWork.SaveAsync();
 
             return Ok();
         }
 
         [HttpDelete]
-        public void Delete(string key,Guid id)
+        public void Delete(Guid key)
         {
-            var appointment = _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(id).WorkingForOneHours
-                .FirstOrDefault(x => x.Id == Guid.Parse(key));
-            _unitOfWork.workingWeekRepository.WorkingHoursOfWeek(id).WorkingForOneHours.Remove(appointment);
-            _unitOfWork.SaveAsync();
+            _unitOfWork.workingWeekRepository.DeleteAppointment(key);
         }
 
         [HttpGet]

@@ -43,8 +43,10 @@ namespace bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate
                     TeacherId = teacher.Id,
                     WorkingForOneHours = new List<WorkingForOneHour>()
                 };
-                teacher.WorkingHoursOfWeek.Add(WorkingWeek);
+               
                 _unitOfWork.TeacherRepository.CreateWorkingForWeek(WorkingWeek);
+                _unitOfWork.TeacherRepository.CreateWorkingWeekAddToTeacher(teacher.Id,WorkingWeek);
+                
             }
             else
             {

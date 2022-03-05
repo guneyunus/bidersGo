@@ -17,6 +17,26 @@ namespace bidersGo.Persistence.Repositories
         {
             _context = context;
         }
+
+        public void DeleteAppointment(Guid id)
+        {
+            var deleteHour = _context.workingForOneHours.Find(id);
+            _context.workingForOneHours.Remove(deleteHour);
+            _context.SaveChanges();
+        }
+
+        public void setApmoinment(WorkingForOneHour entityForOneHour)
+        {
+            _context.workingForOneHours.Add(entityForOneHour);
+            _context.SaveChanges();
+        }
+
+        public void UpdateAppointment(WorkingForOneHour entityForOneHour)
+        {
+            _context.workingForOneHours.Update(entityForOneHour);
+            _context.SaveChanges();
+        }
+
         public WorkingHoursOfWeek WorkingHoursOfWeek(Guid Id)
         {
             return _context.WorkingHoursOfWeeks

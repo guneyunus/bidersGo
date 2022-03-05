@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -10,7 +11,8 @@ namespace bidersGo.Domain.Entities
 {
     public class WorkingForOneHour :BaseEntity
     {
-        
+        [JsonIgnore]
+        [IgnoreDataMember]
         public WorkingHoursOfWeek week { get; set; }
         public Guid weekID { get; set; }
         

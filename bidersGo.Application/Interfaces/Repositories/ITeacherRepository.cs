@@ -15,7 +15,9 @@ namespace bidersGo.Application.Interfaces.Repositories
         List<WorkingHoursOfWeek> GetMeetForWeek();
         void CreateWorkingForOneHour(WorkingForOneHour hour);
         void CreateWorkingForWeek(WorkingHoursOfWeek hour);
+        void CreateWorkingWeekAddToTeacher(Guid teacherGuid, WorkingHoursOfWeek hours);
         WorkingHoursOfWeek GetWorkingTable(Guid id);
+        WorkingHoursOfWeek GetByTeacherId(Guid id);
         Teacher GetTeacherByUserId(string id);
         Teacher GetTeacherByWorkingTableId(Guid id);
 
