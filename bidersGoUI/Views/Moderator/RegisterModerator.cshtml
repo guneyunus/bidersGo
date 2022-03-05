@@ -30,18 +30,6 @@
                                         <form method="post" asp-controller="Moderator" asp-action="RegisterModerator">
 
                                             <div class="auth-form-group-custom mb-4">
-                                                <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label asp-for="Email">E-Posta Adresi</label>
-                                                <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
-                                            </div>
-
-                                            <div class="auth-form-group-custom mb-4">
-                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
-                                                <label asp-for="TcKimlik">Tc Kimlik Numarası</label>
-                                                <input asp-for="TcKimlik" type="text" class="form-control" id="tcNo" placeholder="Enter username">
-                                            </div>
-
-                                            <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Name">Ad</label>
                                                 <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter username">
@@ -58,12 +46,29 @@
                                                 <label asp-for="NickName">Kullanıcı Adı</label>
                                                 <input asp-for="NickName" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
-                                             
+
+                                             <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-mail-line auti-custom-input-icon"></i>
+                                                <label asp-for="Email">E-Posta Adresi</label>
+                                                <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="TcKimlik">Tc Kimlik Numarası</label>
+                                                <input asp-for="TcKimlik" type="text" class="form-control" id="tcNo" placeholder="Enter username">
+                                            </div>
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Password">Şifre</label>
                                                 <input asp-for="Password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="ConfirmPassword">Şifre Tekrarı</label>
+                                                <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpassword" placeholder="Enter password">
                                             </div>
 
                                             <div class="text-center">

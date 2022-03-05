@@ -26,7 +26,7 @@ namespace bidersGo.Application.Features.Commands.StudenUpdate
             student.Address = request.Address;
             student.NickName = request.NickName;
             student.TcKimlik = request.TcKimlik;
-            student.Password = request.Password;
+            //student.Password = request.Password;
 
             var result = _unitOfWork.StudentRepository.AsyncUpdate(student);
             _unitOfWork.Save();

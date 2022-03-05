@@ -25,7 +25,7 @@ namespace bidersGo.Application.Features.Commands.TeacherUpdate
             teacher.Email = request.Email;
             teacher.Address = request.Address;
             teacher.NickName = request.NickName;
-            teacher.Password = request.Password;
+            //teacher.Password = request.Password;
 
            var result= _unitOfWork.TeacherRepository.AsyncUpdate(teacher);
             _unitOfWork.Save();
