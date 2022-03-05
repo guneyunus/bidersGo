@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace bidersGoUI.Controllers
 {
-    [Authorize(Roles = "Student,Admin")]
+    
     public class StudentController : Controller
     {
         private readonly IMediator _mediator;
@@ -31,11 +31,11 @@ namespace bidersGoUI.Controllers
             _unitOfWork = unitOfWork;
             _userManager = userManager;
         }
-        public async Task<IActionResult>  Index()
+        public async Task<IActionResult> Index()
         {
             ClaimsPrincipal currentUser = this.User;
             var id = _userManager.GetUserId(currentUser);
-            var studentId = _unitOfWork.StudentRepository.GetStudentByUserId(Guid.Parse(id));
+            var studentId = _unitOfWork.StudentRepository.GetStudentByUserId(id);
             
             StudentByIdQueryResponse response = await _mediator.Send(new StudentGetByIdQueryRequest()
                 {Guid = studentId.Id});

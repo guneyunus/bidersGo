@@ -13,6 +13,6 @@ namespace bidersGo.Application.Interfaces.Repositories
         Student GetStudentByName(string Name);
         Address GetStudentAdress(Student student);
 
-        Student GetStudentByUserId(Guid id);
+        Student GetStudentByUserId(string id);
     }
 }

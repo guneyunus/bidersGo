@@ -11,7 +11,7 @@ namespace bidersGo.Application.Features.Queries.StudentGetById
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int TcKimlik { get; set; }
+        public string TcKimlik { get; set; }
         public Address Address { get; set; }
         public List<Meet> Meets { get; set; }
         public string NickName { get; set; }

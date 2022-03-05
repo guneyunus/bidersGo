@@ -52,7 +52,7 @@ namespace bidersGo.Application.Features.Commands.StudentCreate
                     Message = "Kayıt işleminde hata gerçekleşti"
                 };
             }
-            _userManager.AddToRoleAsync(StudentUser, RoleNames.Passive);
+            await _userManager.AddToRoleAsync(StudentUser, RoleNames.Passive);
             var NewStudent = new Student()
             {
                 Name = request.Name,
@@ -68,7 +68,7 @@ namespace bidersGo.Application.Features.Commands.StudentCreate
             };
 
             var student = _unitOfWork.StudentRepository.CreateAsync(NewStudent);
-            _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
             return new StudentCreateCommandResponse()
             {
                 Succeed = student == null ? false : true,

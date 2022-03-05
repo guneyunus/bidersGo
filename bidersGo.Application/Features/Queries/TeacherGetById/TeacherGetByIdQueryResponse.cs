@@ -13,7 +13,7 @@ namespace bidersGo.Application.Features.Queries.TeacherGetById
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Branch { get; set; }
-        public int TcKimlik { get; set; }
+        public string TcKimlik { get; set; }
         public string NickName { get; set; }
         public string Email { get; set; }
         public Address Address { get; set; }
