@@ -8,11 +8,12 @@ namespace bidersGo.Application.Features.Queries.ModeratorGetById
 {
     public class ModeratorGetByIdQueryResponse
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string NickName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int TcKimlik { get; set; }
+        public string TcKimlik { get; set; }
     }
 }
