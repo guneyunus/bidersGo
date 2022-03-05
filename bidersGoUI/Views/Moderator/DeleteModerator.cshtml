@@ -1,6 +1,11 @@
 ﻿
 
-@model bidersGo.Application.Features.Commands.ModeratorDelete.ModeratorDeleteCommandRequest
+@using bidersGo.Application.Features.Commands.ModeratorDelete
+@model  ModeratorDeleteCommandRequest
+@{ 
+    ViewData["Title"] = "Moderator Silme Ekranı";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
 <div>
     <div class="container-fluid p-0">
         <div class="row g-0">
@@ -18,7 +23,7 @@
                                             </a>
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Register account</h4>
+                                        <h4 class="font-size-18 mt-4">Delete account</h4>
                                         <p class="text-muted">Get your free Nazox account now.</p>
                                     </div>
 
@@ -26,7 +31,7 @@
                                         <form method="post" asp-controller="Home" asp-action="DeleteModerator">
                                             <div>
                                                 <select id="selectModerator">
-                                                    <option>Lütfen Moderator Adi Seciniz</option>
+                                                    <option>Lutfen Moderator Adi Seciniz</option>
                                                     @foreach (var item in ViewBag.Moderator1)
                                                     {
                                                         <option value="@item.Id"> @item.Name @item.Surname </option>
@@ -42,9 +47,9 @@
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Delete</button>
                                             </div>
 
-                                            <div class="mt-4 text-center">
+                                            @*<div class="mt-4 text-center">
                                                 <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
-                                            </div>
+                                            </div>*@
                                         </form>
                                     </div>
 
@@ -83,5 +88,6 @@
 
     </script>
 }
+
 
 

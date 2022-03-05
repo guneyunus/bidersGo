@@ -18,7 +18,7 @@ namespace bidersGo.Domain.Entities
         public string TcKimlik { get; set; }
         public string NickName { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        //public string Password { get; set; }
         public Address Address { get; set; }
         public List<WorkingHoursOfWeek> WorkingHoursOfWeek { get; set; } = new List<WorkingHoursOfWeek>();
         public bool IsWorking { get; set; }

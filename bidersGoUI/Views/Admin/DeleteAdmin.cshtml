@@ -1,6 +1,11 @@
 ﻿
 
-@model bidersGo.Application.Features.Commands.AdminDelete.AdminDeleteCommandRequest
+@using bidersGo.Application.Features.Commands.AdminDelete 
+@model AdminDeleteCommandRequest
+@{
+    ViewData["Title"] = "Admin Sİlme Ekranı";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+ }
 <div>
     <div class="container-fluid p-0">
         <div class="row g-0">
@@ -18,7 +23,7 @@
                                             </a>
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Register account</h4>
+                                        <h4 class="font-size-18 mt-4">Admin Delete</h4>
                                         <p class="text-muted">Get your free Nazox account now.</p>
                                     </div>
 
@@ -26,7 +31,7 @@
                                         <form method="post" asp-controller="Home" asp-action="DeleteAdmin">
                                             <div>
                                                 <select id="selectAdmin">
-                                                    <option>L�tfen Admin Adi Seciniz</option>
+                                                    <option>Lutfen Admin Adi Seciniz</option>
                                                     @foreach (var item in ViewBag.Admin1)
                                                     {
                                                         <option value="@item.Id"> @item.Name @item.Surname </option>
@@ -39,12 +44,12 @@
 
 
                                             <div class="text-center">
-                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Delete</button>
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Sil</button>
                                             </div>
 
-                                            <div class="mt-4 text-center">
+                                            @*<div class="mt-4 text-center">
                                                 <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
-                                            </div>
+                                            </div>*@
                                         </form>
                                     </div>
 

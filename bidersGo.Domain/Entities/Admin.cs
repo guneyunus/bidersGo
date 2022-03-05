@@ -13,9 +13,10 @@ namespace bidersGo.Domain.Entities
     { 
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string TcKimlik { get; set; }       
         public string NickName { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        //public string Password { get; set; }
         public string UserId { get; set; }
         [ForeignKey(nameof(UserId))]
         public virtual ApplicationUser User { get; set; }
