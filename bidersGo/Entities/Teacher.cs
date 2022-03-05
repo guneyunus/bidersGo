@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace bidersGo.Entities
 {
     public class Teacher:BaseEntity
-    { 
-
+    {
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Branch { get; set; }

@@ -1,0 +1,109 @@
+﻿
+@model bidersGo.Application.Features.Queries.LessonGetAll.LessonGetAllQueryResponse
+
+<div>
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-4">
+                <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+                    <div class="w-100">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <div>
+                                    <div class="text-center">
+                                        <div>
+                                            <a href="#" class="">
+                                                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
+                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
+                                            </a>
+                                        </div>
+
+                                        <h4 class="font-size-18 mt-4">Register account</h4>
+                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                    </div>
+
+                                    <div class="p-2 mt-5">
+                                        <form method="post" asp-controller="Student" asp-action="GetMeetScheduler">
+                                            <div>
+                                                <select id="selectLesson">
+                                                    <option hidden="hidden">Lütfen Ders Seçiniz</option>
+                                                    @foreach (var item in @Model.LessonGetAll)
+                                                    {
+                                                        <option value="@item.Id">@item.LessonName</option>
+                                                    }
+                                                </select>
+
+                                            </div>
+                                            <div>
+                                                <select id="selectTeacher">
+                                                    <option style="visibility:visible;">Lütfen Öğretmen Seçiniz</option>
+                                                </select>
+                                            </div>
+                                            <div class="text-center">
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Devam et</button>
+                                            </div>
+                                            <input type="hidden" id="SecretId" name="id" value="" />
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="authentication-bg position-relative">
+                    <div class="bg-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+            var selectLesson = $("#selectLesson");
+            var lessonID = $("#selectTeacher");
+            var TeacherItem = null;
+            //lessonId => teacherıd
+            selectLesson.on("change",function() {
+                dersiDegis(selectLesson.val());
+            });
+
+            lessonID.on("change", function() {
+                console.log(lessonID.val());
+                $("#SecretId").attr("value", lessonID.val());
+            });
+
+            function dersiDegis(x) {
+                $.ajax({
+                        url:"../../../teacher/GetTeacherByLesson/"+ x,
+                        data: x,
+                        type:'GET',
+                        beforeSend: function (xhr) {
+                            xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+                        }
+                    })
+                    .done(function( data ) {
+                        if ( console && console.log ) {
+                            $("#selectTeacher").empty();
+                            TeacherItem = JSON.parse(data);
+                            var deneme = TeacherItem.teacherGetByLesson;
+                            for (var i = 0; i <= deneme.length; i++) {
+                                console.log(deneme[i]);
+                                lessonID.append($('<option>').val(deneme[i].id).text(deneme[i].name));
+                            }
+
+
+                        }
+                    });
+             }
+
+
+
+    </script>
+
+
+}

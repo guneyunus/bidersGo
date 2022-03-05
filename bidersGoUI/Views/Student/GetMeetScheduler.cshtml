@@ -1,4 +1,4 @@
-﻿@model bidersGo.Application.Features.Commands.TeacherWorkingWeekCreate.TeacherWorkingWeekCreateCommandResponse
+﻿
 
 <div class="demo-container">
     <div id="scheduler">
@@ -24,11 +24,65 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 <div>
-    <input type="hidden" id="WorkingTableId" value="@ViewBag.TabloId" />
+    <input type="hidden" id="WorkingTableId" value="@ViewBag.TeacherId" />
 </div>
+
+@section styles
+{
+    <style>
+        
+        .disable-date,
+        .dinner {
+            height: 100%;
+            width: 100%;
+        }
+
+        .disable-date {
+            background-image: repeating-linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(244, 67, 54, 0.1) 4px, transparent 4px, transparent 9px);
+            color: #9B6467;
+        }
+
+        .dx-scheduler-header-panel-cell .disable-date {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dinner {
+            background: rgba(255, 193, 7, 0.2);
+        }
+
+        .dx-scheduler-time-panel-cell .dinner {
+            color: rgba(255, 193, 7);
+            font-weight: 400;
+            background: transparent;
+        }
+
+        .dx-draggable {
+            cursor: auto;
+        }
+
+        td.dx-scheduler-time-panel-cell .dinner .cafe {
+            height: 200%;
+            width: 100%;
+            left: 50%;
+            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>');
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position-y: 50%;
+            -webkit-mask-position-x: 100%;
+            margin-top: -4px;
+            background-color: #ffc107;
+        }
+
+        .dx-scheduler-date-table-cell {
+            padding: 0;
+            opacity: 1;
+        }
+    </style>
+} 
 
 
 @section Scripts
@@ -40,8 +94,10 @@
     <script>
 
         var hiddenId = $("#WorkingTableId");
-        var url = "../../../teacher/";
+        var url = "../../../student";
         console.log(hiddenId.val());
+
+        var GelenData = null;
 
         $(() => {
             function showToast(event, value, type) {
@@ -50,12 +106,12 @@
 
             var scheduler = $('#scheduler').dxScheduler({
                 timeZone: 'Europe/Helsinki',
-                dataSource:DevExpress.data.AspNet.createStore({
+                dataSource: DevExpress.data.AspNet.createStore({
                     key: 'id',
-                    loadUrl: `${url}Get/`,
-                    insertUrl: `${url}Post/`,
-                    updateUrl: `${url}Put/`,
-                    deleteUrl: `${url}Delete/`,
+                    loadUrl: `${url}/Get/`,
+                    insertUrl: `${url}/Post/`,
+                    updateUrl: `${url}/Put/`,
+                    deleteUrl: `${url}/Delete/`,
                     onBeforeSend(method, ajaxOptions) {
                         ajaxOptions.xhrFields = { withCredentials: true };
                         if (method == "load") {
@@ -73,7 +129,11 @@
                             console.log(ajaxOptions);
                             /*ajaxOptions.url += key;*/
                         }
-                }
+                    },
+                    onLoaded: function (e) {
+                        /*console.log(e);*/
+                        
+                    }
                 }),
                 views: ['week'],
                 currentView: 'week',
@@ -86,71 +146,42 @@
                 endDateExpr: 'EndDate',
                 recurrenceRuleExpr: 'RecurrenceRule',
                 recurrenceExceptionExpr: 'RecurrenceException',
-                descriptionExpr:'Description',
+                descriptionExpr: 'Description',
                 allDayExpr: 'AllDay',
-                editing: {
-                    allowAdding: true,
-                    allowDeleting: true,
-                    allowUpdating: true,
-                    allowResizing: true,
-                    allowDragging: true,
-                },
                 onAppointmentDeleted(e) {
                     showToast('Deleted', e.appointmentData.text, 'warning');
-                    
+
                 },
                 onAppointmentDeleting(e) {
                     showToast('Silmek İstiyor Musunuz', e.appointmentData.text, 'warning');
                     console.log(e);
                 },
-                height: 600
+                dataCellTemplate(itemData, itemIndex, itemElement) {
+                    var date = itemData.startDate;
+                    var isDisabled = true;
+                    var element = $('<div />');
+                    if (isDisabled) {
+                        element.addClass('disable-date');
+                    }
+                    return itemElement.append(element);
+                },
+                onAppointmentFormOpening(e) {
+                    console.log(e);
+                },
+                onAppointmentAdding(e) {
+
+                },
+                onAppointmentUpdating(e) {
+
+                },
+                onCellClick(e) {
+                    e.cancel = true;
+                },
+                height: 900
             }).dxScheduler('instance');
 
-            $('#allow-adding').dxCheckBox({
-                text: 'Allow adding',
-                value: true,
-                onValueChanged(e) {
-                    scheduler.option('editing.allowAdding', e.value);
-                    console.log(e.value);
-                },
-            });
-
-            $('#allow-deleting').dxCheckBox({
-                text: 'Allow deleting',
-                value: true,
-                onValueChanged(e) {
-                    scheduler.option('editing.allowDeleting', e.value);
-                },
-            });
-
-            $('#allow-updating').dxCheckBox({
-                text: 'Allow updating',
-                value: true,
-                onValueChanged(e) {
-                    scheduler.option('editing.allowUpdating', e.value);
-                    dragging.option('disabled', !e.value);
-                    resizing.option('disabled', !e.value);
-                },
-            });
-
-            var resizing = $('#allow-resizing').dxCheckBox({
-                text: 'Allow resizing',
-                value: true,
-                onValueChanged(e) {
-                    scheduler.option('editing.allowResizing', e.value);
-                },
-            }).dxCheckBox('instance');
-
-            var dragging = $('#allow-dragging').dxCheckBox({
-                text: 'Allow dragging',
-                value: true,
-                onValueChanged(e) {
-                    scheduler.option('editing.allowDragging', e.value);
-                },
-            }).dxCheckBox('instance');
+           
         });
-
-       
 
 
     </script>
