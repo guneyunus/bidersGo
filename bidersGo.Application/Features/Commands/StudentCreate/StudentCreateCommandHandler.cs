@@ -60,7 +60,7 @@ namespace bidersGo.Application.Features.Commands.StudentCreate
                 TcKimlik = request.TcKimlik,
                 Email = request.Email,
                 NickName = request.NickName,
-                Password = request.Password,
+                //Password = request.Password,
                 Address = new Address() { State = request.State},
                 IsSearchLesson = request.IsSearchLesson,
                 SubscriptionId = request.SubscriptionId,

@@ -75,7 +75,7 @@ namespace bidersGo.Application.Features.Commands.TeacherCreate
                 TcKimlik= request.TcKimlik,
                 Email=request.Email,
                 NickName=request.NickName,
-                Password=request.Password,
+                //Password=request.Password,
                 Branch = request.Branch,
                 LessonId= request.LessonId,
                 Address = new Address() {State= request.State },
