@@ -30,12 +30,6 @@
                                         <form method="post" asp-controller="Teacher" asp-action="RegisterTeacher">
 
                                             <div class="auth-form-group-custom mb-4">
-                                                <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label asp-for="Email">E-Posta Adresi</label>
-                                                <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
-                                            </div>
-
-                                            <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Name">Ad</label>
                                                 <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter username">
@@ -52,18 +46,29 @@
                                                 <label asp-for="UserName">Kullanıcı Adı</label>
                                                 <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
-                                             <div class="mb-4">
-                                               <select id="selectedLessonId"  >
-                                                   <option>Lüstef Ders Seçiniz</option> 
-                                                   @foreach (var dersler in ViewBag.Lessons)
+                                            
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-mail-line auti-custom-input-icon"></i>
+                                                <label asp-for="Email">E-Posta Adresi</label>
+                                                <input asp-for="Email" class="form-control" id="useremail" placeholder="Enter email">
+                                            </div>
+
+                                            <div class="auth-form-group-custom mb-4">
+                                                <i class="ri-user-2-line auti-custom-input-icon"></i>
+                                                <label asp-for="TcKimlik">Tc Kimlik Numarası</label>
+                                                <input asp-for="TcKimlik" type="text" class="form-control" id="tcNo" placeholder="Enter username">
+                                            </div>
+                                            @*<div class="mb-4">
+                                                <select id="selectedLessonId">
+                                                    <option>Lüstef Ders Seçiniz</option>
+                                                    @foreach (var dersler in ViewBag.Lessons)
                                                     {
                                                         <option value="@dersler.Id">@dersler.LessonName</option>
                                                     }
                                                 </select>
-                                                 <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
-                                                 <input asp-for="Branch" type="hidden" class="form-control" id="brans">
-                                            </div>
-
+                                                <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
+                                                <input asp-for="Branch" type="hidden" class="form-control" id="brans">
+                                            </div>*@
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Password">Şifre</label>
@@ -76,26 +81,19 @@
                                                 <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpassword" placeholder="Enter password">
                                             </div>
 
-
-                                            @*<div>
-                                                <select id="roles">
-                                                    @foreach (var item in ViewBag.Roles)
+                                            <div class="mb-3">
+                                                <label class="form-label">Dersler</label>
+                                                <select id="selectedLessonId" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                    <option data-select2-id="3">Lütfen Ders Seçiniz</option>
+                                                    @foreach (var dersler in ViewBag.Lessons)
                                                     {
-
-                                                        if (item == "Passive" || item == "Modarator")
-                                                        {
-                                                            continue;
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@item">@item</option>
-                                                        }
-
+                                                        <option value="@dersler.Id">@dersler.LessonName</option>
                                                     }
-                                                </select>
-                                                <input type="hidden" asp-for="RoleForRegister" value="" />
-                                            </div>*@
 
+                                                </select>
+                                                <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
+                                                <input asp-for="Branch" type="hidden" class="form-control" id="brans">
+                                            </div>
 
                                             <div class="text-center">
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
@@ -133,45 +131,48 @@
 
 @section scripts{
 <script>
-    //var SelectBoxRoles = $("#roles");
-    //var ForModerator = $("#forModerator");
-    //var ForStudent = $("#forStudent");
-    //var ForTeacher = $("#forTeacher");
-    //var ForAdmin = $("#forAdmin");
-    var selectedLessonIdParameter = $("#selectedLessonId");
-    var LessonIdHideParameterValue = $("#LessonIdHideParameter");
-    var degisken = null;
-   var brans = $("#brans");
-    selectedLessonIdParameter.on("change",function(){
-        
-        var branchText = $( "#selectedLessonId option:selected" ).text();
-        
-        degisken = selectedLessonIdParameter.val();
-        LessonIdHideParameterValue.attr("value",degisken);
-       brans.attr("value",branchText);
-        
-    });
-    console.log("log");
+     //var SelectBoxRoles = $("#roles");
+     //var ForModerator = $("#forModerator");
+     //var ForStudent = $("#forStudent");
+     //var ForTeacher = $("#forTeacher");
+     //var ForAdmin = $("#forAdmin");
+     var selectedLessonIdParameter = $("#selectedLessonId");
+     var LessonIdHideParameterValue = $("#LessonIdHideParameter");
+     var degisken = null;
+    var brans = $("#brans");
+     selectedLessonIdParameter.on("change",function(){
 
-    //SelectBoxRoles.on("change",
-    //    function() {
-    //        console.log(SelectBoxRoles.val());
-    //        if (SelectBoxRoles.val() =="Moderator") {
-    //            ForModerator.css({ "display": "block", "visibility": "visible" });
-    //        } else {
-    //            ForModerator.css({ "display": "none", "visibility": "hidden" });
-    //        }
+         var branchText = $( "#selectedLessonId option:selected" ).text();
 
-    //        SelectBoxRoles.val() =="Admin" ? ForAdmin.css({"display": "block", "visibility": "visible"}) :
-    //        ForAdmin.css({"display": "none", "visibility": "hidden"});
+         degisken = selectedLessonIdParameter.val();
+         LessonIdHideParameterValue.attr("value",degisken);
+        brans.attr("value",branchText);
+        console.log(degisken);
+        console.log(branchText);
+        console.log("xxxxx");
 
-    //         SelectBoxRoles.val() =="Student" ? ForStudent.css({"display": "block", "visibility": "visible"}) :
-    //         ForStudent.css({"display": "none", "visibility": "hidden"});
+     });
+     console.log("log");
 
-    //         SelectBoxRoles.val() =="Teacher" ? ForTeacher.css({"display": "block", "visibility": "visible"}) :
-    //         ForTeacher.css({"display": "none", "visibility": "hidden"});
-    //    });
-   
+     //SelectBoxRoles.on("change",
+     //    function() {
+     //        console.log(SelectBoxRoles.val());
+     //        if (SelectBoxRoles.val() =="Moderator") {
+     //            ForModerator.css({ "display": "block", "visibility": "visible" });
+     //        } else {
+     //            ForModerator.css({ "display": "none", "visibility": "hidden" });
+     //        }
+
+     //        SelectBoxRoles.val() =="Admin" ? ForAdmin.css({"display": "block", "visibility": "visible"}) :
+     //        ForAdmin.css({"display": "none", "visibility": "hidden"});
+
+     //         SelectBoxRoles.val() =="Student" ? ForStudent.css({"display": "block", "visibility": "visible"}) :
+     //         ForStudent.css({"display": "none", "visibility": "hidden"});
+
+     //         SelectBoxRoles.val() =="Teacher" ? ForTeacher.css({"display": "block", "visibility": "visible"}) :
+     //         ForTeacher.css({"display": "none", "visibility": "hidden"});
+     //    });
+
 
 </script>
 

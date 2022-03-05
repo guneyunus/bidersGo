@@ -1,6 +1,11 @@
 
 
-@model bidersGo.Application.Features.Commands.ModeratorUpdate.ModeratorUpdateCommandRequest
+@using bidersGo.Application.Features.Commands.ModeratorUpdate
+@model ModeratorUpdateCommandRequest
+@{
+    ViewData["Title"] = "Moderator Güncelleme Ekraný";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+ }
 <div>
     <div class="container-fluid p-0">
         <div class="row g-0">
@@ -18,7 +23,7 @@
                                             </a>
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Register account</h4>
+                                        <h4 class="font-size-18 mt-4">Update account</h4>
                                         <p class="text-muted">Get your free Nazox account now.</p>
                                     </div>
 
@@ -26,7 +31,7 @@
                                         <form method="post" asp-controller="Home" asp-action="UpdateModerator">
                                             <div>
                                                 <select id="selectModerator">
-                                                    <option>Lütfen Moderator Adý Seçiniz</option>
+                                                    <option>Lutfen Moderator Adi Seciniz</option>
                                                     @foreach (var item in ViewBag.Moderator)
                                                     {
                                                         <option value="@item.Id"> @item.Name </option>
@@ -37,13 +42,13 @@
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label asp-for="Name">Moderator Adý</label>
-                                                <input asp-for="Name" class="form-control" placeholder="Yeni Ad Girin">
+                                                <label asp-for="Name">Moderator Adi</label>
+                                                <input asp-for="Name" type="name" class="form-control" placeholder="Yeni Ad Girin">
                                             </div>
                                             <input type="hidden" asp-for="Id" value="" id="Id" />
                                             <div>
                                                 <select id="selectModerator1">
-                                                    <option>Lütfen Moderator Adý Seçiniz</option>
+                                                    <option>Lutfen Moderator Soyadý Seciniz</option>
                                                     @foreach (var item in ViewBag.Moderator)
                                                     {
                                                         <option value="@item.Id"> @item.Surname </option>
@@ -52,15 +57,15 @@
                                             </div>
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label asp-for="Surname">Moderator Soyadý</label>
-                                                <input asp-for="Surname" class="form-control" placeholder="Yeni Soyadý Girin">
+                                                <label asp-for="Surname">Moderator Soyadi</label>
+                                                <input asp-for="Surname" type="surname" class="form-control" placeholder="Yeni Soyadi Girin">
                                             </div>
                                             <input type="hidden" asp-for="Id" value="" id="Id1" />
 
 
 
                                             <div class="text-center">
-                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Guncelle</button>
                                             </div>
 
                                             <div class="mt-4 text-center">
