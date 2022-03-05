@@ -4,25 +4,8 @@
     <div id="scheduler">
 
     </div>
-    <div class="options">
-        <div class="caption">Options</div>
-        <div class="options-container">
-            <div class="option">
-                <div id="allow-adding"></div>
-            </div>
-            <div class="option">
-                <div id="allow-deleting"></div>
-            </div>
-            <div class="option">
-                <div id="allow-updating"></div>
-            </div>
-            <div class="option">
-                <div id="allow-resizing"></div>
-            </div>
-            <div class="option">
-                <div id="allow-dragging"></div>
-            </div>
-        </div>
+    <div>
+        <h1 id="go" style="visibility: hidden">Devam Etmek İçin <a href="">Tıklayınız</a> </h1>
     </div>
 
 </div>
@@ -123,7 +106,7 @@
                         }
                         if (method == "update") {
                             ajaxOptions.url += hiddenId.val();
-                            console.log(ajaxOptions);
+                            
                         }
                         if (method == "delete") {
                             console.log(ajaxOptions);
@@ -154,7 +137,7 @@
                 },
                 onAppointmentDeleting(e) {
                     showToast('Silmek İstiyor Musunuz', e.appointmentData.text, 'warning');
-                    console.log(e);
+                    
                 },
                 dataCellTemplate(itemData, itemIndex, itemElement) {
                     var date = itemData.startDate;
@@ -166,13 +149,20 @@
                     return itemElement.append(element);
                 },
                 onAppointmentFormOpening(e) {
-                    console.log(e);
+                    
                 },
                 onAppointmentAdding(e) {
 
                 },
-                onAppointmentUpdating(e) {
-
+                onAppointmentUpdated(e) {
+                    console.log(e);
+                    $.ajax({
+                        url: "../../../student/SetAddress",
+                        data: e.appointmentData,
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    });
                 },
                 onCellClick(e) {
                     e.cancel = true;

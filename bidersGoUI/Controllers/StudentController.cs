@@ -152,7 +152,7 @@ namespace bidersGoUI.Controllers
             var appointment = new WorkingForOneHour();
             JsonConvert.PopulateObject(values, appointment);
 
-            //appointment.weekID = Guid.Parse(key);
+            
             _unitOfWork.workingWeekRepository.UpdateAppointment(appointment);
             
             ClaimsPrincipal currentUser = this.User;
@@ -172,16 +172,16 @@ namespace bidersGoUI.Controllers
             };
             meet.Price = 100;
             
-            
-
-            //weekid'den hocaya ulaş 
-            //meet oluştur 
-
-
             if (!TryValidateModel(appointment))
                 return BadRequest();
 
-            return Ok();
+            return Ok(meet);
+        }
+
+        [HttpGet]
+        public IActionResult SetAddress()
+        {
+            return View();
         }
     }
 }
