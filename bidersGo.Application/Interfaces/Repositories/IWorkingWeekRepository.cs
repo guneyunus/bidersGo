@@ -11,6 +11,8 @@ namespace bidersGo.Application.Interfaces.Repositories
     {
         WorkingHoursOfWeek WorkingHoursOfWeek(Guid Id);
 
+        WorkingHoursOfWeek HocaTablosu(Guid HocaIdsi);
+
         void setApmoinment(WorkingForOneHour entityForOneHour);
 
         void UpdateAppointment(WorkingForOneHour entityForOneHour );

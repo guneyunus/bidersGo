@@ -25,6 +25,11 @@ namespace bidersGo.Persistence.Repositories
             _context.SaveChanges();
         }
 
+        public WorkingHoursOfWeek HocaTablosu(Guid HocaIdsi)
+        {
+            return _context.WorkingHoursOfWeeks.FirstOrDefault(x => x.TeacherId == HocaIdsi);
+        }
+
         public void setApmoinment(WorkingForOneHour entityForOneHour)
         {
             _context.workingForOneHours.Add(entityForOneHour);

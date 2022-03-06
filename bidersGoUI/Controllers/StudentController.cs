@@ -15,7 +15,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using bidersGo.Application.Features.Queries.LessonGetAll;
+using bidersGo.Application.Features.Queries.WorkingWeekForLesson;
+using bidersGo.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace bidersGoUI.Controllers
 {
@@ -94,6 +98,111 @@ namespace bidersGoUI.Controllers
             StudentDeleteCommandResponse response = await _mediator.Send(request);
 
             return Ok(response);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetLessonAll()
+        {
+            LessonGetAllQueryResponse model = await _mediator.Send(new LessonGetAllQueryRequest());
+            return View(model);
+        }
+
+
+        [HttpPost] 
+        public IActionResult GetMeetScheduler(Guid id)
+        {
+            ViewBag.TeacherId = id;
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<object> Get(DataSourceLoadOptions loadOptions, Guid id)
+        {
+            //hocanın calışma tablosu id'si tespiti
+
+            var tabloId = _unitOfWork.workingWeekRepository.HocaTablosu(id);
+
+            WorkingWeekOfHourInOneQueryResponse response = await _mediator.Send(new WorkingWeekOfHourInOneQueryRequest()
+                { Id = tabloId.Id });
+
+            var GetDataList = new List<WorkingForOneHour>();
+            foreach (var workingForOneHour in response.WorkingHoursOfWeek.WorkingForOneHours)
+            {
+                var data = new WorkingForOneHour();
+                data.Id = workingForOneHour.Id;
+                data.StartDate = workingForOneHour.StartDate;
+                data.EndDate = workingForOneHour.EndDate;
+                data.AllDay = workingForOneHour.AllDay;
+                data.weekID = workingForOneHour.weekID;
+                data.Description = workingForOneHour.Description;
+                data.RecurrenceException = workingForOneHour.RecurrenceException;
+                data.RecurrenceRule = workingForOneHour.RecurrenceRule;
+                data.Text = workingForOneHour.Text;
+                data.isDisabled = true;
+                GetDataList.Add(data);
+            }
+            
+            return DataSourceLoader.Load(GetDataList, loadOptions);
+        }
+
+        [HttpPut]
+        public IActionResult Put(string key, string values)
+        {
+            var appointment = new WorkingForOneHour();
+            JsonConvert.PopulateObject(values, appointment);
+
+            
+            _unitOfWork.workingWeekRepository.UpdateAppointment(appointment);
+            
+            ClaimsPrincipal currentUser = this.User;
+            var id = _userManager.GetUserId(currentUser);
+            var studentId = _unitOfWork.StudentRepository.GetStudentByUserId(id);
+
+            var teacher = _unitOfWork.TeacherRepository.GetTeacherByWorkingTableId(appointment.weekID);
+
+            var meet = new Meet()
+            {
+                Address = new Address(),
+                IsApproved = false,
+                StudentId = studentId.Id,
+                TeacherId = teacher.Id,
+                LessonTime = DateTime.Parse(appointment.StartDate),
+                LessonFinishTime = DateTime.Parse(appointment.EndDate),
+                
+            };
+            meet.Price = 100;
+            _unitOfWork.MeetRepository.Create(meet);
+            
+            
+            if (!TryValidateModel(appointment))
+                return BadRequest();
+
+            return Ok(meet.Id);
+        }
+
+        [HttpGet]
+        public IActionResult SetAddress(string id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var meet =_unitOfWork.MeetRepository.GetMeetByMeetId(Guid.Parse(id));
+
+            var teacher = _unitOfWork.TeacherRepository.GetTeacherById(meet.TeacherId);
+            var student = _unitOfWork.StudentRepository.GetStudentById(meet.StudentId);
+
+            meet.Teacher = teacher;
+            meet.Student = student;
+            return View(meet);
+        }
+
+        [HttpPost]
+        public IActionResult GetOrders(Meet meet)
+        {
+            return View();
         }
     }
 }

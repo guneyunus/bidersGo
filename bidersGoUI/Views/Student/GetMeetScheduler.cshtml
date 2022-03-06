@@ -1,0 +1,173 @@
+﻿<div class="demo-container">
+    <div id="scheduler">
+
+    </div>
+    <div>
+        <h1 id="go" style="visibility: hidden">Devam Etmek İçin <a id="linkid" href="">Tıklayınız</a> </h1>
+    </div>
+
+</div>
+<div>
+    <input type="hidden" id="WorkingTableId" value="@ViewBag.TeacherId" />
+</div>
+
+@section styles
+{
+    <style>
+        
+        .disable-date,
+        .dinner {
+            height: 100%;
+            width: 100%;
+        }
+
+        .disable-date {
+            background-image: repeating-linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(244, 67, 54, 0.1) 4px, transparent 4px, transparent 9px);
+            color: #9B6467;
+        }
+
+        .dx-scheduler-header-panel-cell .disable-date {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dinner {
+            background: rgba(255, 193, 7, 0.2);
+        }
+
+        .dx-scheduler-time-panel-cell .dinner {
+            color: rgba(255, 193, 7);
+            font-weight: 400;
+            background: transparent;
+        }
+
+        .dx-draggable {
+            cursor: auto;
+        }
+
+        td.dx-scheduler-time-panel-cell .dinner .cafe {
+            height: 200%;
+            width: 100%;
+            left: 50%;
+            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>');
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position-y: 50%;
+            -webkit-mask-position-x: 100%;
+            margin-top: -4px;
+            background-color: #ffc107;
+        }
+
+        .dx-scheduler-date-table-cell {
+            padding: 0;
+            opacity: 1;
+        }
+    </style>
+} 
+
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
+    <script src="~/vendor/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
+
+    <script>
+
+        var hiddenId = $("#WorkingTableId");
+        var url = "../../../student";
+        console.log(hiddenId.val());
+
+        var GelenData = null;
+
+        $(() => {
+            function showToast(event, value, type) {
+                DevExpress.ui.notify(`${event} "${value}" task`, type, 800);
+            }
+
+            var scheduler = $('#scheduler').dxScheduler({
+                timeZone: 'Europe/Helsinki',
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: 'id',
+                    loadUrl: `${url}/Get/`,
+                    insertUrl: `${url}/Post/`,
+                    updateUrl: `${url}/Put/`,
+                    deleteUrl: `${url}/Delete/`,
+                    onBeforeSend(method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                        if (method == "load") {
+                            ajaxOptions.url += hiddenId.val();
+                        }
+                        if (method == "insert") {
+                            ajaxOptions.url += hiddenId.val();
+                            console.log(ajaxOptions);
+                        }
+                        if (method == "update") {
+                            ajaxOptions.url += hiddenId.val();
+
+                        }
+                        if (method == "delete") {
+                            console.log(ajaxOptions);
+                            /*ajaxOptions.url += key;*/
+                        }
+                    },
+                    onLoaded: function(e) {
+                        /*console.log(e);*/
+
+                    }
+                }),
+                views: ['week'],
+                currentView: 'week',
+                currentDate: Date.now(),
+                dateSerializationFormat: 'yyyy-MM-ddTHH:mm:ssZ',
+                startDayHour: 8,
+                endDayHour: 24,
+                textExpr: 'Text',
+                startDateExpr: 'StartDate',
+                endDateExpr: 'EndDate',
+                recurrenceRuleExpr: 'RecurrenceRule',
+                recurrenceExceptionExpr: 'RecurrenceException',
+                descriptionExpr: 'Description',
+                allDayExpr: 'AllDay',
+                onAppointmentDeleted(e) {
+                    showToast('Deleted', e.appointmentData.text, 'warning');
+
+                },
+                onAppointmentDeleting(e) {
+                    showToast('Silmek İstiyor Musunuz', e.appointmentData.text, 'warning');
+
+                },
+                dataCellTemplate(itemData, itemIndex, itemElement) {
+                    var date = itemData.startDate;
+                    var isDisabled = true;
+                    var element = $('<div />');
+                    if (isDisabled) {
+                        element.addClass('disable-date');
+                    }
+                    return itemElement.append(element);
+                },
+                onAppointmentFormOpening(e) {
+
+                },
+                onAppointmentAdding(e) {
+
+                },
+                onAppointmentUpdated(e) {
+                    console.log(e);
+                    $("#go").css("visibility", "visible");
+                    var datalink =(e.appointmentData);
+                    $("#linkid").attr("href", "../../../student/setaddress/" + datalink);
+
+                },
+                onCellClick(e) {
+                    e.cancel = true;
+                },
+                height: 900
+            }).dxScheduler('instance');
+
+
+        });
+
+
+    </script>
+}

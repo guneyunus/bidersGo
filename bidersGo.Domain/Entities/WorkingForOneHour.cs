@@ -31,8 +31,9 @@ namespace bidersGo.Domain.Entities
         public string RecurrenceRule { get; set; }
         [JsonProperty(PropertyName = "RecurrenceException")]
         public string RecurrenceException { get; set; }
+
         [JsonProperty(PropertyName = "IsDisabled")]
-        public bool isDisabled { get; set; }
+        public bool isDisabled { get; set; } 
 
     }
 }

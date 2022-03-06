@@ -15,6 +15,7 @@ namespace bidersGo.Application.Interfaces.Repositories
         List<Meet> GetMeetsAll();
         Address GetMeetAdress(Guid meetGuid);
         //Lesson GetMeetLesson(Guid lessonGuid);
+        Meet GetMeetByMeetId(Guid id);
         Meet GetMeetByTeacher(Guid teacherGuid);
         Meet GetMeetByStudent(Guid studentGuid);
         Meet GetMeetByDate(DateTime meetDateTime);
