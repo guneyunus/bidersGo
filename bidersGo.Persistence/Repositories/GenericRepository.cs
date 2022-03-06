@@ -23,6 +23,7 @@ namespace bidersGo.Persistence.Repositories
         public void Create(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
+            _context.SaveChanges();
         }
 
         public async Task CreateAsync(TEntity entity)

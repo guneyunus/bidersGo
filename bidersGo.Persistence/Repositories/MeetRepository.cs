@@ -82,7 +82,10 @@ namespace bidersGo.Persistence.Repositories
             return _context.Teachers.Where(x => x.CreatedDate == meetDate).ToList();
 
         }
-        
-       
+
+        public Meet GetMeetByMeetId(Guid id)
+        {
+          return  _context.Meets.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

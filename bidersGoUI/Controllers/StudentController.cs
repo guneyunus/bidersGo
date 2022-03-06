@@ -163,6 +163,7 @@ namespace bidersGoUI.Controllers
 
             var meet = new Meet()
             {
+                Address = new Address(),
                 IsApproved = false,
                 StudentId = studentId.Id,
                 TeacherId = teacher.Id,
@@ -171,15 +172,35 @@ namespace bidersGoUI.Controllers
                 
             };
             meet.Price = 100;
+            _unitOfWork.MeetRepository.Create(meet);
+            
             
             if (!TryValidateModel(appointment))
                 return BadRequest();
 
-            return Ok(meet);
+            return Ok(meet.Id);
         }
 
         [HttpGet]
-        public IActionResult SetAddress()
+        public IActionResult SetAddress(string id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var meet =_unitOfWork.MeetRepository.GetMeetByMeetId(Guid.Parse(id));
+
+            var teacher = _unitOfWork.TeacherRepository.GetTeacherById(meet.TeacherId);
+            var student = _unitOfWork.StudentRepository.GetStudentById(meet.StudentId);
+
+            meet.Teacher = teacher;
+            meet.Student = student;
+            return View(meet);
+        }
+
+        [HttpPost]
+        public IActionResult GetOrders(Meet meet)
         {
             return View();
         }

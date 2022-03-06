@@ -1,11 +1,9 @@
-﻿
-
-<div class="demo-container">
+﻿<div class="demo-container">
     <div id="scheduler">
 
     </div>
     <div>
-        <h1 id="go" style="visibility: hidden">Devam Etmek İçin <a href="">Tıklayınız</a> </h1>
+        <h1 id="go" style="visibility: hidden">Devam Etmek İçin <a id="linkid" href="">Tıklayınız</a> </h1>
     </div>
 
 </div>
@@ -106,16 +104,16 @@
                         }
                         if (method == "update") {
                             ajaxOptions.url += hiddenId.val();
-                            
+
                         }
                         if (method == "delete") {
                             console.log(ajaxOptions);
                             /*ajaxOptions.url += key;*/
                         }
                     },
-                    onLoaded: function (e) {
+                    onLoaded: function(e) {
                         /*console.log(e);*/
-                        
+
                     }
                 }),
                 views: ['week'],
@@ -137,7 +135,7 @@
                 },
                 onAppointmentDeleting(e) {
                     showToast('Silmek İstiyor Musunuz', e.appointmentData.text, 'warning');
-                    
+
                 },
                 dataCellTemplate(itemData, itemIndex, itemElement) {
                     var date = itemData.startDate;
@@ -149,20 +147,17 @@
                     return itemElement.append(element);
                 },
                 onAppointmentFormOpening(e) {
-                    
+
                 },
                 onAppointmentAdding(e) {
 
                 },
                 onAppointmentUpdated(e) {
                     console.log(e);
-                    $.ajax({
-                        url: "../../../student/SetAddress",
-                        data: e.appointmentData,
-                        xhrFields: {
-                            withCredentials: true
-                        }
-                    });
+                    $("#go").css("visibility", "visible");
+                    var datalink =(e.appointmentData);
+                    $("#linkid").attr("href", "../../../student/setaddress/" + datalink);
+
                 },
                 onCellClick(e) {
                     e.cancel = true;
@@ -170,7 +165,7 @@
                 height: 900
             }).dxScheduler('instance');
 
-           
+
         });
 
 
