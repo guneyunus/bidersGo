@@ -1,0 +1,205 @@
+﻿
+@model bidersGo.Application.Features.Queries.LessonGetAll.LessonGetAllQueryResponse
+    <!DOCTYPE HTML>
+
+    <html lang="en-US">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+        <style type="text/css">
+
+            select {
+                width: 200px;
+                height: 40px;
+                padding: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                background: #c63d0f;
+                color: #fdf3e7;
+                border: none;
+                outline: none;
+                font: 'Open Sans', sans-serif 14px;
+                display: inline-block;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                cursor: pointer;
+            }
+          
+
+            option {
+                background: #3b3738
+            }
+
+
+
+            label {
+                position: relative
+            }
+
+                label span {
+                    height: 25px;
+                    width: 20px;
+                    padding-left: 5px;
+                    padding-top: 10px;
+                    color: #fdf3e7;
+                    position: absolute;
+                    right: 0px;
+                    top: -7px;
+                    pointer-events: none;
+                }
+
+                label:hover span {
+                    background: #3b3738;
+                }
+           
+        </style>
+
+    </head>
+
+    <body>
+
+
+
+        <div>
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-4">
+                        <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+                            <div class="w-100">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-9">
+                                        <div>
+                                            <div style="text-align: center;">
+                                               @*<div>
+                                                    
+
+                                                <a href="#" class="">
+                                                 <img src="~/assets/images/logo-dark.png" alt="" height="60" class="auth-logo logo-dark mx-auto">
+                                                 <img src="~/assets/images/logo-light.png" alt="" height="60" class="auth-logo logo-light mx-auto">
+                                                </a>
+                                                    
+                                               </div>*@
+
+
+
+                                                <h4 class="font-size-18 mt-4">Öğrenci Ders Seçim Ekranı</h4>
+                                                <p class="text-muted">Ayrıcalıklı dünyamıza siz de katılın.</p>
+                                            </div>
+
+                                            <div class="p-2 mt-5">
+                                                <form method="post" asp-controller="Student" asp-action="GetMeetScheduler">
+                                                    <div>
+                                                        <div class="text-center">
+
+                                                            <label>
+                                                                <select id="selectLesson">
+                                                                    <option hidden="hidden">Lütfen Ders Seçiniz</option>
+
+                                                                    @foreach (var item in @Model.LessonGetAll)
+                                                                    {
+                                                                        <option style="display:none" value="@item.Id">@item.LessonName</option>
+
+                                                                    }
+
+                                                                </select>
+                                                                <span>	    ▼    	</span>
+                                                            </label>
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+                                                        <div>
+                                                            <div class="text-center">
+
+                                                                <label>
+                                                                    <select id="selectTeacher">
+
+                                                                        <option style="visibility:visible;">Lütfen Öğretmen Seçiniz</option>
+                                                                    </select>
+                                                                    <span>		  ▼	    </span>
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                        <hr />
+                                                        <div class="text-center">
+                                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Devam et</button>
+                                                        </div>
+                                                        <input type="hidden" id="SecretId" name="id" value="" />
+                                                </form>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="authentication-bg position-relative">
+                            <div class="bg-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+
+@section Scripts{
+    <script>
+        var selectLesson = $("#selectLesson");
+        var lessonID = $("#selectTeacher");
+        var TeacherItem = null;
+        //lessonId => teacherıd
+        selectLesson.on("change", function () {
+            dersiDegis(selectLesson.val());
+        });
+
+        lessonID.on("change", function () {
+            console.log(lessonID.val());
+            $("#SecretId").attr("value", lessonID.val());
+        });
+
+        function dersiDegis(x) {
+            $.ajax({
+                url: "../../../teacher/GetTeacherByLesson/" + x,
+                data: x,
+                type: 'GET',
+                beforeSend: function (xhr) {
+                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                }
+            })
+                .done(function (data) {
+                    if (console && console.log) {
+                        $("#selectTeacher").empty();
+                        TeacherItem = JSON.parse(data);
+                        var deneme = TeacherItem.teacherGetByLesson;
+                        for (var i = 0; i <= deneme.length; i++) {
+                            console.log(deneme[i]);
+                            lessonID.append($('<option>').val(deneme[i].id).text(deneme[i].name));
+                        }
+
+
+                    }
+                });
+        }
+
+
+
+    </script>
+
+
+}
