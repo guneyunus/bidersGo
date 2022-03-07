@@ -16,14 +16,14 @@
                                 <div>
                                     <div class="text-center">
                                         <div>
-                                            <a href=@Url.Action("Index", "Dashboard") class="">
+                                            @*<a href=@Url.Action("Index", "Dashboard") class="">
                                                 <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
                                                 <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
-                                            </a>
+                                            </a>*@
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Register account</h4>
-                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                        <h4 class="font-size-18 mt-4">Create Lesson</h4>
+                                        <p class="text-muted">Get your free BiDersGO account now.</p>
                                     </div>
 
                                     <div class="p-2 mt-5">
@@ -35,8 +35,8 @@
                                                 <input asp-for="LessonName" class="form-control" id="lessonname" placeholder="Ders Adı Girin">
                                             </div>
                                             <div class="mb-4">
-                                               <select id="selectedLessonState"  >
-                                                   <option>Lüstfen Ders Durumunu Seçiniz</option> 
+                                               <select id="selectedLessonState" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true"  >
+                                                   <option  data-select2-id="3">Lüstfen Ders Durumunu Seçiniz</option> 
                                                    <option value="true">Online Ders</option> 
                                                    <option value="false">Yüz Yüze Ders</option>
                                                 </select>
@@ -57,11 +57,11 @@
                                             </div>*@
 
                                             <div class="text-center">
-                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Create</button>
                                             </div>
 
                                             <div class="mt-4 text-center">
-                                                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
+                                                <p class="mb-0">By registering you agree to the BiDersGO <a href="#" class="text-primary">Terms of Use</a></p>
                                             </div>
                                         </form>
                                     </div>

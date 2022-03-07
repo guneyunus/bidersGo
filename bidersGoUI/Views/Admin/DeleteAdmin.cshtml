@@ -22,16 +22,17 @@
                                                 <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
                                             </a>
                                         </div>
+                                       
 
-                                        <h4 class="font-size-18 mt-4">Admin Delete</h4>
-                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                            <h4 class="font-size-18 mt-4">Admin Silme Ekranına</h4>
+                                            <p class="text-muted">Hoşgeldiniz</p>
                                     </div>
 
                                     <div class="p-2 mt-5">
                                         <form method="post" asp-controller="Home" asp-action="DeleteAdmin">
                                             <div>
-                                                <select id="selectAdmin">
-                                                    <option>Lutfen Admin Adi Seciniz</option>
+                                                <select id="selectAdmin" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                    <option  data-select2-id="3">Lutfen Admin Seciniz</option>
                                                     @foreach (var item in ViewBag.Admin1)
                                                     {
                                                         <option value="@item.Id"> @item.Name @item.Surname </option>
@@ -42,7 +43,7 @@
 
                                             </div>
 
-
+                                            <hr />
                                             <div class="text-center">
                                                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Sil</button>
                                             </div>

@@ -17,13 +17,13 @@
                                     <div class="text-center">
                                         <div>
                                             <a href=@Url.Action("Index", "Dashboard") class="">
-                                                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
-                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
+                                                @*<img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
+                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">*@
                                             </a>
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Welcome Back !</h4>
-                                        <p class="text-muted">Sign in to continue to Nazox.</p>
+                                        <h4 class="font-size-22 mt-4">Welcome Back !</h4>
+                                        <h4 class="font-size-12 mt-2">Sign in to continue to BiDersGO.</h4>
                                     </div>
 
                                     <div class="p-2 mt-5">
@@ -38,7 +38,7 @@
                                             <div class="mb-3 auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Email">E-Posta Adresi</label>
-                                                <input asp-for="Email" type="text" class="form-control" id="username" placeholder="Enter username">
+                                                <input asp-for="Email" type="text" class="form-control" id="username" placeholder="Enter email">
                                             </div>
 
                                             
@@ -70,7 +70,7 @@
                                         <p><a asp-controller="Admin" asp-action="RegisterAdmin" class="fw-medium text-primary">Admin olarak kayıt olmak için tıklayınız..</a> </p>
                                         <p>
                                             ©
-                                            <script>document.write(new Date().getFullYear())</script> Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
+                                            <script>document.write(new Date().getFullYear())</script> BiDersGO. Crafted with <i class="mdi mdi-book text-danger"></i> by Themesdesign
                                         </p>
                                     </div>
                                 </div>

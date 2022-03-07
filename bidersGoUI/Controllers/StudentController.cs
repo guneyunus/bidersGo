@@ -16,10 +16,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using bidersGo.Application.Features.Queries.LessonGetAll;
 
 namespace bidersGoUI.Controllers
 {
-    [Authorize(Roles = "Student,Admin")]
+   
     public class StudentController : Controller
     {
         private readonly IMediator _mediator;
@@ -94,6 +95,18 @@ namespace bidersGoUI.Controllers
             StudentDeleteCommandResponse response = await _mediator.Send(request);
 
             return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetLessonAll()
+        {
+            LessonGetAllQueryResponse model = await _mediator.Send(new LessonGetAllQueryRequest());
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetLessonAll(LessonGetAllQueryResponse model)
+        {
+            return null;
         }
     }
 }

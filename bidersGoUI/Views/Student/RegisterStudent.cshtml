@@ -22,8 +22,9 @@
                                             </a>
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Register account</h4>
-                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                        <h4 class="font-size-18 mt-4">Öğrenci Kayıt Ekranına</h4>
+                                        <p class="text-muted">Welcome</p>
+                                        <p class="text-muted">Get your free BiDersGO account now.</p>
                                     </div>
 
                                     <div class="p-2 mt-5">
@@ -33,13 +34,13 @@
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Name">Ad</label>
-                                                <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter username">
+                                                <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter name">
                                             </div>
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="Surname">Soyad</label>
-                                                <input asp-for="Surname" type="text" class="form-control" id="surname" placeholder="Enter username">
+                                                <input asp-for="Surname" type="text" class="form-control" id="surname" placeholder="Enter surname">
                                             </div>
 
                                             <div class="auth-form-group-custom mb-4">
@@ -57,7 +58,7 @@
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="TcKimlik">Tc Kimlik Numarası</label>
-                                                <input asp-for="TcKimlik" type="text" class="form-control" id="username" placeholder="Enter username">
+                                                <input asp-for="TcKimlik" type="text" class="form-control" id="identification number" placeholder="Enter identification number">
                                             </div>
                                              @*<div class="mb-4">
                                                <select id="selectedLessonId"  >
@@ -85,8 +86,8 @@
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
-                                               <select id="selectedLessonSearching"  >
-                                                   <option>Lüstfen Ders Arayış Durumunuzu Seçiniz</option> 
+                                               <select id="selectedLessonSearching" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true"  >
+                                                   <option  data-select2-id="3">Lüstfen Ders Arayış Durumunuzu Seçiniz</option> 
                                                    <option value="true">Evet</option> 
                                                    <option value="false">Hayır</option>
                                                 </select>
@@ -98,7 +99,7 @@
                                             </div>
 
                                             <div class="mt-4 text-center">
-                                                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
+                                                <p class="mb-0">By registering you agree to the BiDersGO <a href="#" class="text-primary">Terms of Use</a></p>
                                             </div>
                                         </form>
                                     </div>
@@ -107,7 +108,7 @@
                                         <p>Üyeliğiniz var mı? <a asp-controller="Account" asp-action="Login">Giriş için tıklayınız..</a></p>
                                         <p>
                                             ©
-                                            <script>document.write(new Date().getFullYear())</script> Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
+                                            <script>document.write(new Date().getFullYear())</script> BiDersGO. Crafted with <i class="mdi mdi-book text-danger"></i> by Themesdesign
                                         </p>
                                     </div>
                                 </div>
