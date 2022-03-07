@@ -3,7 +3,7 @@
 @using bidersGo.Application.Features.Commands.ModeratorUpdate
 @model ModeratorUpdateCommandRequest
 @{
-    ViewData["Title"] = "Moderator Güncelleme Ekraný";
+    ViewData["Title"] = "Moderator Guncelleme Ekrani";
     Layout = "~/Views/Shared/_BlankLayout.cshtml";
  }
 <div>
@@ -17,28 +17,29 @@
                                 <div>
                                     <div class="text-center">
                                         <div>
-                                            <a href=@Url.Action("Index", "Dashboard") class="">
-                                                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
-                                                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
-                                            </a>
+                                            @*<a href=@Url.Action("Index", "Dashboard") class="">
+                <img src="~/assets/images/logo-dark.png" alt="" height="20" class="auth-logo logo-dark mx-auto">
+                <img src="~/assets/images/logo-light.png" alt="" height="20" class="auth-logo logo-light mx-auto">
+            </a>*@
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Update account</h4>
-                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                        <h4 class="font-size-18 mt-4">Moderator Guncelleme Ekranina</h4>
+                                        <p class="text-muted">Hosgeldiniz</p>
+                                        <p class="text-muted">Get your free BiDersGO account now.</p>
                                     </div>
 
                                     <div class="p-2 mt-5">
                                         <form method="post" asp-controller="Home" asp-action="UpdateModerator">
                                             <div>
-                                                <select id="selectModerator">
-                                                    <option>Lutfen Moderator Adi Seciniz</option>
+                                                <select id="selectModerator" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                    <option  data-select2-id="3">Lutfen Moderator Adi Seciniz</option>
                                                     @foreach (var item in ViewBag.Moderator)
                                                     {
                                                         <option value="@item.Id"> @item.Name </option>
                                                     }
                                                 </select>
                                             </div>
-
+                                            <hr />
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
@@ -47,14 +48,15 @@
                                             </div>
                                             <input type="hidden" asp-for="Id" value="" id="Id" />
                                             <div>
-                                                <select id="selectModerator1">
-                                                    <option>Lutfen Moderator Soyadý Seciniz</option>
+                                                <select id="selectModerator1" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                    <option  data-select2-id="3">Lutfen Moderator Soyadi Seciniz</option>
                                                     @foreach (var item in ViewBag.Moderator)
                                                     {
                                                         <option value="@item.Id"> @item.Surname </option>
                                                     }
                                                 </select>
                                             </div>
+                                            <hr />
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
                                                 <label asp-for="Surname">Moderator Soyadi</label>
@@ -69,7 +71,7 @@
                                             </div>
 
                                             <div class="mt-4 text-center">
-                                                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
+                                                <p class="mb-0">By registering you agree to the BiDersGO <a href="#" class="text-primary">Terms of Use</a></p>
                                             </div>
                                         </form>
                                     </div>

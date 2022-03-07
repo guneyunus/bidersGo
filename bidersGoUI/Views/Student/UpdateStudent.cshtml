@@ -16,52 +16,56 @@
                                             </a>
                                         </div>
 
-                                        <h4 class="font-size-18 mt-4">Register account</h4>
-                                        <p class="text-muted">Get your free Nazox account now.</p>
+                                        <h4 class="font-size-18 mt-4">Ogrenci Guncelleme Ekranina</h4>
+                                        <p class="text-muted">Hosgeldiniz</p>
+                                        <p class="text-muted">Get your free BiDersGO account now.</p>
                                     </div>
 
                                     <div class="p-2 mt-5">
                                         <form method="post" asp-controller="Home" asp-action="UpdateStudent">
                                             <div>
-                                                <select id="selectStudent">
-                                                    <option>Lütfen Öðrenci Seçiniz</option>
+                                                <select id="selectStudent" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                    <option data-select2-id="3">Lutfen Ogrenci Adi Seciniz</option>
                                                     @foreach (var item in ViewBag.Ogrenciler)
                                                     {
                                                         <option value="@item.Id"> @item.Name  </option>
                                                     }
                                                 </select>
                                             </div>
+                                            <hr />
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label asp-for="Name">Öðreni Adý</label>
-                                                <input asp-for="Name" class="form-control" placeholder="Yeni Adý Girin">
+                                                <label asp-for="Name">Ogrenci Adi</label>
+                                                <input asp-for="Name" class="form-control" placeholder="Yeni Adi Girin">
                                             </div>
                                             <input type="hidden" asp-for="Id" value="" id="Id" />
 
-                                            <select id="selectStudent1">
-                                                <option>Lütfen Öðrenci Seçiniz</option>
+
+                                            <select id="selectStudent1" class="form-control select2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                <option data-select2-id="3">Lutfen Ogrenci Soyadi Seciniz</option>
                                                 @foreach (var item in ViewBag.Ogrenciler)
                                                 {
                                                     <option value="@item.Id"> @item.Surname  </option>
                                                 }
                                             </select>
+                                            <hr />
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                <label asp-for="Surname">Öðrenci Soyadý</label>
-                                                <input asp-for="Surname" class="form-control" placeholder="Yeni Soyadý Girin">
+                                                <label asp-for="Surname">Ogrenci Soyadi</label>
+                                                <input asp-for="Surname" class="form-control" placeholder="Yeni Soyadi Girin">
                                             </div>
                                             <input type="hidden" asp-for="Id" value="" id="Id1" />
 
 
 
-
+                                            <hr />
 
                                             <div class="text-center">
-                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Guncelle</button>
                                             </div>
 
                                             <div class="mt-4 text-center">
-                                                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
+                                                <p class="mb-0">By registering you agree to the BiDersGO <a href="#" class="text-primary">Terms of Use</a></p>
                                             </div>
                                         </form>
                                 </div>
