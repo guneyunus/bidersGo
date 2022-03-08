@@ -1,7 +1,7 @@
-﻿@using bidersGo.Application.Features.Commands.StudentCreate
-@model StudentCreateCommandRequest
+﻿@using bidersGo.Application.Features.Commands.AdminCreate
+@model AdminCreateCommandRequest
 @{
-    ViewData["Title"] = "Student Kayıt Ekranı";
+    ViewData["Title"] = "Admin Kayıt Ekranı";
     Layout = "~/Views/Shared/_BlankLayout.cshtml";
 }
 
@@ -27,8 +27,7 @@
                                     </div>
 
                                     <div class="p-2 mt-5">
-                                        <form method="post" asp-controller="Student" asp-action="RegisterStudent">
-
+                                        <form method="post" asp-controller="Account" asp-action="RegisterAdmin">
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
@@ -45,7 +44,7 @@
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-user-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="NickName">Kullanıcı Adı</label>
-                                                <input asp-for="NickName" type="text" class="form-control" id="username" placeholder="Enter username">
+                                                <input asp-for="NickName" type="text" class="form-control" id="userNickName" placeholder="Enter username">
                                             </div>
                                             
                                             <div class="auth-form-group-custom mb-4">
@@ -59,17 +58,7 @@
                                                 <label asp-for="TcKimlik">Tc Kimlik Numarası</label>
                                                 <input asp-for="TcKimlik" type="text" class="form-control" id="username" placeholder="Enter username">
                                             </div>
-                                             @*<div class="mb-4">
-                                               <select id="selectedLessonId"  >
-                                                   <option>Lüstef Ders Seçiniz</option> 
-                                                   @foreach (var dersler in ViewBag.Lessons)
-                                                    {
-                                                        <option value="@dersler.Id">@dersler.LessonName</option>
-                                                    }
-                                                </select>
-                                                 <input id="LessonIdHideParameter" type="hidden" asp-for="LessonId" value="" />
-                                                 <input asp-for="Branch" type="hidden" class="form-control" id="brans">
-                                            </div>*@
+                                             
 
                                             <div class="auth-form-group-custom mb-4">
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
@@ -81,16 +70,6 @@
                                                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                 <label asp-for="ConfirmPassword">Şifre Tekrarı</label>
                                                 <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmpassword" placeholder="Enter password">
-                                            </div>
-
-                                            <div class="auth-form-group-custom mb-4">
-                                                <i class="ri-lock-2-line auti-custom-input-icon"></i>
-                                               <select id="selectedLessonSearching"  >
-                                                   <option>Lüstfen Ders Arayış Durumunuzu Seçiniz</option> 
-                                                   <option value="true">Evet</option> 
-                                                   <option value="false">Hayır</option>
-                                                </select>
-                                                 <input asp-for="IsSearchLesson" type="hidden" class="form-control" id="isSearchLesson" value="">
                                             </div>
 
                                             <div class="text-center">
@@ -127,36 +106,5 @@
 </div>
 
 
-@section scripts{
-<script>
-    var selectedLessonSearching = $("#selectedLessonSearching");
-    var isSearchLesson = $("#isSearchLesson");
-
-    var newState = null;
-    selectedLessonSearching.on("change",function(){
-       newState= selectedLessonSearching.val();
-       console.log(newState)
-       isSearchLesson.attr("value",newState);
-    });
-    console.log("xxxxxx");
-
-
-   // var selectedLessonIdParameter = $("#selectedLessonId");
-   // var LessonIdHideParameterValue = $("#LessonIdHideParameter");
-   // var degisken = null;
-   //var brans = $("#brans");
-   // selectedLessonIdParameter.on("change",function(){
-        
-   //     var branchText = $( "#selectedLessonId option:selected" ).text();
-        
-   //     degisken = selectedLessonIdParameter.val();
-   //     LessonIdHideParameterValue.attr("value",degisken);
-   //    brans.attr("value",branchText);
-        
-   // });
-   // console.log("log");
-</script>
-
-}
 
 

@@ -28,17 +28,6 @@ namespace bidersGoUI.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult RegisterAdmin()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> RegisterAdmin(AdminCreateCommandRequest request)
-        {
-            AdminCreateCommandResponse response = await _mediator.Send(request);
-            return Ok(response);
-        }
 
         public IActionResult GetUser(DataSourceLoadOptions loadOptions)
         {

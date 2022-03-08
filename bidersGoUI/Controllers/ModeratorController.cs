@@ -25,19 +25,19 @@ namespace bidersGoUI.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult RegisterModerator()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult RegisterModerator()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> RegisterModerator(ModeratorCreateCommandRequest request)
-        {
-            ModeratorCreateCommandResponse response = await _mediator.Send(request);
+        //[HttpPost]
+        //public async Task<IActionResult> RegisterModerator(ModeratorCreateCommandRequest request)
+        //{
+        //    ModeratorCreateCommandResponse response = await _mediator.Send(request);
 
-            return Ok(response);
-        }
+        //    return Ok(response);
+        //}
 
         [HttpGet]
         public IActionResult GetModerator(DataSourceLoadOptions loadOptions)

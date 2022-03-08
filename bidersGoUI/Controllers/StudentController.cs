@@ -42,19 +42,6 @@ namespace bidersGoUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult RegisterStudent()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> RegisterStudent(StudentCreateCommandRequest request)
-        {
-            StudentCreateCommandResponse response = await _mediator.Send(request);
-
-            return Ok(response);
-        }
-
-        [HttpGet]
         public IActionResult GetStudent(DataSourceLoadOptions loadOptions)
         {
             var data = _unitOfWork.StudentRepository.GetStudentsAll();

@@ -96,22 +96,6 @@ namespace bidersGoUI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> RegisterTeacher()
-        {
-            LessonGetAllQueryResponse response = await _mediator.Send(new LessonGetAllQueryRequest());
-            ViewBag.Lessons = response.LessonGetAll;
-            return View();
-        }
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> RegisterTeacher(TeacherCreateCommandRequest request)
-        {
-            TeacherCreateCommandResponse response = await _mediator.Send(request);
-
-            return Ok(response);
-        }
-
-        [HttpGet]
         public async Task<JsonResult> GetHoursInWorkingTable(Guid id)
         {
             WorkingWeekOfHourInOneQueryResponse response = await _mediator.Send(new WorkingWeekOfHourInOneQueryRequest()
